@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rhythm Hotels — Content Preview</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #f5f5f5;
+    color: #111;
+    min-height: 100vh;
+  }
+
+  header {
+    background: #fff;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 16px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  header .logo {
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: #111;
+    text-transform: uppercase;
+  }
+
+  header .logo span { color: #b5924c; }
+
+  .date-bar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 28px 32px 0;
+    flex-wrap: wrap;
+  }
+
+  .date-bar label {
+    font-size: 13px;
+    font-weight: 500;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .date-bar select, .date-bar input[type=date] {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-size: 14px;
+    background: #fff;
+    color: #111;
+    cursor: pointer;
+    outline: none;
+  }
+
+  .date-bar select:focus, .date-bar input[type=date]:focus {
+    border-color: #b5924c;
+  }
+
+  .status-badge {
+    font-size: 12px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-weight: 500;
+  }
+
+  .badge-static { background: #e8f4fd; color: #1565c0; }
+  .badge-reel   { background: #f3e5f5; color: #7b1fa2; }
+  .badge-carousel { background: #e8f5e9; color: #2e7d32; }
+  .badge-none   { background: #f5f5f5; color: #999; }
+
+  .phones-row {
+    display: flex;
+    gap: 32px;
+    padding: 32px 32px 48px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .phone-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .phone-label {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #888;
+  }
+
+  .phone {
+    width: 320px;
+    height: 660px;
+    background: #fff;
+    border-radius: 44px;
+    border: 10px solid #1a1a1a;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 0 2px #333, 0 20px 60px rgba(0,0,0,0.18);
+  }
+
+  /* Notch */
+  .phone::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 110px;
+    height: 28px;
+    background: #1a1a1a;
+    border-radius: 0 0 18px 18px;
+    z-index: 10;
+  }
+
+  /* Side buttons */
+  .phone::after {
+    content: '';
+    position: absolute;
+    right: -13px;
+    top: 100px;
+    width: 4px;
+    height: 60px;
+    background: #333;
+    border-radius: 2px;
+  }
+
+  .phone-screen {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background: #fff;
+    scrollbar-width: none;
+  }
+
+  .phone-screen::-webkit-scrollbar { display: none; }
+
+  /* Instagram-style inside the phone */
+  .ig-status-bar {
+    height: 36px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding: 0 18px 6px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #111;
+    background: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 5;
+  }
+
+  .ig-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 14px;
+    border-bottom: 0.5px solid #efefef;
+  }
+
+  .ig-nav .ig-username {
+    font-size: 14px;
+    font-weight: 700;
+    color: #111;
+  }
+
+  .ig-nav-icons {
+    display: flex;
+    gap: 14px;
+  }
+
+  .ig-nav-icons svg { width: 22px; height: 22px; fill: #111; }
+
+  .ig-post-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 14px;
+  }
+
+  .ig-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    flex-shrink: 0;
+    border: 2px solid transparent;
+    outline: 2px solid #e0e0e0;
+    outline-offset: 1px;
+  }
+
+  .ig-post-user { font-size: 13px; font-weight: 600; color: #111; }
+  .ig-post-loc  { font-size: 11px; color: #555; }
+
+  .ig-more { margin-left: auto; font-size: 18px; color: #111; line-height: 1; }
+
+  .ig-media {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1;
+    background: #f0f0f0;
+    overflow: hidden;
+  }
+
+  .ig-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .ig-media-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: #bbb;
+    font-size: 12px;
+  }
+
+  .ig-media-placeholder svg { width: 40px; height: 40px; opacity: 0.4; }
+
+  /* Carousel dots + arrows */
+  .carousel-dots {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 5px;
+  }
+
+  .carousel-dots span {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.6);
+    transition: background 0.2s;
+  }
+
+  .carousel-dots span.active { background: #fff; }
+
+  .carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255,255,255,0.85);
+    border: none;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 14px;
+    color: #111;
+  }
+
+  .carousel-arrow.left  { left: 8px; }
+  .carousel-arrow.right { right: 8px; }
+
+  /* Reel overlay */
+  .reel-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,0.18);
+  }
+
+  .reel-play {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.88);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .reel-play svg { width: 22px; height: 22px; fill: #111; margin-left: 3px; }
+
+  .ig-actions {
+    display: flex;
+    align-items: center;
+    padding: 8px 14px 4px;
+    gap: 14px;
+  }
+
+  .ig-actions svg { width: 24px; height: 24px; fill: none; stroke: #111; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .ig-actions .save-icon { margin-left: auto; }
+
+  .ig-likes {
+    padding: 0 14px 4px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #111;
+  }
+
+  .ig-caption {
+    padding: 0 14px 12px;
+    font-size: 12px;
+    line-height: 1.5;
+    color: #111;
+  }
+
+  .ig-caption .ig-handle { font-weight: 700; margin-right: 5px; }
+
+  .ig-caption .ig-hashtags { color: #00376b; }
+
+  .ig-caption-more {
+    color: #999;
+    font-size: 12px;
+    cursor: pointer;
+    display: none;
+  }
+
+  .ig-time {
+    padding: 0 14px 16px;
+    font-size: 10px;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  /* Bottom nav bar */
+  .ig-bottom-nav {
+    position: sticky;
+    bottom: 0;
+    background: #fff;
+    border-top: 0.5px solid #efefef;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0 6px;
+  }
+
+  .ig-bottom-nav svg { width: 24px; height: 24px; fill: none; stroke: #111; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+  .no-post-msg {
+    padding: 60px 20px;
+    text-align: center;
+    color: #bbb;
+    font-size: 13px;
+    line-height: 1.8;
+  }
+
+  .no-post-msg svg { width: 36px; height: 36px; opacity: 0.3; margin-bottom: 12px; }
+
+  /* Date dots legend */
+  .date-dots {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    padding: 0 32px 0;
+    margin-top: 16px;
+  }
+
+  .date-dot {
+    font-size: 12px;
+    padding: 5px 12px;
+    border-radius: 20px;
+    border: 1px solid #ddd;
+    background: #fff;
+    cursor: pointer;
+    color: #666;
+    transition: all 0.15s;
+  }
+
+  .date-dot:hover { border-color: #b5924c; color: #b5924c; }
+  .date-dot.active { background: #b5924c; color: #fff; border-color: #b5924c; }
+  .date-dot.has-media { border-color: #b5924c; }
+
+  @media (max-width: 700px) {
+    .phones-row { padding: 20px 12px 32px; gap: 20px; }
+    .phone { width: 280px; height: 580px; }
+    header { padding: 14px 16px; }
+    .date-bar, .date-dots { padding-left: 16px; padding-right: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">Rhythm <span>Hotels</span> &mdash; Content Preview</div>
+  <div style="font-size:12px;color:#999;">Internal use only</div>
+</header>
+
+<div class="date-bar">
+  <label>Date</label>
+  <input type="date" id="datePicker" />
+  <span id="postTypeBadge" class="status-badge badge-none">No post</span>
+</div>
+
+<div class="date-dots" id="dateDots"></div>
+
+<div class="phones-row" id="phonesRow">
+  <div class="phone-wrap">
+    <div class="phone-label">Lonavala</div>
+    <div class="phone" id="phone-LNL">
+      <div class="phone-screen" id="screen-LNL"></div>
+    </div>
+  </div>
+  <div class="phone-wrap">
+    <div class="phone-label">Gurugram</div>
+    <div class="phone" id="phone-GUR">
+      <div class="phone-screen" id="screen-GUR"></div>
+    </div>
+  </div>
+  <div class="phone-wrap">
+    <div class="phone-label">Kumarakom</div>
+    <div class="phone" id="phone-KUM">
+      <div class="phone-screen" id="screen-KUM"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const PROPS = ['LNL','GUR','KUM'];
+const HANDLES = { LNL:'rhythmlonavala', GUR:'rhythmgurugram', KUM:'rhythmkumarakom' };
+const LOCATIONS = { LNL:'Lonavala, Maharashtra', GUR:'Gurugram, Haryana', KUM:'Kumarakom, Kerala' };
+const INITIALS = { LNL:'RL', GUR:'RG', KUM:'RK' };
+const TYPE_LABELS = { ST:'Static', RL:'Reel', CR:'Carousel' };
+const TYPE_BADGES = { ST:'badge-static', RL:'badge-reel', CR:'badge-carousel' };
+
+let postsData = {};
+let carouselIndex = { LNL:0, GUR:0, KUM:0 };
+
+async function loadData() {
+  try {
+    const r = await fetch('posts.json?_=' + Date.now());
+    postsData = await r.json();
+    buildDateDots();
+    const firstDate = Object.keys(postsData).sort().find(d => {
+      const p = postsData[d];
+      return PROPS.some(prop => p[prop] && p[prop].images && p[prop].images.length > 0);
+    }) || Object.keys(postsData).sort()[0];
+    if (firstDate) {
+      document.getElementById('datePicker').value = firstDate;
+      renderDate(firstDate);
+    }
+  } catch(e) {
+    console.error(e);
+  }
+}
+
+function buildDateDots() {
+  const container = document.getElementById('dateDots');
+  const dates = Object.keys(postsData).sort();
+  container.innerHTML = '';
+  dates.forEach(d => {
+    const p = postsData[d];
+    const hasMedia = PROPS.some(prop => p[prop] && p[prop].images && p[prop].images.length > 0);
+    const label = new Date(d + 'T00:00:00').toLocaleDateString('en-IN', {day:'numeric', month:'short'});
+    const dot = document.createElement('div');
+    dot.className = 'date-dot' + (hasMedia ? ' has-media' : '');
+    dot.textContent = label;
+    dot.dataset.date = d;
+    dot.onclick = () => {
+      document.getElementById('datePicker').value = d;
+      renderDate(d);
+    };
+    container.appendChild(dot);
+  });
+}
+
+function updateActiveDot(date) {
+  document.querySelectorAll('.date-dot').forEach(d => {
+    d.classList.toggle('active', d.dataset.date === date);
+  });
+}
+
+function renderDate(date) {
+  updateActiveDot(date);
+  const dayPosts = postsData[date] || {};
+  PROPS.forEach(prop => { carouselIndex[prop] = 0; });
+
+  const types = PROPS.map(prop => dayPosts[prop]?.type).filter(Boolean);
+  const mainType = types[0] || null;
+  const badge = document.getElementById('postTypeBadge');
+  if (mainType) {
+    badge.textContent = TYPE_LABELS[mainType] || mainType;
+    badge.className = 'status-badge ' + (TYPE_BADGES[mainType] || 'badge-none');
+  } else {
+    badge.textContent = 'No post';
+    badge.className = 'status-badge badge-none';
+  }
+
+  PROPS.forEach(prop => {
+    const post = dayPosts[prop];
+    const screen = document.getElementById('screen-' + prop);
+    screen.innerHTML = post ? buildPhone(prop, post) : buildEmpty(prop);
+  });
+}
+
+function buildPhone(prop, post) {
+  const handle = HANDLES[prop];
+  const loc = LOCATIONS[prop];
+  const ini = INITIALS[prop];
+  const images = post.images || [];
+  const type = post.type;
+
+  const mediaHtml = buildMedia(prop, images, type);
+  const captionHtml = buildCaption(handle, post.caption);
+
+  return `
+    <div class="ig-status-bar">
+      <span>9:41</span>
+      <span style="display:flex;gap:5px;align-items:center;">
+        <svg width="15" height="11" viewBox="0 0 15 11" fill="#111"><rect x="0" y="4" width="3" height="7" rx="1"/><rect x="4" y="2.5" width="3" height="8.5" rx="1"/><rect x="8" y="1" width="3" height="10" rx="1"/><rect x="12" y="0" width="3" height="11" rx="1"/></svg>
+        <svg width="16" height="12" viewBox="0 0 16 12" fill="none" stroke="#111" stroke-width="1.5"><path d="M1 3.5C4 0.5 12 0.5 15 3.5"/><path d="M3 6C5.5 3.5 10.5 3.5 13 6"/><path d="M5.5 8.5C7 7 9 7 10.5 8.5"/><circle cx="8" cy="11" r="1" fill="#111" stroke="none"/></svg>
+        <svg width="25" height="12" viewBox="0 0 25 12" fill="none"><rect x="0.5" y="0.5" width="21" height="11" rx="3.5" stroke="#111" stroke-opacity="0.35"/><rect x="2" y="2" width="17" height="8" rx="2" fill="#111"/><path d="M23 4.5V7.5C23.8 7.2 24.5 6.4 24.5 6C24.5 5.6 23.8 4.8 23 4.5Z" fill="#111" fill-opacity="0.4"/></svg>
+      </span>
+    </div>
+    <div class="ig-nav">
+      <svg width="104" height="29" viewBox="0 0 104 29" fill="#111" xmlns="http://www.w3.org/2000/svg">
+        <text y="22" font-family="-apple-system,sans-serif" font-size="18" font-weight="700">${handle}</text>
+      </svg>
+      <div class="ig-nav-icons">
+        <svg viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z" fill="none" stroke="#111" stroke-width="2"/></svg>
+        <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13" stroke="#111" stroke-width="2"/><polygon points="22 2 15 22 11 13 2 9 22 2" fill="none" stroke="#111" stroke-width="2"/></svg>
+      </div>
+    </div>
+    <div class="ig-post-header">
+      <div class="ig-avatar">${ini}</div>
+      <div>
+        <div class="ig-post-user">${handle}</div>
+        <div class="ig-post-loc">${loc}</div>
+      </div>
+      <div class="ig-more">···</div>
+    </div>
+    <div class="ig-media" id="media-${prop}">
+      ${mediaHtml}
+    </div>
+    <div class="ig-actions">
+      <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+      <svg class="save-icon" viewBox="0 0 24 24"><polygon points="19 21 12 16 5 21 5 3 19 3"/></svg>
+    </div>
+    <div class="ig-likes">1,204 likes</div>
+    ${captionHtml}
+    <div class="ig-time">2 hours ago</div>
+    <div class="ig-bottom-nav">
+      <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z" stroke="none" fill="#111"/></svg>
+      <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      <div style="width:30px;height:30px;border-radius:50%;background:#ddd;border:2px solid #111;overflow:hidden;"><div style="width:100%;height:100%;background:linear-gradient(135deg,#667eea,#764ba2);"></div></div>
+    </div>
+  `;
+}
+
+function buildMedia(prop, images, type) {
+  if (!images || images.length === 0) {
+    return `<div class="ig-media-placeholder">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      <span>Upload image to<br>${prop} Drive folder</span>
+    </div>`;
+  }
+
+  if (type === 'CR' && images.length > 1) {
+    const dots = images.map((_, i) => `<span class="${i===0?'active':''}"></span>`).join('');
+    return `
+      <img src="${images[0].url}" id="carousel-img-${prop}" alt="Post image" onerror="this.style.opacity=0.3">
+      <button class="carousel-arrow left" onclick="prevSlide('${prop}')">&#8249;</button>
+      <button class="carousel-arrow right" onclick="nextSlide('${prop}')">&#8250;</button>
+      <div class="carousel-dots" id="dots-${prop}">${dots}</div>
+    `;
+  }
+
+  if (type === 'RL') {
+    return `
+      <img src="${images[0].url}" alt="Reel cover" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.opacity=0.3">
+      <div class="reel-overlay">
+        <div class="reel-play">
+          <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        </div>
+      </div>
+    `;
+  }
+
+  return `<img src="${images[0].url}" alt="Post image" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.opacity=0.3">`;
+}
+
+function buildCaption(handle, caption) {
+  if (!caption) return '';
+  const lines = caption.split('\n');
+  const mainLine = lines[0] || '';
+  const hashLine = lines.find(l => l.startsWith('#')) || '';
+  const keywords = lines.find(l => l.startsWith('[')) || '';
+
+  const MAX = 120;
+  const preview = mainLine.length > MAX ? mainLine.slice(0, MAX) + '...' : mainLine;
+  const hashHtml = hashLine ? `<span class="ig-hashtags">${hashLine}</span>` : '';
+
+  return `<div class="ig-caption">
+    <span class="ig-handle">${handle}</span>${preview}
+    <br><small class="ig-hashtags" style="font-size:11px;">${hashLine}</small>
+  </div>`;
+}
+
+function buildEmpty(prop) {
+  return `<div class="ig-status-bar"><span>9:41</span></div>
+  <div class="no-post-msg">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+    <br>No post scheduled<br>for this date
+  </div>`;
+}
+
+// carousel navigation
+const carouselImages = {};
+
+function nextSlide(prop) {
+  const date = document.getElementById('datePicker').value;
+  const post = (postsData[date] || {})[prop];
+  if (!post || !post.images) return;
+  const imgs = post.images;
+  carouselIndex[prop] = (carouselIndex[prop] + 1) % imgs.length;
+  updateCarousel(prop, imgs);
+}
+
+function prevSlide(prop) {
+  const date = document.getElementById('datePicker').value;
+  const post = (postsData[date] || {})[prop];
+  if (!post || !post.images) return;
+  const imgs = post.images;
+  carouselIndex[prop] = (carouselIndex[prop] - 1 + imgs.length) % imgs.length;
+  updateCarousel(prop, imgs);
+}
+
+function updateCarousel(prop, imgs) {
+  const i = carouselIndex[prop];
+  const img = document.getElementById('carousel-img-' + prop);
+  const dots = document.getElementById('dots-' + prop);
+  if (img) img.src = imgs[i].url;
+  if (dots) {
+    dots.querySelectorAll('span').forEach((s, idx) => {
+      s.classList.toggle('active', idx === i);
+    });
+  }
+}
+
+document.getElementById('datePicker').addEventListener('change', e => renderDate(e.target.value));
+
+loadData();
+</script>
+</body>
+</html>
