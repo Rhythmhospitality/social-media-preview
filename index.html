@@ -66,108 +66,149 @@ header{background:#111;border-bottom:1px solid #222;padding:0 24px;height:52px;d
 .hdr-lnl{color:#66bb6a;border-color:#2a3a2a}.hdr-gur{color:#64b5f6;border-color:#1a2535}.hdr-kum{color:#ce93d8;border-color:#2e1e35}
 
 /* ── PHONE MOCKUP ── */
-.phone-wrap{max-width:290px;margin:0 auto 24px}
+.phone-wrap{max-width:300px;margin:0 auto 28px}
 
+/* Outer phone body */
 .phone{
-  background:#1a1a1a;
-  border-radius:46px;
-  padding:12px;
+  position:relative;
+  background:linear-gradient(160deg,#2e2e2e 0%,#1a1a1a 60%,#222 100%);
+  border-radius:50px;
+  padding:10px;
   box-shadow:
-    inset 0 0 0 1px rgba(255,255,255,0.08),
-    0 0 0 2px #0a0a0a,
-    0 25px 60px rgba(0,0,0,.7),
-    0 0 0 1px #000;
+    inset 0 1px 0 rgba(255,255,255,.12),
+    inset 0 -1px 0 rgba(0,0,0,.4),
+    0 0 0 1px #0a0a0a,
+    0 30px 70px rgba(0,0,0,.8),
+    0 10px 30px rgba(0,0,0,.5);
+}
+/* Power button right */
+.phone::after{
+  content:'';position:absolute;
+  right:-3px;top:110px;
+  width:3px;height:55px;
+  background:linear-gradient(180deg,#2a2a2a,#333,#2a2a2a);
+  border-radius:0 3px 3px 0;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.1);
+}
+/* Volume buttons left */
+.phone-vol{
+  position:absolute;left:-3px;
+  width:3px;
+  background:linear-gradient(180deg,#2a2a2a,#333,#2a2a2a);
+  border-radius:3px 0 0 3px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.1);
+}
+.phone-vol.v1{top:80px;height:30px;}
+.phone-vol.v2{top:120px;height:44px;}
+.phone-vol.v3{top:174px;height:44px;}
+
+/* Screen */
+.phone-screen{
+  background:#fff;
+  border-radius:42px;
+  overflow:hidden;
   position:relative;
 }
+.phone-screen.upcoming-screen{background:#f5f7ff}
 
 /* Dynamic Island */
 .phone-island{
   position:absolute;
-  top:18px;left:50%;transform:translateX(-50%);
-  width:90px;height:26px;
-  background:#1a1a1a;border-radius:13px;z-index:20;
+  top:16px;left:50%;transform:translateX(-50%);
+  width:95px;height:28px;
+  background:#1a1a1a;border-radius:14px;z-index:30;
 }
-
-/* Side buttons */
-.phone::before{
-  content:'';position:absolute;
-  right:-3px;top:100px;
-  width:3px;height:60px;
-  background:#2a2a2a;border-radius:0 3px 3px 0;
-}
-
-.phone-screen{
-  background:#fff;border-radius:36px;overflow:hidden;
-  position:relative;
-}
-.phone-screen.upcoming-screen{background:#f8f9ff}
 
 /* Status bar */
 .phone-status{
-  height:50px;display:flex;align-items:flex-end;justify-content:space-between;
-  padding:0 22px 8px;font-size:11px;font-weight:700;letter-spacing:-.01em;color:#111;
-  position:relative;z-index:5;
+  height:52px;display:flex;align-items:flex-end;justify-content:space-between;
+  padding:0 20px 9px;font-size:11px;font-weight:700;color:#111;
 }
-.ps-icons{display:flex;align-items:center;gap:4px;font-size:10px}
+.ps-time{font-size:12px;font-weight:800;letter-spacing:-.02em}
+.ps-icons{display:flex;align-items:center;gap:5px}
+.ps-signal{display:flex;align-items:flex-end;gap:1px;height:10px}
+.ps-signal span{width:2.5px;background:#111;border-radius:1px}
+.ps-signal span:nth-child(1){height:30%}
+.ps-signal span:nth-child(2){height:55%}
+.ps-signal span:nth-child(3){height:80%}
+.ps-signal span:nth-child(4){height:100%}
+.ps-wifi{font-size:10px}
+.ps-batt{width:22px;height:11px;border:1.5px solid #111;border-radius:3px;position:relative;margin-left:1px}
+.ps-batt::after{content:'';position:absolute;right:-4px;top:2px;width:2.5px;height:5px;background:#111;border-radius:0 1px 1px 0}
+.ps-batt-fill{position:absolute;inset:1px;background:#111;border-radius:1px}
 
-/* Instagram header inside phone */
-.ig-header{display:flex;align-items:center;padding:6px 12px 7px;gap:8px;border-bottom:1px solid #f0f0f0}
-.ig-avatar{width:28px;height:28px;border-radius:50%;object-fit:cover;border:1.5px solid transparent;background:linear-gradient(#fff,#fff) padding-box, linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888) border-box;flex-shrink:0}
-.ig-avatar-ph{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045);flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:11px;font-weight:700}
+/* Instagram app top bar */
+.ig-appbar{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:4px 14px 8px;border-bottom:1px solid #efefef;
+}
+.ig-logo{font-size:19px;font-weight:800;letter-spacing:-.03em;font-family:'Georgia',serif;color:#111;line-height:1}
+.ig-appbar-icons{display:flex;align-items:center;gap:14px}
+.ig-appbar-icons svg{width:22px;height:22px;fill:none;stroke:#111;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+/* Post header */
+.ig-header{display:flex;align-items:center;padding:8px 12px;gap:9px}
+.ig-avatar-ring{
+  width:34px;height:34px;border-radius:50%;flex-shrink:0;padding:2px;
+  background:linear-gradient(45deg,#f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+}
+.ig-avatar{width:100%;height:100%;border-radius:50%;object-fit:cover;border:1.5px solid #fff;display:block;background:#eee}
+.ig-avatar-ph{width:100%;height:100%;border-radius:50%;background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045);display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:700;border:1.5px solid #fff}
 .ig-userinfo{flex:1;min-width:0}
-.ig-username{font-size:11px;font-weight:700;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.ig-sublabel{font-size:9px;color:#aaa;line-height:1.2}
-.ig-more-btn{color:#aaa;font-size:14px;letter-spacing:1.5px;cursor:pointer;padding:0 2px;line-height:1}
+.ig-username{font-size:12px;font-weight:700;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#111}
+.ig-sublabel{font-size:10px;color:#8e8e8e;line-height:1.2}
+.ig-more-btn{padding:4px;cursor:pointer}
+.ig-more-btn svg{width:18px;height:4px;fill:#111}
 
-/* Media area */
-.ig-media{position:relative;width:100%;aspect-ratio:1/1;background:#000;overflow:hidden;cursor:pointer}
+/* Media */
+.ig-media{position:relative;width:100%;aspect-ratio:1/1;background:#000;overflow:hidden}
 .ig-media img{width:100%;height:100%;object-fit:cover;display:block}
 .ig-media video{width:100%;height:100%;object-fit:cover;display:block;background:#000}
-.media-badge{position:absolute;top:8px;right:8px;background:rgba(0,0,0,.6);color:#fff;font-size:9px;font-weight:700;padding:3px 7px;border-radius:5px;letter-spacing:.05em;z-index:2}
-
-/* Reel play overlay - shown before play */
-.reel-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.15);z-index:3;transition:.2s;pointer-events:none}
-.reel-play-btn{width:48px;height:48px;background:rgba(0,0,0,.55);border-radius:50%;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)}
-.reel-play-btn svg{width:22px;height:22px;fill:#fff;margin-left:3px}
-.ig-media.playing .reel-overlay{opacity:0}
+.media-badge{position:absolute;top:10px;right:10px;background:rgba(0,0,0,.55);color:#fff;font-size:9px;font-weight:700;padding:3px 8px;border-radius:12px;letter-spacing:.05em;z-index:2;backdrop-filter:blur(4px)}
+.reel-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.12);z-index:3;transition:.2s}
+.reel-play-btn{width:52px;height:52px;background:rgba(255,255,255,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(6px);border:1.5px solid rgba(255,255,255,.4)}
+.reel-play-btn svg{width:24px;height:24px;fill:#fff;margin-left:4px}
+.ig-media.playing .reel-overlay{opacity:0;pointer-events:none}
 
 /* Upcoming placeholder */
-.ig-ph{width:100%;aspect-ratio:1/1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;background:linear-gradient(145deg,#e8ecff,#d0d8f5)}
-.ph-icon{font-size:28px;opacity:.5}
-.ph-type{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#7788bb}
-.ph-date{font-size:15px;font-weight:800;color:#4455aa}
-.ph-label{font-size:9px;font-weight:700;background:#4455aa;color:#fff;padding:3px 9px;border-radius:10px;letter-spacing:.04em}
+.ig-ph{width:100%;aspect-ratio:1/1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;background:linear-gradient(160deg,#eef0fb,#dde2f5)}
+.ph-icon{font-size:30px;opacity:.4}
+.ph-type{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#7788bb}
+.ph-date{font-size:18px;font-weight:800;color:#3344aa}
+.ph-label{font-size:9px;font-weight:700;background:#3344aa;color:#fff;padding:4px 10px;border-radius:20px;letter-spacing:.04em}
 
-/* Actions row */
-.ig-actions{display:flex;align-items:center;padding:7px 12px 4px;gap:12px}
-.ig-act{font-size:20px;line-height:1;cursor:pointer}
-.ig-bkmk{margin-left:auto;font-size:20px;line-height:1;cursor:pointer}
-.ig-likes{padding:0 12px 3px;font-size:11px;font-weight:700}
-.ig-cap{padding:2px 12px 5px;font-size:11px;line-height:1.45;color:#111}
-.cap-user{font-weight:700;margin-right:3px}
-.cap-text{color:#333}
-.ig-comments{padding:1px 12px 2px;font-size:10px;color:#aaa;cursor:pointer}
-.ig-time{padding:1px 12px 8px;font-size:9px;color:#bbb;text-transform:uppercase;letter-spacing:.06em}
+/* Action bar */
+.ig-actions{display:flex;align-items:center;padding:8px 14px 4px;gap:14px}
+.ig-act svg{width:24px;height:24px;fill:none;stroke:#111;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;cursor:pointer;display:block}
+.ig-bkmk{margin-left:auto}
+.ig-bkmk svg{width:24px;height:24px;fill:none;stroke:#111;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;cursor:pointer;display:block}
+
+.ig-likes{padding:0 14px 4px;font-size:12px;font-weight:700;color:#111}
+.ig-cap{padding:2px 14px 5px;font-size:11px;line-height:1.5;color:#111}
+.cap-user{font-weight:700;margin-right:3px;color:#111}
+.cap-text{color:#444}
+.ig-view-comments{padding:1px 14px 2px;font-size:10.5px;color:#8e8e8e;cursor:pointer}
+.ig-time{padding:2px 14px 10px;font-size:9.5px;color:#c7c7c7;text-transform:uppercase;letter-spacing:.07em}
+
+/* Scheduled overlay on media */
+.state-posted{position:absolute;top:10px;left:10px;background:rgba(34,139,34,.9);color:#fff;font-size:9px;font-weight:700;padding:3px 8px;border-radius:10px;letter-spacing:.05em;z-index:4;backdrop-filter:blur(4px)}
+.state-upcoming{position:absolute;top:10px;left:10px;background:rgba(30,80,220,.9);color:#fff;font-size:9px;font-weight:700;padding:3px 8px;border-radius:10px;letter-spacing:.05em;z-index:4;backdrop-filter:blur(4px)}
 
 /* Stats bar under phone */
-.phone-stats{display:flex;gap:0;margin-top:6px;background:#1e1e1e;border-radius:12px;overflow:hidden;border:1px solid #222}
-.pstat{flex:1;padding:7px 4px;text-align:center;border-right:1px solid #222}
+.phone-stats{display:flex;gap:0;margin-top:8px;background:#1e1e1e;border-radius:14px;overflow:hidden;border:1px solid #2a2a2a}
+.pstat{flex:1;padding:8px 4px;text-align:center;border-right:1px solid #2a2a2a}
 .pstat:last-child{border-right:none}
 .pstat .pv{font-size:13px;font-weight:700;color:#fff}
 .pstat .pl{font-size:9px;color:#555;margin-top:1px}
 
 /* Action buttons under phone */
-.phone-actions{display:flex;gap:6px;margin-top:6px}
-.pbtn{flex:1;font-size:10px;padding:6px 4px;border-radius:8px;border:1px solid #2a2a2a;background:transparent;cursor:pointer;color:#888;font-weight:600;text-align:center;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:3px;transition:.1s}
+.phone-actions{display:flex;gap:6px;margin-top:7px}
+.pbtn{flex:1;font-size:10px;padding:7px 4px;border-radius:9px;border:1px solid #2a2a2a;background:transparent;cursor:pointer;color:#888;font-weight:600;text-align:center;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:3px;transition:.1s}
 .pbtn:hover{background:#222;color:#fff;border-color:#333}
 .pbtn.open{background:#b5924c;border-color:#b5924c;color:#fff}
 .pbtn.open:hover{background:#c9a55e}
-.collab-pill{font-size:10px;color:#d4a956;font-weight:700;cursor:pointer;background:#2a2310;border:1px solid #3a3210;padding:5px 10px;border-radius:8px;text-align:center;transition:.1s}
+.collab-pill{font-size:10px;color:#d4a956;font-weight:700;cursor:pointer;background:#2a2310;border:1px solid #3a3210;padding:6px 10px;border-radius:9px;text-align:center;transition:.1s;margin-top:0}
 .collab-pill:hover{background:#332b10}
-
-/* State pill on phone */
-.state-posted{position:absolute;top:8px;left:8px;background:rgba(34,139,34,.85);color:#fff;font-size:9px;font-weight:700;padding:2px 7px;border-radius:10px;letter-spacing:.05em;z-index:2;backdrop-filter:blur(4px)}
-.state-upcoming{position:absolute;top:8px;left:8px;background:rgba(30,80,200,.85);color:#fff;font-size:9px;font-weight:700;padding:2px 7px;border-radius:10px;letter-spacing:.05em;z-index:2;backdrop-filter:blur(4px)}
 
 .no-posts{text-align:center;padding:40px 10px;color:#333;font-size:12px}
 .spinner{width:24px;height:24px;border:2px solid #222;border-top-color:#b5924c;border-radius:50%;animation:spin .7s linear infinite;margin:0 auto 10px}
@@ -689,39 +730,68 @@ function phoneCard(prop, post, plan){
 
   const typeIcon=isVideo?"🎬":isCarousel?"🖼️":"📷";
 
+  const igUser=PROP_META[prop].label.toLowerCase().replace("rhythm ","");
+
   return `<div class="phone-wrap">
     <div class="phone">
+      <div class="phone-vol v1"></div>
+      <div class="phone-vol v2"></div>
+      <div class="phone-vol v3"></div>
       <div class="phone-island"></div>
       <div class="phone-screen ${isPosted?"":"upcoming-screen"}">
+
+        <!-- Status bar -->
         <div class="phone-status">
-          <span>${nowTime()}</span>
+          <span class="ps-time">${nowTime()}</span>
           <div class="ps-icons">
-            <span>▲</span><span>WiFi</span>
-            <span style="background:#fff;color:#000;border-radius:3px;padding:1px 5px;font-size:9px">100</span>
+            <div class="ps-signal"><span></span><span></span><span></span><span></span></div>
+            <svg class="ps-wifi" width="13" height="10" viewBox="0 0 24 18" fill="#111"><path d="M12 14.5a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm-4.95-3.54a7 7 0 0 1 9.9 0l-1.42 1.42a5 5 0 0 0-7.07 0L7.05 10.96zm-3.54-3.53a12 12 0 0 1 16.97 0l-1.41 1.41a10 10 0 0 0-14.14 0L3.51 7.43zM0 4.24C3.31.93 7.93-.01 12-.01s8.69.94 12 3.25L22.59 4.65A14 14 0 0 0 1.41 4.65L0 4.24z"/></svg>
+            <div class="ps-batt"><div class="ps-batt-fill" style="width:75%"></div></div>
           </div>
         </div>
+
+        <!-- Instagram app top bar -->
+        <div class="ig-appbar">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+          <span class="ig-logo">Instagram</span>
+          <div class="ig-appbar-icons">
+            <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+        </div>
+
+        <!-- Post header -->
         <div class="ig-header">
-          ${avatarHtml(prop)}
+          <div class="ig-avatar-ring">${avatarHtml(prop)}</div>
           <div class="ig-userinfo">
-            <div class="ig-username">${esc(PROP_META[prop].label)}</div>
-            <div class="ig-sublabel">${typeIcon} ${typeLabel} · ${dateStr}</div>
+            <div class="ig-username">${esc(igUser)}</div>
+            <div class="ig-sublabel">${typeLabel} · ${dateStr}</div>
           </div>
-          <div class="ig-more-btn">···</div>
+          <div class="ig-more-btn">
+            <svg viewBox="0 0 20 4" fill="#111"><circle cx="2" cy="2" r="2"/><circle cx="10" cy="2" r="2"/><circle cx="18" cy="2" r="2"/></svg>
+          </div>
         </div>
+
+        <!-- Media -->
         <div class="ig-media" ${isVideo&&videoUrl?"":`style="cursor:default"`}>
           ${stateBadge}
-          ${isCarousel?`<div class="media-badge">⊞ Carousel</div>`:""}
+          ${isCarousel?`<div class="media-badge">1 / N</div>`:""}
           ${mediaHtml}
         </div>
+
+        <!-- Actions -->
         <div class="ig-actions">
-          <span class="ig-act">🤍</span>
-          <span class="ig-act">💬</span>
-          <span class="ig-act">✈️</span>
-          <span class="ig-bkmk">🔖</span>
+          <span class="ig-act"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
+          <span class="ig-act"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+          <span class="ig-act"><svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></span>
+          <span class="ig-bkmk"><svg viewBox="0 0 24 24"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg></span>
         </div>
+
         <div class="ig-likes">${isPosted?(fmtNum(post.like_count||0)+" likes"):"Yet to be posted"}</div>
-        ${capShort?`<div class="ig-cap"><span class="cap-user">${esc(PROP_META[prop].label.toLowerCase().replace("rhythm ",""))}</span><span class="cap-text">${esc(capShort)}</span></div>`:""}
+        ${capShort?`<div class="ig-cap"><span class="cap-user">${esc(igUser)}</span><span class="cap-text">${esc(capShort)}</span></div>`:""}
+        ${isPosted&&post.comments_count?`<div class="ig-view-comments">View all ${post.comments_count} comments</div>`:""}
         <div class="ig-time">${dateStr.toUpperCase()}</div>
+
       </div>
     </div>
     ${statsHtml}
