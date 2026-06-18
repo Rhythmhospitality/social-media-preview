@@ -3,571 +3,701 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rhythm Hotels — Content Dashboard</title>
+<title>Rhythm Hotels & Resorts — Digital Marketing Deck</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f4f4f4; color: #111; min-height: 100vh; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f0f0f0; color: #111; }
 
 /* ── Header ── */
-header { background: #fff; border-bottom: 1px solid #e0e0e0; padding: 14px 28px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 200; }
-.logo { font-size: 14px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+header { background: #fff; border-bottom: 1px solid #e0e0e0; padding: 12px 28px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 200; gap: 12px; }
+.logo { font-size: 13px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; white-space: nowrap; }
 .logo span { color: #b5924c; }
-.header-right { display: flex; align-items: center; gap: 12px; }
-.refresh-btn { font-size: 12px; padding: 6px 14px; border-radius: 8px; border: 1px solid #ddd; background: #fff; cursor: pointer; color: #444; }
-.refresh-btn:hover { background: #f5f5f5; }
+.header-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+.live-dot { width: 8px; height: 8px; border-radius: 50%; background: #ccc; }
+.live-dot.live { background: #4caf50; animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+.live-label { font-size: 11px; color: #888; }
+.hbtn { font-size: 12px; padding: 5px 12px; border-radius: 7px; border: 1px solid #ddd; background: #fff; cursor: pointer; color: #444; }
+.hbtn:hover { background: #f5f5f5; }
 
 /* ── Week Nav ── */
-.week-nav { background: #fff; border-bottom: 1px solid #e8e8e8; padding: 14px 28px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
-.week-nav-arrows { display: flex; gap: 6px; }
-.arrow-btn { width: 32px; height: 32px; border: 1px solid #ddd; background: #fff; border-radius: 8px; cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center; }
-.arrow-btn:hover { background: #f5f5f5; }
-.week-label { font-size: 14px; font-weight: 600; color: #111; min-width: 200px; text-align: center; }
-.week-badge { font-size: 11px; padding: 3px 10px; border-radius: 20px; font-weight: 600; letter-spacing: 0.04em; }
-.badge-ongoing { background: #e8f5e9; color: #2e7d32; }
-.badge-past { background: #fce4ec; color: #c62828; }
-.badge-upcoming { background: #e3f2fd; color: #1565c0; }
-.week-picker-wrap { margin-left: auto; }
-.week-picker-wrap input { font-size: 12px; padding: 6px 10px; border: 1px solid #ddd; border-radius: 8px; }
-.jump-today { font-size: 12px; padding: 6px 12px; border: 1px solid #ddd; background: #fff; border-radius: 8px; cursor: pointer; }
-.jump-today:hover { background: #f5f5f5; }
+.week-nav { background: #fff; border-bottom: 1px solid #e8e8e8; padding: 11px 28px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.arr { width: 30px; height: 30px; border: 1px solid #ddd; background: #fff; border-radius: 7px; cursor: pointer; font-size: 15px; display: flex; align-items: center; justify-content: center; }
+.arr:hover { background: #f5f5f5; }
+.week-lbl { font-size: 13px; font-weight: 700; min-width: 180px; text-align: center; }
+.wbadge { font-size: 10px; padding: 3px 9px; border-radius: 20px; font-weight: 700; letter-spacing: 0.04em; }
+.wb-now  { background: #e8f5e9; color: #2e7d32; }
+.wb-past { background: #fce4ec; color: #c62828; }
+.wb-soon { background: #e3f2fd; color: #1565c0; }
+.week-nav input[type=week] { font-size: 11px; padding: 5px 8px; border: 1px solid #ddd; border-radius: 7px; margin-left: auto; }
+.jump-btn { font-size: 11px; padding: 5px 11px; border: 1px solid #ddd; background: #fff; border-radius: 7px; cursor: pointer; }
 
-/* ── Summary Cards ── */
-.summary-row { display: flex; gap: 12px; padding: 16px 28px; overflow-x: auto; }
-.summary-card { background: #fff; border-radius: 12px; border: 1px solid #e8e8e8; padding: 14px 18px; min-width: 200px; flex: 1; }
-.summary-card .sc-prop { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 10px; }
-.prop-lnl { color: #2e7d32; }
-.prop-gur { color: #1565c0; }
-.prop-kum { color: #7b1fa2; }
-.sc-metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-.sc-metric { }
-.sc-metric .val { font-size: 18px; font-weight: 700; color: #111; }
-.sc-metric .lbl { font-size: 10px; color: #888; margin-top: 1px; }
-.sc-metric .trend { font-size: 11px; margin-left: 4px; }
-.trend-up { color: #2e7d32; }
-.trend-down { color: #c62828; }
+/* ── Summary ── */
+.summary-row { display: flex; gap: 10px; padding: 14px 28px 0; overflow-x: auto; }
+.sc { background: #fff; border-radius: 12px; border: 1px solid #e8e8e8; padding: 14px 16px; min-width: 190px; flex: 1; }
+.sc-name { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 10px; }
+.c-lnl { color: #2e7d32; } .c-gur { color: #1565c0; } .c-kum { color: #7b1fa2; }
+.sc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.sc-m .v { font-size: 17px; font-weight: 700; } .sc-m .l { font-size: 10px; color: #999; margin-top: 1px; }
 
-/* ── Grid ── */
-.posts-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0; padding: 0 28px 40px; }
-.col-header { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; padding: 12px 0 8px; border-bottom: 2px solid; margin-bottom: 14px; }
-.col-lnl { color: #2e7d32; border-color: #2e7d32; }
-.col-gur { color: #1565c0; border-color: #1565c0; }
-.col-kum { color: #7b1fa2; border-color: #7b1fa2; }
-.col { padding: 16px 10px; }
+/* ── 3-col grid ── */
+.grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0; padding: 14px 20px 40px; }
+.col { padding: 0 8px; }
+.col-hdr { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; padding: 10px 0 8px; border-bottom: 2px solid; margin-bottom: 12px; }
+.hdr-lnl { color: #2e7d32; border-color: #2e7d32; }
+.hdr-gur { color: #1565c0; border-color: #1565c0; }
+.hdr-kum { color: #7b1fa2; border-color: #7b1fa2; }
 
-/* ── Post Card ── */
-.post-card { background: #fff; border-radius: 14px; border: 1px solid #e8e8e8; margin-bottom: 16px; overflow: hidden; transition: box-shadow 0.15s; }
-.post-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
-.card-img { width: 100%; aspect-ratio: 1/1; object-fit: cover; background: #f0f0f0; display: block; }
-.card-img-placeholder { width: 100%; aspect-ratio: 1/1; background: linear-gradient(135deg, #f5f5f5, #e8e8e8); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; }
-.card-img-placeholder .pi-type { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: #999; }
-.card-img-placeholder .pi-date { font-size: 13px; font-weight: 700; color: #555; }
-.card-body { padding: 12px 14px; }
-.card-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; flex-wrap: wrap; }
-.card-date { font-size: 11px; color: #888; }
-.card-type { font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 5px; text-transform: uppercase; letter-spacing: 0.05em; }
-.type-image { background: #e3f2fd; color: #1565c0; }
-.type-video { background: #fce4ec; color: #c62828; }
-.type-carousel_album { background: #f3e5f5; color: #7b1fa2; }
-.type-reel { background: #fff8e1; color: #f57f17; }
-.type-upcoming { background: #f5f5f5; color: #666; }
-.card-caption { font-size: 12px; color: #444; line-height: 1.5; margin-bottom: 10px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
-.card-stats { display: flex; gap: 12px; margin-bottom: 10px; }
-.card-stat { font-size: 12px; color: #666; }
-.card-stat strong { color: #111; font-weight: 600; }
-.card-actions { display: flex; gap: 8px; flex-wrap: wrap; }
-.btn-insights { font-size: 11px; padding: 5px 11px; border-radius: 7px; border: 1px solid #ddd; background: #fff; cursor: pointer; font-weight: 500; }
-.btn-insights:hover { background: #f5f5f5; }
-.btn-view { font-size: 11px; padding: 5px 11px; border-radius: 7px; border: none; background: #111; color: #fff; cursor: pointer; text-decoration: none; display: inline-block; }
+/* ── Phone / Instagram mockup card ── */
+.ig-card { background: #fff; border-radius: 12px; border: 1px solid #dbdbdb; margin-bottom: 16px; overflow: hidden; }
+.ig-card.upcoming { border-left: 3px solid #1565c0; }
+.ig-card.posted   { border-left: 3px solid #2e7d32; }
+
+.ig-header { display: flex; align-items: center; padding: 9px 12px; gap: 9px; }
+.ig-avatar { width: 30px; height: 30px; border-radius: 50%; object-fit: cover; background: #f0f0f0; border: 1.5px solid #e1306c; flex-shrink: 0; }
+.ig-avatar-placeholder { width: 30px; height: 30px; border-radius: 50%; background: linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045); flex-shrink: 0; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 12px; font-weight: 700; }
+.ig-userinfo { flex: 1; }
+.ig-username { font-size: 12px; font-weight: 600; line-height: 1.2; }
+.ig-sublabel { font-size: 10px; color: #999; }
+.ig-dots { color: #aaa; font-size: 16px; letter-spacing: 2px; cursor: pointer; }
+
+.ig-image-wrap { position: relative; width: 100%; aspect-ratio: 1/1; background: #fafafa; overflow: hidden; }
+.ig-image { width: 100%; height: 100%; object-fit: cover; display: block; }
+.ig-image-placeholder { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; background: linear-gradient(145deg,#f5f5f5,#e8e8e8); }
+.ig-image-placeholder .ph-type { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: #aaa; }
+.ig-image-placeholder .ph-date { font-size: 14px; font-weight: 700; color: #666; }
+.ig-image-placeholder .ph-label { font-size: 10px; color: #1565c0; font-weight: 600; background: #e3f2fd; padding: 3px 8px; border-radius: 5px; }
+.ig-reel-overlay { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+.ig-reel-overlay .play { width: 44px; height: 44px; background: rgba(255,255,255,0.85); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+.ig-carousel-badge { position: absolute; top: 8px; right: 8px; background: rgba(0,0,0,0.55); color: #fff; font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 5px; }
+.ig-type-badge { position: absolute; top: 8px; left: 8px; background: rgba(0,0,0,0.5); color: #fff; font-size: 9px; font-weight: 700; padding: 2px 6px; border-radius: 5px; text-transform: uppercase; letter-spacing: 0.05em; }
+
+.ig-actions { display: flex; align-items: center; padding: 8px 12px 4px; gap: 14px; }
+.ig-action { font-size: 20px; cursor: pointer; line-height: 1; }
+.ig-bookmark { margin-left: auto; font-size: 20px; cursor: pointer; }
+
+.ig-likes { padding: 0 12px; font-size: 12px; font-weight: 700; }
+.ig-caption { padding: 3px 12px 4px; font-size: 12px; line-height: 1.5; color: #111; }
+.ig-caption .cap-user { font-weight: 700; margin-right: 5px; }
+.ig-caption .cap-text { color: #444; }
+.ig-more { padding: 2px 12px 6px; font-size: 11px; color: #999; cursor: pointer; }
+.ig-stats-bar { padding: 4px 12px 8px; display: flex; gap: 12px; }
+.ig-stat { font-size: 11px; color: #888; }
+.ig-stat strong { color: #555; }
+
+.ig-actions-bar { padding: 4px 12px 10px; display: flex; gap: 8px; flex-wrap: wrap; }
+.btn-sm { font-size: 10px; padding: 4px 10px; border-radius: 6px; border: 1px solid #dbdbdb; background: #fff; cursor: pointer; color: #444; font-weight: 500; }
+.btn-sm:hover { background: #f5f5f5; }
+.btn-view { background: #111; color: #fff; border-color: #111; }
 .btn-view:hover { background: #333; }
-.collab-tag { font-size: 11px; color: #b5924c; font-weight: 600; cursor: pointer; }
-.collab-tag:hover { text-decoration: underline; }
-.post-status-upcoming { border-left: 3px solid #1565c0; }
-.post-status-posted { border-left: 3px solid #2e7d32; }
-.no-posts { text-align: center; padding: 40px 20px; color: #aaa; font-size: 13px; }
+.collab-chip { font-size: 10px; color: #b5924c; font-weight: 700; cursor: pointer; background: #fff8e1; border: 1px solid #f0d080; padding: 3px 8px; border-radius: 6px; }
+.collab-chip:hover { background: #fff3cd; }
 
-/* ── Insights Modal ── */
-.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 1000; display: none; align-items: center; justify-content: center; padding: 20px; }
-.modal-overlay.open { display: flex; }
-.modal { background: #fff; border-radius: 16px; width: 100%; max-width: 480px; max-height: 85vh; overflow-y: auto; }
-.modal-header { padding: 20px 24px 16px; border-bottom: 1px solid #f0f0f0; display: flex; align-items: center; justify-content: space-between; }
-.modal-title { font-size: 15px; font-weight: 700; }
-.modal-close { font-size: 20px; cursor: pointer; color: #888; background: none; border: none; line-height: 1; }
-.modal-body { padding: 20px 24px; }
-.modal-img { width: 100%; border-radius: 10px; margin-bottom: 16px; aspect-ratio: 1/1; object-fit: cover; background: #f0f0f0; }
-.insights-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
-.insight-box { background: #f8f8f8; border-radius: 10px; padding: 12px 14px; }
-.insight-box .ib-val { font-size: 22px; font-weight: 700; color: #111; }
-.insight-box .ib-lbl { font-size: 11px; color: #888; margin-top: 2px; }
-.modal-section { margin-bottom: 14px; }
-.modal-section-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #888; margin-bottom: 8px; }
-.modal-caption { font-size: 13px; color: #444; line-height: 1.6; }
-.collab-info { background: #fff8e1; border-radius: 10px; padding: 12px 14px; font-size: 13px; color: #7a5c00; }
-.collab-info strong { display: block; margin-bottom: 2px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; color: #b5924c; }
+/* ── Modals ── */
+.overlay { position: fixed; inset: 0; background: rgba(0,0,0,.55); z-index: 1000; display: none; align-items: center; justify-content: center; padding: 20px; }
+.overlay.open { display: flex; }
+.modal { background: #fff; border-radius: 16px; width: 100%; max-width: 480px; max-height: 88vh; overflow-y: auto; }
+.modal.wide { max-width: 620px; }
+.mhdr { padding: 18px 22px 14px; border-bottom: 1px solid #f0f0f0; display: flex; align-items: center; justify-content: space-between; }
+.mtitle { font-size: 14px; font-weight: 700; }
+.mclose { font-size: 22px; cursor: pointer; color: #aaa; background: none; border: none; line-height: 1; }
+.mbody { padding: 18px 22px; }
 
-/* ── Influencer Modal ── */
-.inf-modal { max-width: 600px; }
-.inf-header-info { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
-.inf-avatar { width: 52px; height: 52px; border-radius: 50%; background: #f0f0f0; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 700; color: #888; }
-.inf-name { font-size: 18px; font-weight: 700; }
-.inf-handle { font-size: 13px; color: #888; }
-.inf-posts-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-top: 12px; }
-.inf-post-thumb { border-radius: 8px; overflow: hidden; aspect-ratio: 1/1; background: #f0f0f0; position: relative; cursor: pointer; }
-.inf-post-thumb img { width: 100%; height: 100%; object-fit: cover; }
-.inf-post-thumb .ipt-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0); transition: background 0.15s; display: flex; align-items: center; justify-content: center; }
-.inf-post-thumb:hover .ipt-overlay { background: rgba(0,0,0,0.4); }
-.inf-post-stats { color: #fff; font-size: 12px; font-weight: 600; display: none; }
-.inf-post-thumb:hover .inf-post-stats { display: flex; gap: 10px; }
+.ins-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+.ins-box { background: #f8f8f8; border-radius: 10px; padding: 12px 14px; }
+.ins-box .bv { font-size: 22px; font-weight: 700; }
+.ins-box .bl { font-size: 10px; color: #999; margin-top: 2px; }
+.msection { margin-bottom: 14px; }
+.msect-title { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #aaa; margin-bottom: 7px; }
+.info-pill { border-radius: 9px; padding: 10px 14px; font-size: 12px; }
+.pill-gold { background: #fff8e1; color: #7a5c00; }
+.pill-green { background: #e8f5e9; color: #2e7d32; }
+.pill-blue  { background: #e3f2fd; color: #1565c0; }
+.pill-gray  { background: #f5f5f5; color: #555; }
+.modal-caption-text { font-size: 13px; color: #444; line-height: 1.65; white-space: pre-wrap; }
 
-/* ── Loading ── */
-.loading { text-align: center; padding: 60px; color: #888; font-size: 14px; }
-.spinner { width: 32px; height: 32px; border: 3px solid #e0e0e0; border-top-color: #b5924c; border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 16px; }
+/* influencer modal */
+.inf-top { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+.inf-ava { width: 54px; height: 54px; border-radius: 50%; background: linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 22px; font-weight: 700; flex-shrink: 0; }
+.inf-name { font-size: 17px; font-weight: 700; }
+.inf-sub  { font-size: 12px; color: #999; }
+.inf-detail-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+.inf-chip { font-size: 11px; background: #f5f5f5; padding: 4px 10px; border-radius: 6px; color: #555; }
+.inf-brief { background: #fff8e1; border-radius: 10px; padding: 12px 14px; font-size: 12px; color: #7a5c00; line-height: 1.6; margin-bottom: 14px; white-space: pre-wrap; }
+.inf-posts-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; }
+.inf-thumb { border-radius: 8px; overflow: hidden; aspect-ratio: 1/1; background: #f0f0f0; position: relative; cursor: pointer; }
+.inf-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.inf-thumb .iovl { position: absolute; inset: 0; background: rgba(0,0,0,0); transition: .15s; display: flex; align-items: center; justify-content: center; }
+.inf-thumb:hover .iovl { background: rgba(0,0,0,.4); }
+.inf-thumb .iovl span { color: #fff; font-size: 11px; font-weight: 600; display: none; gap: 8px; }
+.inf-thumb:hover .iovl span { display: flex; }
+
+/* ── No posts / loading ── */
+.no-posts { text-align: center; padding: 40px 10px; color: #ccc; font-size: 12px; }
+.spinner { width: 28px; height: 28px; border: 2px solid #eee; border-top-color: #b5924c; border-radius: 50%; animation: spin .7s linear infinite; margin: 0 auto 10px; }
 @keyframes spin { to { transform: rotate(360deg); } }
 
-@media (max-width: 768px) {
-  .posts-grid { grid-template-columns: 1fr; }
-  .summary-row { flex-direction: column; }
-  .week-nav { gap: 8px; }
-}
+@media (max-width: 900px) { .grid3 { grid-template-columns: 1fr; } }
+@media (max-width: 600px) { .summary-row { flex-direction: column; } .week-nav { gap: 8px; } }
 </style>
 </head>
 <body>
 
 <header>
-  <div class="logo">Rhythm <span>Hotels</span> — Content Dashboard</div>
+  <div class="logo">Rhythm <span>Hotels & Resorts</span> — Digital Marketing Deck</div>
   <div class="header-right">
-    <button class="refresh-btn" onclick="refreshData()">⟳ Refresh Insights</button>
+    <div class="live-dot" id="liveDot"></div>
+    <span class="live-label" id="liveLabel">Offline</span>
+    <button class="hbtn" onclick="manualRefresh()">↻ Refresh</button>
   </div>
 </header>
 
-<!-- Week Navigation -->
 <div class="week-nav">
-  <div class="week-nav-arrows">
-    <button class="arrow-btn" onclick="changeWeek(-1)" title="Previous week">←</button>
-    <button class="arrow-btn" onclick="changeWeek(1)" title="Next week">→</button>
-  </div>
-  <div class="week-label" id="weekLabel">Loading...</div>
-  <span class="week-badge" id="weekBadge"></span>
-  <button class="jump-today" onclick="jumpToToday()">This Week</button>
-  <div class="week-picker-wrap">
-    <input type="week" id="weekPicker" onchange="onWeekPickerChange()" title="Jump to any week">
-  </div>
+  <button class="arr" onclick="changeWeek(-1)">←</button>
+  <button class="arr" onclick="changeWeek(1)">→</button>
+  <div class="week-lbl" id="weekLbl">—</div>
+  <span class="wbadge" id="weekBadge"></span>
+  <button class="jump-btn" onclick="jumpToday()">This Week</button>
+  <input type="week" id="weekPicker" onchange="onPickerChange()">
 </div>
 
-<!-- Summary Row -->
 <div class="summary-row" id="summaryRow">
-  <div class="loading"><div class="spinner"></div>Loading data...</div>
+  <div style="padding:20px;color:#aaa;font-size:13px;">Loading...</div>
 </div>
 
-<!-- Posts Grid -->
-<div class="posts-grid" id="postsGrid">
-  <div class="col" id="colLNL">
-    <div class="col-header col-lnl">Rhythm Lonavala</div>
-    <div class="loading">Loading...</div>
-  </div>
-  <div class="col" id="colGUR">
-    <div class="col-header col-gur">Rhythm Gurugram</div>
-    <div class="loading">Loading...</div>
-  </div>
-  <div class="col" id="colKUM">
-    <div class="col-header col-kum">Rhythm Kumarakom</div>
-    <div class="loading">Loading...</div>
-  </div>
+<div class="grid3" id="grid">
+  <div class="col" id="colLNL"><div class="col-hdr hdr-lnl">Rhythm Lonavala</div><div class="no-posts"><div class="spinner"></div></div></div>
+  <div class="col" id="colGUR"><div class="col-hdr hdr-gur">Rhythm Gurugram</div><div class="no-posts"><div class="spinner"></div></div></div>
+  <div class="col" id="colKUM"><div class="col-hdr hdr-kum">Rhythm Kumarakom</div><div class="no-posts"><div class="spinner"></div></div></div>
 </div>
 
-<!-- Insights Modal -->
-<div class="modal-overlay" id="insightsModal" onclick="closeModal('insightsModal')">
+<!-- Insights / Caption Modal -->
+<div class="overlay" id="mIns" onclick="closeModal('mIns')">
   <div class="modal" onclick="event.stopPropagation()">
-    <div class="modal-header">
-      <div class="modal-title" id="insightsModalTitle">Post Insights</div>
-      <button class="modal-close" onclick="closeModal('insightsModal')">×</button>
-    </div>
-    <div class="modal-body" id="insightsModalBody"></div>
+    <div class="mhdr"><div class="mtitle" id="mInsTitle">Post Insights</div><button class="mclose" onclick="closeModal('mIns')">×</button></div>
+    <div class="mbody" id="mInsBody"></div>
   </div>
 </div>
 
 <!-- Influencer Modal -->
-<div class="modal-overlay" id="influencerModal" onclick="closeModal('influencerModal')">
-  <div class="modal inf-modal" onclick="event.stopPropagation()">
-    <div class="modal-header">
-      <div class="modal-title" id="infModalTitle">Influencer Profile</div>
-      <button class="modal-close" onclick="closeModal('influencerModal')">×</button>
-    </div>
-    <div class="modal-body" id="infModalBody"></div>
+<div class="overlay" id="mInf" onclick="closeModal('mInf')">
+  <div class="modal wide" onclick="event.stopPropagation()">
+    <div class="mhdr"><div class="mtitle" id="mInfTitle">Influencer</div><button class="mclose" onclick="closeModal('mInf')">×</button></div>
+    <div class="mbody" id="mInfBody"></div>
   </div>
 </div>
 
 <script>
-// ── State ──
-let postsData = {};       // instagram_data.json  { LNL, GUR, KUM }
-let contentData = {};     // posts.json           { "2026-06-16": { LNL, GUR, KUM } }
-let currentWeekStart = null;
-const TODAY = new Date(); TODAY.setHours(0,0,0,0);
-
+// ── Config ────────────────────────────────────────────────────────────────────
+const IS_LOCAL = location.hostname === "localhost" || location.hostname === "127.0.0.1";
+const TODAY = (() => { const d = new Date(); d.setHours(0,0,0,0); return d; })();
+const PROPS = ["LNL","GUR","KUM"];
 const PROP_META = {
-  LNL: { label: "Rhythm Lonavala",   cls: "prop-lnl", colCls: "col-lnl" },
-  GUR: { label: "Rhythm Gurugram",   cls: "prop-gur", colCls: "col-gur" },
-  KUM: { label: "Rhythm Kumarakom",  cls: "prop-kum", colCls: "col-kum" },
+  LNL: { label: "Rhythm Lonavala",  cls: "c-lnl", hdr: "hdr-lnl", col: "colLNL" },
+  GUR: { label: "Rhythm Gurugram",  cls: "c-gur", hdr: "hdr-gur", col: "colGUR" },
+  KUM: { label: "Rhythm Kumarakom", cls: "c-kum", hdr: "hdr-kum", col: "colKUM" },
 };
 
-// ── Date helpers ──
-function getMondayOf(d) {
-  const day = new Date(d); day.setHours(0,0,0,0);
-  const dow = day.getDay(); // 0=Sun
-  const diff = dow === 0 ? -6 : 1 - dow;
-  day.setDate(day.getDate() + diff);
-  return day;
+// ── State ─────────────────────────────────────────────────────────────────────
+let weekStart = monday(TODAY);
+let postsJson = {};      // posts.json (planned content)
+let igData = {};         // instagram_data.json (weekly cache)
+let influencers = {};    // from /api/influencers or empty
+let profilePics = {};    // prop → url
+let liveWeekData = null; // from /api/week (current live fetch)
+let autoRefreshTimer = null;
+
+// ── Date helpers ──────────────────────────────────────────────────────────────
+function monday(d) {
+  const r = new Date(d); r.setHours(0,0,0,0);
+  const wd = r.getDay(); r.setDate(r.getDate() - (wd === 0 ? 6 : wd - 1)); return r;
 }
 function addDays(d, n) { const r = new Date(d); r.setDate(r.getDate() + n); return r; }
-function fmtDate(d) { return d.toISOString().split('T')[0]; }
-function fmtDisplay(d) { return d.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }); }
-function fmtNum(n) { if (!n && n !== 0) return '—'; return n >= 1000 ? (n/1000).toFixed(1)+'k' : String(n); }
+function fmt(d) { return d.toISOString().split("T")[0]; }
+function fmtDisp(d) { return d.toLocaleDateString("en-IN", { day:"numeric", month:"short", year:"numeric" }); }
+function fmtShort(d) { return new Date(d).toLocaleDateString("en-IN", { day:"numeric", month:"short" }); }
+function fmtNum(n) { if (!n && n !== 0) return "—"; return n >= 1000 ? (n/1000).toFixed(1)+"k" : ""+n; }
+function fmtGain(n) { if (!n) return "+0"; return (n >= 0 ? "+" : "") + n; }
+function esc(s) { return (s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+function weekNum(d) {
+  const date = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+  const dn = date.getUTCDay() || 7; date.setUTCDate(date.getUTCDate() + 4 - dn);
+  const ys = new Date(Date.UTC(date.getUTCFullYear(), 0, 1));
+  return Math.ceil((((date - ys) / 86400000) + 1) / 7);
+}
+function weekNumToDate(yr, wk) {
+  const s = new Date(yr, 0, 1 + (wk - 1) * 7);
+  const wd = s.getDay();
+  if (wd <= 4) s.setDate(s.getDate() - s.getDay() + 1);
+  else s.setDate(s.getDate() + 8 - s.getDay());
+  return s;
+}
 
-// ── Load data ──
-async function loadData() {
-  try {
-    const [ig, content] = await Promise.all([
-      fetch('instagram_data.json').then(r => r.ok ? r.json() : {}),
-      fetch('posts.json').then(r => r.ok ? r.json() : {}),
-    ]);
-    postsData = ig;
-    contentData = content;
-  } catch(e) {
-    postsData = {};
-    contentData = {};
+// ── Load initial data ────────────────────────────────────────────────────────
+async function init() {
+  // Load static caches in parallel
+  const [pc, ig] = await Promise.all([
+    fetch("posts.json").then(r => r.ok ? r.json() : {}).catch(() => ({})),
+    fetch("instagram_data.json").then(r => r.ok ? r.json() : {}).catch(() => ({})),
+  ]);
+  postsJson = pc;
+  igData = ig;
+
+  // Cache profile pics from ig data
+  for (const prop of PROPS) {
+    if (igData[prop]?.profile_picture_url) profilePics[prop] = igData[prop].profile_picture_url;
   }
-  currentWeekStart = getMondayOf(TODAY);
+
+  // Try loading influencers (local only)
+  if (IS_LOCAL) {
+    influencers = await fetch("/api/influencers").then(r => r.ok ? r.json() : {}).catch(() => ({}));
+  }
+
   renderWeek();
+  startAutoRefresh();
 }
 
-// ── Week render ──
-function renderWeek() {
-  const mon = currentWeekStart;
-  const sun = addDays(mon, 6);
-  const monStr = fmtDate(mon), sunStr = fmtDate(sun);
-  const todayStr = fmtDate(TODAY);
-  const todayInWeek = todayStr >= monStr && todayStr <= sunStr;
-  const isPast = sunStr < todayStr;
-
-  // Label & badge
-  document.getElementById('weekLabel').textContent =
-    `${fmtDisplay(mon)} — ${fmtDisplay(sun)}`;
-  const badge = document.getElementById('weekBadge');
-  if (todayInWeek) { badge.textContent = 'This Week'; badge.className = 'week-badge badge-ongoing'; }
-  else if (isPast)  { badge.textContent = 'Past';      badge.className = 'week-badge badge-past'; }
-  else              { badge.textContent = 'Upcoming';  badge.className = 'week-badge badge-upcoming'; }
-
-  // Week picker sync
-  const wp = document.getElementById('weekPicker');
-  const yr = mon.getFullYear();
-  const wn = getWeekNumber(mon);
-  wp.value = `${yr}-W${String(wn).padStart(2,'0')}`;
-
-  // Summary
-  renderSummary(mon, sun, isPast, todayInWeek);
-
-  // Columns
-  for (const prop of ['LNL','GUR','KUM']) {
-    renderColumn(prop, mon, sun, isPast, todayInWeek);
+// ── Auto-refresh ──────────────────────────────────────────────────────────────
+function startAutoRefresh() {
+  clearInterval(autoRefreshTimer);
+  if (IS_LOCAL) {
+    autoRefreshTimer = setInterval(() => fetchLiveWeek(true), 30000);
+    setLiveStatus(true);
+  } else {
+    // GitHub Pages: re-fetch static JSONs every 2 hours
+    autoRefreshTimer = setInterval(async () => {
+      const [pc, ig] = await Promise.all([
+        fetch("posts.json?t="+Date.now()).then(r => r.ok ? r.json() : postsJson).catch(() => postsJson),
+        fetch("instagram_data.json?t="+Date.now()).then(r => r.ok ? r.json() : igData).catch(() => igData),
+      ]);
+      postsJson = pc; igData = ig;
+      renderWeek();
+    }, 7200000); // 2 hours
+    setLiveStatus(false);
   }
 }
 
-// ── Summary cards ──
-function renderSummary(mon, sun, isPast, ongoing) {
-  const row = document.getElementById('summaryRow');
-  const monStr = fmtDate(mon), sunStr = fmtDate(sun);
-  let html = '';
+function setLiveStatus(live) {
+  document.getElementById("liveDot").className = "live-dot" + (live ? " live" : "");
+  document.getElementById("liveLabel").textContent = live ? "Live · 30s refresh" : "Cached · 2hr refresh";
+}
 
-  for (const [prop, meta] of Object.entries(PROP_META)) {
-    const ig = postsData[prop];
-    if (!ig) { html += `<div class="summary-card"><div class="sc-prop ${meta.cls}">${meta.label}</div><div style="color:#aaa;font-size:12px">No data</div></div>`; continue; }
-
-    // Posts this week from Instagram data
-    const weekPosts = (ig.posts || []).filter(p => p.date >= monStr && p.date <= sunStr);
-    const totalReach = weekPosts.reduce((s,p) => s + (p.insights?.reach || 0), 0);
-    const totalLikes = weekPosts.reduce((s,p) => s + (p.like_count || 0), 0);
-    const totalSaved = weekPosts.reduce((s,p) => s + (p.insights?.saved || 0), 0);
-    const totalShares = weekPosts.reduce((s,p) => s + (p.insights?.shares || 0), 0);
-
-    // Follower gain this week
-    const history = ig.follower_history || [];
-    const weekHistory = history.filter(h => h.date >= monStr && h.date <= sunStr);
-    let followerGain = '—';
-    if (weekHistory.length >= 2) {
-      const gain = weekHistory[weekHistory.length-1].followers - weekHistory[0].followers;
-      followerGain = (gain >= 0 ? '+' : '') + gain;
+async function fetchLiveWeek(silent = false) {
+  const s = fmt(weekStart), e = fmt(addDays(weekStart, 6));
+  try {
+    const data = await fetch(`/api/week?start=${s}&end=${e}`).then(r => r.json());
+    liveWeekData = data;
+    // Update profile pics if fresh
+    for (const prop of PROPS) {
+      if (data[prop]?.profile_picture_url) profilePics[prop] = data[prop].profile_picture_url;
     }
+    renderSummary();
+    renderColumns();
+  } catch(e) { console.warn("Live fetch failed:", e); }
+}
 
-    html += `<div class="summary-card">
-      <div class="sc-prop ${meta.cls}">${meta.label}</div>
-      <div class="sc-metrics">
-        <div class="sc-metric"><div class="val">${fmtNum(totalReach)}</div><div class="lbl">Reach</div></div>
-        <div class="sc-metric"><div class="val">${fmtNum(totalLikes)}</div><div class="lbl">Likes</div></div>
-        <div class="sc-metric"><div class="val">${fmtNum(totalSaved)}</div><div class="lbl">Saved</div></div>
-        <div class="sc-metric"><div class="val">${fmtNum(weekPosts.length)}</div><div class="lbl">Posts</div></div>
-        <div class="sc-metric"><div class="val">${followerGain}</div><div class="lbl">Followers ±</div></div>
-        <div class="sc-metric"><div class="val">${ig.followers_count ? fmtNum(ig.followers_count) : '—'}</div><div class="lbl">Total Followers</div></div>
+async function manualRefresh() {
+  if (IS_LOCAL) {
+    await fetch("/api/refresh").catch(() => {});
+    liveWeekData = null;
+    await fetchLiveWeek(false);
+  } else {
+    // Re-fetch static files
+    const [pc, ig] = await Promise.all([
+      fetch("posts.json?t="+Date.now()).then(r => r.ok ? r.json() : postsJson).catch(() => postsJson),
+      fetch("instagram_data.json?t="+Date.now()).then(r => r.ok ? r.json() : igData).catch(() => igData),
+    ]);
+    postsJson = pc; igData = ig;
+    renderWeek();
+  }
+}
+
+// ── Get posts for a week/prop ─────────────────────────────────────────────────
+function getPostedPosts(prop, startStr, endStr) {
+  // Prefer live data if available and it's the current week
+  const currentWeekStr = fmt(weekStart);
+  const todayWeekStr = fmt(monday(TODAY));
+  const isCurrentWeek = currentWeekStr === todayWeekStr;
+
+  let source = (isCurrentWeek && liveWeekData) ? liveWeekData : igData;
+  if (!source[prop]) return [];
+  const posts = source[prop].posts || [];
+  return posts.filter(p => p.date >= startStr && p.date <= endStr);
+}
+
+function getPlannedPosts(prop, startStr, endStr) {
+  const planned = [];
+  for (const [dateKey, props] of Object.entries(postsJson)) {
+    if (dateKey >= startStr && dateKey <= endStr && props[prop]) {
+      planned.push({ date: dateKey, ...props[prop] });
+    }
+  }
+  return planned;
+}
+
+// Smart match: try to pair planned posts with posted ones by caption similarity
+function matchPlannedToPosted(planned, posted) {
+  const matched = new Set();
+  const result = [];
+
+  for (const plan of planned) {
+    // Try exact date match first
+    const byDate = posted.find(p => p.date === plan.date);
+    if (byDate) { matched.add(byDate.id); result.push({ type: "matched", plan, post: byDate }); continue; }
+
+    // Try caption keyword match (look for unique words from plan caption in post)
+    const planWords = (plan.caption || "").toLowerCase().split(/\s+/).filter(w => w.length > 5);
+    const matchByCaption = posted.find(p =>
+      !matched.has(p.id) &&
+      planWords.slice(0, 8).filter(w => (p.caption||"").toLowerCase().includes(w)).length >= 3
+    );
+    if (matchByCaption) { matched.add(matchByCaption.id); result.push({ type: "matched", plan, post: matchByCaption }); continue; }
+
+    // No match — yet to be posted
+    result.push({ type: "upcoming", plan });
+  }
+
+  // Add unmatched posted content (posted without a plan)
+  for (const p of posted) {
+    if (!matched.has(p.id)) result.push({ type: "posted_only", post: p });
+  }
+
+  return result;
+}
+
+// ── Render week ───────────────────────────────────────────────────────────────
+function renderWeek() {
+  const sun = addDays(weekStart, 6);
+  const s = fmt(weekStart), e = fmt(sun);
+  const todayStr = fmt(TODAY);
+  const isPast = e < todayStr;
+  const isNow  = s <= todayStr && todayStr <= e;
+
+  document.getElementById("weekLbl").textContent = `${fmtDisp(weekStart)} — ${fmtDisp(sun)}`;
+  const badge = document.getElementById("weekBadge");
+  if (isNow)  { badge.textContent = "This Week"; badge.className = "wbadge wb-now"; }
+  else if (isPast){ badge.textContent = "Past";   badge.className = "wbadge wb-past"; }
+  else        { badge.textContent = "Upcoming"; badge.className = "wbadge wb-soon"; }
+
+  const yr = weekStart.getFullYear(), wk = weekNum(weekStart);
+  document.getElementById("weekPicker").value = `${yr}-W${String(wk).padStart(2,"0")}`;
+
+  // Always render cached data immediately, then silently update with live data
+  renderSummary();
+  renderColumns();
+  if (IS_LOCAL) fetchLiveWeek(true);
+}
+
+function renderColumns() {
+  const s = fmt(weekStart), e = fmt(addDays(weekStart, 6));
+  for (const prop of PROPS) renderColumn(prop, s, e);
+}
+
+function renderSummary() {
+  const s = fmt(weekStart), e = fmt(addDays(weekStart, 6));
+  const row = document.getElementById("summaryRow");
+  let html = "";
+  for (const prop of PROPS) {
+    const meta = PROP_META[prop];
+    const ig = (liveWeekData || igData)[prop] || {};
+    const weekPosts = (ig.posts || []).filter(p => p.date >= s && p.date <= e);
+    const reach  = weekPosts.reduce((a,p) => a + (p.insights?.reach || 0), 0);
+    const likes  = weekPosts.reduce((a,p) => a + (p.like_count || 0), 0);
+    const saved  = weekPosts.reduce((a,p) => a + (p.insights?.saved || 0), 0);
+    const shares = weekPosts.reduce((a,p) => a + (p.insights?.shares || 0), 0);
+    const gain   = ig.follower_gain || 0;
+    const total  = ig.followers_count || igData[prop]?.followers_count || 0;
+
+    html += `<div class="sc">
+      <div class="sc-name ${meta.cls}">${meta.label}</div>
+      <div class="sc-grid">
+        <div class="sc-m"><div class="v">${fmtNum(reach)}</div><div class="l">Reach</div></div>
+        <div class="sc-m"><div class="v">${fmtNum(likes)}</div><div class="l">Likes</div></div>
+        <div class="sc-m"><div class="v">${fmtNum(saved)}</div><div class="l">Saved</div></div>
+        <div class="sc-m"><div class="v">${fmtNum(weekPosts.length)}</div><div class="l">Posts</div></div>
+        <div class="sc-m"><div class="v">${fmtGain(gain)}</div><div class="l">Followers ±</div></div>
+        <div class="sc-m"><div class="v">${fmtNum(total)}</div><div class="l">Total Followers</div></div>
       </div>
     </div>`;
   }
   row.innerHTML = html;
 }
 
-// ── Column render ──
-function renderColumn(prop, mon, sun, isPast, ongoing) {
-  const col = document.getElementById('col' + prop);
+function renderColumn(prop, s, e) {
   const meta = PROP_META[prop];
-  const monStr = fmtDate(mon), sunStr = fmtDate(sun);
+  const col = document.getElementById(meta.col);
+  const posted  = getPostedPosts(prop, s, e);
+  const planned = getPlannedPosts(prop, s, e);
+  const cards   = matchPlannedToPosted(planned, posted);
 
-  let html = `<div class="col-header ${meta.colCls}">${meta.label}</div>`;
-
-  // Collect all posts for this week
-  const cards = [];
-
-  // Posted content from Instagram
-  const ig = postsData[prop];
-  if (ig && ig.posts) {
-    const weekPosts = ig.posts.filter(p => p.date >= monStr && p.date <= sunStr);
-    for (const p of weekPosts) {
-      cards.push({ source: 'instagram', date: p.date, data: p });
+  let html = `<div class="col-hdr ${meta.hdr}">${meta.label}</div>`;
+  if (!cards.length) {
+    html += `<div class="no-posts">No posts this week</div>`;
+  } else {
+    for (const card of cards.sort((a,b) => {
+      const da = card.type === "posted_only" ? a.post.date : a.plan.date;
+      const db = card.type === "posted_only" ? b.post.date : b.plan.date;
+      return da.localeCompare(db);
+    })) {
+      if (card.type === "matched")       html += renderMatchedCard(prop, card.plan, card.post);
+      else if (card.type === "upcoming") html += renderUpcomingCard(prop, card.plan);
+      else                               html += renderPostedCard(prop, card.post);
     }
   }
+  col.innerHTML = html;
+}
 
-  // Upcoming content from posts.json (only if not already posted)
-  const postedDates = new Set(cards.map(c => c.date));
-  for (const [dateKey, props] of Object.entries(contentData)) {
-    if (dateKey >= monStr && dateKey <= sunStr && props[prop]) {
-      // Show upcoming card only if no Instagram post on that date
-      if (!postedDates.has(dateKey)) {
-        cards.push({ source: 'deck', date: dateKey, data: props[prop] });
+// ── Card renderers ────────────────────────────────────────────────────────────
+function avatarHtml(prop, size = 30) {
+  const pic = profilePics[prop];
+  if (pic) return `<img class="ig-avatar" src="${esc(pic)}" width="${size}" height="${size}" onerror="this.outerHTML='<div class=ig-avatar-placeholder style=width:${size}px;height:${size}px>${prop[0]}</div>'">`;
+  return `<div class="ig-avatar-placeholder" style="width:${size}px;height:${size}px;font-size:${size*0.4}px">${prop[0]}</div>`;
+}
+
+function renderMatchedCard(prop, plan, post) {
+  const mt = post.media_type;
+  const typeLabel = mt === "CAROUSEL_ALBUM" ? "Carousel" : mt === "VIDEO" ? "Video" : "Photo";
+  const dateStr = fmtShort(post.date);
+  const capPreview = (post.caption || plan.caption || "").substring(0, 140);
+  const ins = post.insights || {};
+
+  // Detect collab
+  const collabInf = detectCollab(prop, post);
+
+  const imgHtml = post.media_url
+    ? `<img class="ig-image" src="${esc(post.media_url)}" loading="lazy">`
+    : `<div class="ig-image-placeholder"><div class="ph-type">${typeLabel}</div><div class="ph-date">${dateStr}</div></div>`;
+
+  const reelOverlay = (mt === "VIDEO" || mt === "REEL")
+    ? `<div class="ig-reel-overlay"><div class="play">▶</div></div>` : "";
+  const carouselBadge = mt === "CAROUSEL_ALBUM"
+    ? `<div class="ig-carousel-badge">⊞ Carousel</div>` : "";
+
+  const collabHtml = collabInf
+    ? `<span class="collab-chip" onclick="openInfluencerModal('${prop}','${esc(collabInf)}')">🤝 ${esc(collabInf)}</span>` : "";
+
+  return `<div class="ig-card posted">
+    <div class="ig-header">
+      ${avatarHtml(prop)}
+      <div class="ig-userinfo">
+        <div class="ig-username">${esc(PROP_META[prop].label)}</div>
+        <div class="ig-sublabel">${dateStr}</div>
+      </div>
+      <span class="ig-dots">···</span>
+    </div>
+    <div class="ig-image-wrap">
+      ${imgHtml}
+      ${reelOverlay}
+      ${carouselBadge}
+      <div class="ig-type-badge">${typeLabel}</div>
+    </div>
+    <div class="ig-actions">
+      <span class="ig-action">🤍</span>
+      <span class="ig-action">💬</span>
+      <span class="ig-action">✈️</span>
+      <span class="ig-bookmark">🔖</span>
+    </div>
+    <div class="ig-likes">${fmtNum(post.like_count || 0)} likes</div>
+    ${capPreview ? `<div class="ig-caption"><span class="cap-user">${esc(PROP_META[prop].label.split(" ").pop().toLowerCase())}</span><span class="cap-text">${esc(capPreview)}${(post.caption||"").length > 140 ? "..." : ""}</span></div>
+    <div class="ig-more" onclick='openInsightsModal(${JSON.stringify(post)})'>more</div>` : ""}
+    <div class="ig-stats-bar">
+      <div class="ig-stat">👁️ <strong>${fmtNum(ins.reach||0)}</strong> reach</div>
+      <div class="ig-stat">💾 <strong>${fmtNum(ins.saved||0)}</strong></div>
+      ${ins.plays ? `<div class="ig-stat">▶ <strong>${fmtNum(ins.plays)}</strong></div>` : ""}
+    </div>
+    <div class="ig-actions-bar">
+      <button class="btn-sm" onclick='openInsightsModal(${JSON.stringify(post)})'>📊 Insights</button>
+      <a class="btn-sm btn-view" href="${esc(post.permalink)}" target="_blank">Open ↗</a>
+      ${collabHtml}
+    </div>
+  </div>`;
+}
+
+function renderPostedCard(prop, post) {
+  return renderMatchedCard(prop, {}, post);
+}
+
+function renderUpcomingCard(prop, plan) {
+  const dateStr = fmtShort(plan.date);
+  const typeMap = { ST:"Static", RL:"Reel", CR:"Carousel" };
+  const typeLabel = typeMap[plan.type] || plan.type || "Post";
+  const capPreview = (plan.caption || "").substring(0, 140);
+  const imgHtml = plan.images && plan.images[0]
+    ? `<img class="ig-image" src="${esc(plan.images[0].url)}" loading="lazy">`
+    : `<div class="ig-image-placeholder">
+        <div class="ph-type">${typeLabel}</div>
+        <div class="ph-date">${dateStr}</div>
+        <div class="ph-label">📅 Yet to be posted</div>
+      </div>`;
+
+  return `<div class="ig-card upcoming">
+    <div class="ig-header">
+      ${avatarHtml(prop)}
+      <div class="ig-userinfo">
+        <div class="ig-username">${esc(PROP_META[prop].label)}</div>
+        <div class="ig-sublabel">${dateStr} · Scheduled</div>
+      </div>
+      <span class="ig-dots">···</span>
+    </div>
+    <div class="ig-image-wrap">
+      ${imgHtml}
+      <div class="ig-type-badge">${typeLabel}</div>
+    </div>
+    <div class="ig-actions">
+      <span class="ig-action">🤍</span>
+      <span class="ig-action">💬</span>
+      <span class="ig-action">✈️</span>
+      <span class="ig-bookmark">🔖</span>
+    </div>
+    <div class="ig-likes">Yet to be posted</div>
+    ${capPreview ? `<div class="ig-caption"><span class="cap-text">${esc(capPreview)}${plan.caption.length>140?"...":""}</span></div>` : ""}
+    <div class="ig-actions-bar">
+      <button class="btn-sm" onclick='openCaptionModal(${JSON.stringify(plan)})'>📋 Full Caption</button>
+    </div>
+  </div>`;
+}
+
+// ── Collab detection ──────────────────────────────────────────────────────────
+function detectCollab(prop, post) {
+  if (!post.caption) return null;
+  const cap = post.caption.toLowerCase();
+  const infs = influencers[prop] || [];
+  for (const inf of infs) {
+    const ig = (inf.instagram || "").replace(/.*instagram\.com\//,"").replace(/\?.*/,"").replace(/\//g,"").toLowerCase();
+    if (ig && ig.length > 3 && cap.includes(ig)) return inf.name;
+    const name = (inf.name || "").toLowerCase();
+    if (name.length > 4 && cap.includes(name)) return inf.name;
+  }
+  // Fallback: use igData collab flag
+  const ig = (liveWeekData || igData)[prop];
+  if (ig) {
+    const p = (ig.posts || []).find(x => x.id === post.id);
+    if (p?.collab_influencer) return p.collab_influencer;
+  }
+  return null;
+}
+
+// ── Insights Modal ────────────────────────────────────────────────────────────
+function openInsightsModal(post) {
+  const ins = post.insights || {};
+  const dateStr = new Date(post.timestamp || post.date).toLocaleDateString("en-IN", {weekday:"short",day:"numeric",month:"short",year:"numeric"});
+  const mt = post.media_type;
+  const typeLabel = mt === "CAROUSEL_ALBUM" ? "Carousel" : mt === "VIDEO" ? "Reel/Video" : "Photo";
+
+  // Try to find which prop this is
+  let collabInf = post.collab_influencer;
+  if (!collabInf) {
+    for (const prop of PROPS) {
+      const ig = (liveWeekData || igData)[prop];
+      if (ig) {
+        const p = (ig.posts || []).find(x => x.id === post.id);
+        if (p?.collab_influencer) { collabInf = p.collab_influencer; break; }
       }
     }
   }
 
-  // Sort by date
-  cards.sort((a,b) => a.date.localeCompare(b.date));
+  const collabSection = collabInf
+    ? `<div class="msection"><div class="msect-title">Content Type</div><div class="info-pill pill-gold"><strong>🤝 Influencer Collab — </strong><span style="cursor:pointer;text-decoration:underline" onclick="openInfluencerModal('',${JSON.stringify(collabInf)})">${esc(collabInf)}</span></div></div>`
+    : `<div class="msection"><div class="info-pill pill-gray">Brand post — no influencer collab detected</div></div>`;
 
-  if (cards.length === 0) {
-    html += `<div class="no-posts">No posts this week</div>`;
-  } else {
-    for (const card of cards) {
-      html += renderCard(prop, card);
-    }
-  }
-
-  col.innerHTML = html;
-}
-
-// ── Card render ──
-function renderCard(prop, card) {
-  if (card.source === 'instagram') {
-    return renderPostedCard(prop, card.data);
-  } else {
-    return renderUpcomingCard(prop, card.date, card.data);
-  }
-}
-
-function renderPostedCard(prop, post) {
-  const typeLabel = post.media_type === 'CAROUSEL_ALBUM' ? 'Carousel'
-    : post.media_type === 'VIDEO' ? 'Reel/Video'
-    : post.media_type === 'IMAGE' ? 'Photo' : post.media_type;
-  const typeCls = 'type-' + (post.media_type || 'image').toLowerCase();
-  const dateStr = new Date(post.timestamp).toLocaleDateString('en-IN', { day: 'numeric', month: 'short' });
-  const img = post.media_url ? `<img class="card-img" src="${post.media_url}" loading="lazy" onerror="this.style.display='none'">` : '';
-  const collabHtml = post.is_collab && post.collab_influencer
-    ? `<span class="collab-tag" onclick="openInfluencerModal('${prop}','${esc(post.collab_influencer)}')">🤝 ${esc(post.collab_influencer)}</span>`
-    : '';
-  const captionPreview = post.caption ? esc(post.caption.substring(0,120)) + (post.caption.length > 120 ? '...' : '') : '';
-  const postDataAttr = `data-post='${JSON.stringify(post).replace(/'/g,"&#39;")}'`;
-
-  return `<div class="post-card post-status-posted">
-    ${img}
-    <div class="card-body">
-      <div class="card-meta">
-        <span class="card-date">${dateStr}</span>
-        <span class="card-type ${typeCls}">${typeLabel}</span>
-        ${collabHtml}
-      </div>
-      ${captionPreview ? `<div class="card-caption">${captionPreview}</div>` : ''}
-      <div class="card-stats">
-        <div class="card-stat">❤️ <strong>${fmtNum(post.like_count)}</strong></div>
-        <div class="card-stat">💬 <strong>${fmtNum(post.comments_count)}</strong></div>
-        ${post.insights?.reach ? `<div class="card-stat">👁️ <strong>${fmtNum(post.insights.reach)}</strong></div>` : ''}
-      </div>
-      <div class="card-actions">
-        <button class="btn-insights" onclick='openInsightsModal(${JSON.stringify(post).replace(/'/g,"&#39;")})'>📊 Insights</button>
-        <a class="btn-view" href="${post.permalink}" target="_blank">View Post ↗</a>
-      </div>
-    </div>
-  </div>`;
-}
-
-function renderUpcomingCard(prop, dateKey, data) {
-  const dateObj = new Date(dateKey);
-  const dateStr = dateObj.toLocaleDateString('en-IN', { day: 'numeric', month: 'short' });
-  const typeMap = { ST: 'Static', RL: 'Reel', CR: 'Carousel' };
-  const typeLabel = typeMap[data.type] || data.type || 'Post';
-  const captionPreview = data.caption ? esc(data.caption.substring(0,120)) + (data.caption.length > 120 ? '...' : '') : '';
-  const imgHtml = data.images && data.images[0]
-    ? `<img class="card-img" src="${data.images[0].url}" loading="lazy">`
-    : `<div class="card-img-placeholder"><div class="pi-type">${typeLabel}</div><div class="pi-date">${dateStr}</div></div>`;
-
-  return `<div class="post-card post-status-upcoming">
-    ${imgHtml}
-    <div class="card-body">
-      <div class="card-meta">
-        <span class="card-date">${dateStr}</span>
-        <span class="card-type type-upcoming">📅 ${typeLabel}</span>
-      </div>
-      ${captionPreview ? `<div class="card-caption">${captionPreview}</div>` : ''}
-      <div class="card-actions">
-        <button class="btn-insights" onclick="openUpcomingModal('${esc(data.post_id)}','${esc(captionPreview)}')">📋 Caption</button>
-      </div>
-    </div>
-  </div>`;
-}
-
-// ── Insights Modal ──
-function openInsightsModal(post) {
-  const m = document.getElementById('insightsModal');
-  const body = document.getElementById('insightsModalBody');
-  const title = document.getElementById('insightsModalTitle');
-
-  const typeLabel = post.media_type === 'CAROUSEL_ALBUM' ? 'Carousel'
-    : post.media_type === 'VIDEO' ? 'Reel/Video' : 'Photo';
-  const dateStr = new Date(post.timestamp).toLocaleDateString('en-IN', { weekday:'short', day:'numeric', month:'short', year:'numeric' });
-
-  title.textContent = `${typeLabel} · ${dateStr}`;
-
-  const ins = post.insights || {};
-  const collabSection = post.is_collab && post.collab_influencer
-    ? `<div class="modal-section">
-        <div class="modal-section-title">Content Type</div>
-        <div class="collab-info">
-          <strong>Influencer Collab</strong>
-          Posted in collaboration with <span class="collab-tag" onclick="openInfluencerModal('',${JSON.stringify(post.collab_influencer)})">${esc(post.collab_influencer)}</span>
-        </div>
-      </div>`
-    : `<div class="modal-section">
-        <div class="collab-info" style="background:#f5f5f5;color:#555;">
-          <strong style="color:#888;">Content Type</strong>
-          Brand post (no influencer collab detected)
-        </div>
-      </div>`;
-
-  body.innerHTML = `
-    ${post.media_url ? `<img class="modal-img" src="${post.media_url}">` : ''}
-    <div class="insights-grid">
-      <div class="insight-box"><div class="ib-val">${fmtNum(ins.reach || 0)}</div><div class="ib-lbl">Reach</div></div>
-      <div class="insight-box"><div class="ib-val">${fmtNum(post.like_count || 0)}</div><div class="ib-lbl">Likes</div></div>
-      <div class="insight-box"><div class="ib-val">${fmtNum(post.comments_count || 0)}</div><div class="ib-lbl">Comments</div></div>
-      <div class="insight-box"><div class="ib-val">${fmtNum(ins.saved || 0)}</div><div class="ib-lbl">Saved</div></div>
-      <div class="insight-box"><div class="ib-val">${fmtNum(ins.shares || 0)}</div><div class="ib-lbl">Shares</div></div>
-      ${ins.plays ? `<div class="insight-box"><div class="ib-val">${fmtNum(ins.plays)}</div><div class="ib-lbl">Plays</div></div>` : ''}
+  document.getElementById("mInsTitle").textContent = `${typeLabel} · ${dateStr}`;
+  document.getElementById("mInsBody").innerHTML = `
+    ${post.media_url ? `<img src="${esc(post.media_url)}" style="width:100%;border-radius:10px;margin-bottom:14px;aspect-ratio:1/1;object-fit:cover">` : ""}
+    <div class="ins-grid">
+      <div class="ins-box"><div class="bv">${fmtNum(ins.reach||0)}</div><div class="bl">Reach</div></div>
+      <div class="ins-box"><div class="bv">${fmtNum(post.like_count||0)}</div><div class="bl">Likes</div></div>
+      <div class="ins-box"><div class="bv">${fmtNum(post.comments_count||0)}</div><div class="bl">Comments</div></div>
+      <div class="ins-box"><div class="bv">${fmtNum(ins.saved||0)}</div><div class="bl">Saved</div></div>
+      <div class="ins-box"><div class="bv">${fmtNum(ins.shares||0)}</div><div class="bl">Shares</div></div>
+      ${ins.plays ? `<div class="ins-box"><div class="bv">${fmtNum(ins.plays)}</div><div class="bl">Plays</div></div>` : ""}
     </div>
     ${collabSection}
-    ${post.caption ? `<div class="modal-section"><div class="modal-section-title">Caption</div><div class="modal-caption">${esc(post.caption)}</div></div>` : ''}
-    <div style="margin-top:12px"><a class="btn-view" href="${post.permalink}" target="_blank" style="display:inline-block">Open on Instagram ↗</a></div>
+    ${post.caption ? `<div class="msection"><div class="msect-title">Caption</div><div class="modal-caption-text">${esc(post.caption)}</div></div>` : ""}
+    <div style="margin-top:12px"><a class="btn-sm btn-view" href="${esc(post.permalink)}" target="_blank" style="display:inline-block">Open on Instagram ↗</a></div>
   `;
-  m.classList.add('open');
+  openModal("mIns");
 }
 
-function openUpcomingModal(postId, caption) {
-  const m = document.getElementById('insightsModal');
-  document.getElementById('insightsModalTitle').textContent = postId || 'Upcoming Post';
-  document.getElementById('insightsModalBody').innerHTML = `
-    <div class="collab-info" style="background:#e3f2fd;color:#1565c0;margin-bottom:14px;">
-      <strong style="color:#1565c0;">Status: Scheduled / Not Yet Posted</strong>
-      This post is planned but hasn't been published to Instagram yet.
-    </div>
-    ${caption ? `<div class="modal-section"><div class="modal-section-title">Caption</div><div class="modal-caption">${caption}</div></div>` : ''}
+function openCaptionModal(plan) {
+  document.getElementById("mInsTitle").textContent = plan.post_id || "Upcoming Post";
+  document.getElementById("mInsBody").innerHTML = `
+    <div class="info-pill pill-blue" style="margin-bottom:14px"><strong>📅 Scheduled — Yet to be posted</strong></div>
+    ${plan.caption ? `<div class="msection"><div class="msect-title">Caption (PC)</div><div class="modal-caption-text">${esc(plan.caption)}</div></div>` : ""}
+    ${plan.brief ? `<div class="msection"><div class="msect-title">Creative Brief (CC)</div><div class="modal-caption-text">${esc(plan.brief)}</div></div>` : ""}
   `;
-  m.classList.add('open');
+  openModal("mIns");
 }
 
-// ── Influencer Modal ──
+// ── Influencer Modal ──────────────────────────────────────────────────────────
 function openInfluencerModal(prop, name) {
-  const m = document.getElementById('influencerModal');
-  document.getElementById('infModalTitle').textContent = name;
+  // Find influencer details
+  let inf = null;
+  const propsToSearch = prop ? [prop] : PROPS;
+  for (const p of propsToSearch) {
+    const match = (influencers[p] || []).find(i => i.name === name);
+    if (match) { inf = { ...match, prop: p }; break; }
+  }
 
-  // Find all collab posts across all properties
-  const allPosts = [];
-  for (const [p, ig] of Object.entries(postsData)) {
-    if (ig.posts) {
-      const matched = ig.posts.filter(post => post.collab_influencer === name);
-      matched.forEach(post => allPosts.push({ ...post, prop: p }));
+  // Find all their collab posts from all properties
+  const collabPosts = [];
+  for (const p of PROPS) {
+    const ig = (liveWeekData || igData)[p] || {};
+    for (const post of ig.posts || []) {
+      if (post.collab_influencer === name || detectCollab(p, post) === name) {
+        collabPosts.push({ ...post, prop: p });
+      }
     }
   }
-  allPosts.sort((a,b) => b.date.localeCompare(a.date));
+  collabPosts.sort((a,b) => b.date.localeCompare(a.date));
 
-  const thumbs = allPosts.map(p => `
-    <div class="inf-post-thumb" onclick='openInsightsModal(${JSON.stringify(p).replace(/'/g,"&#39;")})'>
-      ${p.media_url ? `<img src="${p.media_url}" loading="lazy">` : '<div style="width:100%;height:100%;background:#eee;"></div>'}
-      <div class="ipt-overlay"><div class="inf-post-stats">❤️${fmtNum(p.like_count)} 👁️${fmtNum(p.insights?.reach||0)}</div></div>
-    </div>`).join('');
+  const thumbs = collabPosts.map(p => `
+    <div class="inf-thumb" onclick='openInsightsModal(${JSON.stringify(p).replace(/'/g,"&#39;")})'>
+      ${p.media_url ? `<img src="${esc(p.media_url)}" loading="lazy">` : `<div style="width:100%;height:100%;background:#eee"></div>`}
+      <div class="iovl"><span>❤️${fmtNum(p.like_count)} 👁️${fmtNum(p.insights?.reach||0)}</span></div>
+    </div>`).join("");
 
-  const propLabels = [...new Set(allPosts.map(p => PROP_META[p.prop]?.label || p.prop))].join(', ');
+  const igHandle = inf?.instagram ? `<a href="${esc(inf.instagram)}" target="_blank" style="color:#1565c0;font-size:11px">@${esc(inf.instagram.replace(/.*instagram\.com\//,"").replace(/\/.*/,""))}</a>` : "";
 
-  document.getElementById('infModalBody').innerHTML = `
-    <div class="inf-header-info">
-      <div class="inf-avatar">${name.charAt(0).toUpperCase()}</div>
-      <div><div class="inf-name">${esc(name)}</div><div class="inf-handle">${propLabels || 'Influencer'}</div></div>
+  document.getElementById("mInfTitle").textContent = name;
+  document.getElementById("mInfBody").innerHTML = `
+    <div class="inf-top">
+      <div class="inf-ava">${(name||"?").charAt(0).toUpperCase()}</div>
+      <div>
+        <div class="inf-name">${esc(name)}</div>
+        <div class="inf-sub">${igHandle} ${inf ? "· " + (PROP_META[inf.prop]?.label||inf.prop) : ""}</div>
+      </div>
     </div>
-    <div class="modal-section-title">${allPosts.length} Collab Post${allPosts.length !== 1 ? 's' : ''} Detected</div>
-    <div class="inf-posts-grid">${thumbs || '<div style="color:#aaa;font-size:13px;grid-column:1/-1;padding:20px 0;">No matched posts found. Posts may not be tagged in captions.</div>'}</div>
+    <div class="inf-detail-row">
+      ${inf?.visit ? `<div class="inf-chip">📅 ${esc(inf.visit)}</div>` : ""}
+      ${inf?.month ? `<div class="inf-chip">🗓 ${esc(inf.month)}</div>` : ""}
+      ${inf?.status ? `<div class="inf-chip">• ${esc(inf.status)}</div>` : ""}
+      ${inf?.contact ? `<div class="inf-chip">📞 ${esc(inf.contact)}</div>` : ""}
+    </div>
+    ${inf?.brief ? `<div class="msect-title">Brief Given</div><div class="inf-brief">${esc(inf.brief)}</div>` : ""}
+    <div class="msect-title" style="margin-bottom:8px">${collabPosts.length} Collab Post${collabPosts.length !== 1 ? "s" : ""} Detected</div>
+    <div class="inf-posts-grid">${thumbs || `<div style="color:#ccc;font-size:12px;grid-column:1/-1;padding:16px 0">No matched posts found</div>`}</div>
   `;
-  m.classList.add('open');
+  openModal("mInf");
 }
 
-function closeModal(id) { document.getElementById(id).classList.remove('open'); }
-
-// ── Week nav ──
-function changeWeek(dir) {
-  currentWeekStart = addDays(currentWeekStart, dir * 7);
-  renderWeek();
-}
-function jumpToToday() {
-  currentWeekStart = getMondayOf(TODAY);
-  renderWeek();
-}
-function onWeekPickerChange() {
-  const val = document.getElementById('weekPicker').value; // "2026-W24"
+// ── Week nav ──────────────────────────────────────────────────────────────────
+function changeWeek(dir) { weekStart = addDays(weekStart, dir * 7); liveWeekData = null; renderWeek(); }
+function jumpToday()     { weekStart = monday(TODAY); liveWeekData = null; renderWeek(); }
+function onPickerChange() {
+  const val = document.getElementById("weekPicker").value;
   if (!val) return;
-  const [yr, wStr] = val.split('-W');
-  const week = parseInt(wStr);
-  const d = weekNumberToDate(parseInt(yr), week);
-  currentWeekStart = getMondayOf(d);
+  const [yr, wStr] = val.split("-W");
+  weekStart = monday(weekNumToDate(+yr, +wStr));
+  liveWeekData = null;
   renderWeek();
 }
 
-// ── Utils ──
-function esc(str) {
-  if (!str) return '';
-  return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-}
+// ── Modal helpers ─────────────────────────────────────────────────────────────
+function openModal(id)  { document.getElementById(id).classList.add("open"); }
+function closeModal(id) { document.getElementById(id).classList.remove("open"); }
 
-function getWeekNumber(d) {
-  const date = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
-  const dayNum = date.getUTCDay() || 7;
-  date.setUTCDate(date.getUTCDate() + 4 - dayNum);
-  const yearStart = new Date(Date.UTC(date.getUTCFullYear(), 0, 1));
-  return Math.ceil((((date - yearStart) / 86400000) + 1) / 7);
-}
-
-function weekNumberToDate(year, week) {
-  const simple = new Date(year, 0, 1 + (week - 1) * 7);
-  const dow = simple.getDay();
-  const isoWeekStart = new Date(simple);
-  if (dow <= 4) isoWeekStart.setDate(simple.getDate() - simple.getDay() + 1);
-  else isoWeekStart.setDate(simple.getDate() + 8 - simple.getDay());
-  return isoWeekStart;
-}
-
-function refreshData() {
-  alert('Run "python fetch_insights.py" in the terminal to refresh Instagram data, then reload this page.');
-}
-
-// ── Init ──
-loadData();
+// ── Init ──────────────────────────────────────────────────────────────────────
+init();
 </script>
 </body>
 </html>
