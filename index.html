@@ -162,6 +162,7 @@ header{background:#111;border-bottom:1px solid #222;padding:0 24px;height:52px;d
 
 /* Media */
 .ig-media{position:relative;width:100%;aspect-ratio:1/1;background:#000;overflow:hidden}
+.ig-media.reel-media{aspect-ratio:9/16}
 .ig-media img{width:100%;height:100%;object-fit:cover;display:block}
 .ig-media video{width:100%;height:100%;object-fit:cover;display:block;background:#000}
 .media-badge{position:absolute;top:10px;right:10px;background:rgba(0,0,0,.55);color:#fff;font-size:9px;font-weight:700;padding:3px 8px;border-radius:12px;letter-spacing:.05em;z-index:2;backdrop-filter:blur(4px)}
@@ -294,7 +295,7 @@ header{background:#111;border-bottom:1px solid #222;padding:0 24px;height:52px;d
 .inf-chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:13px}
 .ich{font-size:11px;background:#222;padding:4px 10px;border-radius:6px;color:#777;border:1px solid #2a2a2a}
 .inf-brief-box{background:#2a2310;border-radius:10px;padding:11px 13px;font-size:12px;color:#d4a956;line-height:1.6;margin-bottom:13px;white-space:pre-wrap;border:1px solid #3a3210}
-.inf-posts-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px}
+.inf-posts-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
 .inf-thumb{border-radius:7px;overflow:hidden;aspect-ratio:1/1;background:#222;position:relative;cursor:pointer}
 .inf-thumb img{width:100%;height:100%;object-fit:cover}
 .inf-thumb .iovl{position:absolute;inset:0;background:rgba(0,0,0,0);transition:.15s;display:flex;align-items:center;justify-content:center}
@@ -443,7 +444,7 @@ let infPropFilter="all", infSort="recent";
 
 function monday(d){const r=new Date(d);r.setHours(0,0,0,0);const w=r.getDay();r.setDate(r.getDate()-(w===0?6:w-1));return r;}
 function addDays(d,n){const r=new Date(d);r.setDate(r.getDate()+n);return r;}
-function fmt(d){return d.toISOString().split("T")[0];}
+function fmt(d){const y=d.getFullYear(),m=String(d.getMonth()+1).padStart(2,"0"),day=String(d.getDate()).padStart(2,"0");return`${y}-${m}-${day}`;}
 function fmtDisp(d){return d.toLocaleDateString("en-IN",{day:"numeric",month:"short",year:"numeric"});}
 function fmtShort(d){return new Date(d+"T00:00:00").toLocaleDateString("en-IN",{day:"numeric",month:"short"});}
 function fmtNum(n){if(!n&&n!==0)return"—";return n>=1000?(n/1000).toFixed(1)+"k":""+n;}
@@ -668,7 +669,7 @@ function avatarHtml(prop){
 function phoneCard(prop, post, plan){
   const isPosted=!!post;
   const mt=post?.media_type||"IMAGE";
-  const isVideo=mt==="VIDEO"||mt==="REEL";
+  const isVideo=mt==="VIDEO"||mt==="REEL"||plan?.type==="RL";
   const isCarousel=mt==="CAROUSEL_ALBUM";
   const typeMap={ST:"Static",RL:"Reel",CR:"Carousel"};
   const typeLabel=isCarousel?"Carousel":isVideo?"Reel":isPosted?"Photo":(typeMap[plan?.type]||"Post");
@@ -699,15 +700,13 @@ function phoneCard(prop, post, plan){
         <div class="reel-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
       </div>`;
   } else if(isVideo && post.media_url){
-    // Thumbnail only — video_url not yet fetched; play button opens Instagram
-    const permalink=post.permalink||"";
+    // Thumbnail — video not yet loaded; play button opens insights modal (no redirect)
+    const postJson=JSON.stringify(post).replace(/'/g,"&#39;");
     mediaHtml=`
       <img src="${esc(post.media_url)}" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy">
-      <a href="${esc(permalink)}" target="_blank" style="text-decoration:none">
-        <div class="reel-overlay">
-          <div class="reel-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-        </div>
-      </a>`;
+      <div class="reel-overlay" onclick='openInsightsModal(${postJson})' style="cursor:pointer">
+        <div class="reel-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+      </div>`;
   } else if(post.media_url){
     mediaHtml=`<img src="${esc(post.media_url)}" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy">`;
   } else {
@@ -786,7 +785,7 @@ function phoneCard(prop, post, plan){
         </div>
 
         <!-- Media -->
-        <div class="ig-media" ${isVideo&&videoUrl?"":`style="cursor:default"`}>
+        <div class="ig-media${isVideo?" reel-media":""}" ${isVideo&&videoUrl?"":`style="cursor:default"`}>
           ${stateBadge}
           ${isCarousel?`<div class="media-badge">1 / N</div>`:""}
           ${mediaHtml}
@@ -1000,9 +999,12 @@ function openInfModal(prop,name){
   const wa=waLink(inf?.contact);
   const gradients={lnl:"#2e7d32,#66bb6a",gur:"#1565c0,#42a5f5",kum:"#7b1fa2,#ce93d8"};
   const thumbs=collabs.map(p=>`
-    <div class="inf-thumb" onclick='openInsightsModal(${JSON.stringify(p).replace(/'/g,"&#39;")})'>
-      ${p.media_url?`<img src="${esc(p.media_url)}" loading="lazy">`:`<div style="width:100%;height:100%;background:#222"></div>`}
-      <div class="iovl"><span>❤️${fmtNum(p.like_count)} 👁${fmtNum(p.insights?.reach||0)}</span></div>
+    <div style="display:flex;flex-direction:column;gap:4px">
+      <div class="inf-thumb" onclick='openInsightsModal(${JSON.stringify(p).replace(/'/g,"&#39;")})'>
+        ${p.media_url?`<img src="${esc(p.media_url)}" loading="lazy">`:`<div style="width:100%;height:100%;background:#222"></div>`}
+        <div class="iovl"><span>❤️${fmtNum(p.like_count)} 👁${fmtNum(p.insights?.reach||0)}</span></div>
+      </div>
+      ${p.permalink?`<a href="${esc(p.permalink)}" target="_blank" style="font-size:10px;color:#888;text-align:center;text-decoration:none;padding:2px 0;border:1px solid #2a2a2a;border-radius:5px;display:block" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#888'">↗ View on Instagram</a>`:""}
     </div>`).join("");
   const igH=inf?.instagram?`<a href="${esc(inf.instagram)}" target="_blank" style="color:#f48fb1;font-size:12px">@${esc(inf.instagram.replace(/.*instagram\.com\//,"").replace(/\/?(\?.*)$/,""))}</a>`:"";
   document.getElementById("mInfTitle").textContent=name;
