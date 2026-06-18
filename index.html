@@ -504,16 +504,43 @@ function getPlannedPosts(prop,s,e){
   return Object.entries(postsJson).filter(([d,ps])=>d>=s&&d<=e&&ps[prop]).map(([d,ps])=>({date:d,...ps[prop]}));
 }
 
+// Map deck type → Instagram media_type
+const DECK_TYPE_MAP={ST:["IMAGE","CAROUSEL_ALBUM"],RL:["VIDEO","REEL"],CR:["CAROUSEL_ALBUM","IMAGE"]};
+
+function typeCompatible(planType, postMediaType){
+  const allowed=DECK_TYPE_MAP[planType];
+  if(!allowed)return true; // unknown type — allow any
+  return allowed.includes(postMediaType);
+}
+
 function matchPosts(planned,posted){
   const matched=new Set(),result=[];
+
   for(const plan of planned){
+    // 1. Exact date match
     const byDate=posted.find(p=>p.date===plan.date);
     if(byDate){matched.add(byDate.id);result.push({type:"matched",plan,post:byDate});continue;}
+
+    // 2. Caption keyword match (3+ long words)
     const words=(plan.caption||"").toLowerCase().split(/\s+/).filter(w=>w.length>5);
-    const byCap=posted.find(p=>!matched.has(p.id)&&words.slice(0,8).filter(w=>(p.caption||"").toLowerCase().includes(w)).length>=3);
+    const byCap=posted.find(p=>
+      !matched.has(p.id)&&
+      words.slice(0,8).filter(w=>(p.caption||"").toLowerCase().includes(w)).length>=3
+    );
     if(byCap){matched.add(byCap.id);result.push({type:"matched",plan,post:byCap});continue;}
+
+    // 3. Date proximity (within 3 days) + compatible type — catches "posted a day late" cases
+    const planMs=new Date(plan.date).getTime();
+    const byProximity=posted.find(p=>
+      !matched.has(p.id)&&
+      Math.abs(new Date(p.date).getTime()-planMs)<=3*86400000&&
+      typeCompatible(plan.type, p.media_type)
+    );
+    if(byProximity){matched.add(byProximity.id);result.push({type:"matched",plan,post:byProximity});continue;}
+
     result.push({type:"upcoming",plan});
   }
+  // Unmatched live posts (extra content not in the deck plan)
   for(const p of posted)if(!matched.has(p.id))result.push({type:"posted_only",post:p});
   return result;
 }
@@ -605,8 +632,8 @@ function phoneCard(prop, post, plan){
     mediaHtml=img
       ?`<img src="${esc(img)}" style="width:100%;height:100%;object-fit:cover;display:block">`
       :`<div class="ig-ph"><div class="ph-icon">📅</div><div class="ph-type">${typeMap[plan?.type]||"Post"}</div><div class="ph-date">${dateStr}</div><div class="ph-label">Yet to be posted</div></div>`;
-  } else if(isVideo&&videoUrl){
-    // Actual video with thumbnail poster
+  } else if(isVideo && videoUrl){
+    // Full video playback when video_url is available
     const uid="v"+Math.random().toString(36).slice(2,8);
     mediaHtml=`
       <video id="${uid}" poster="${esc(post.media_url)}" preload="none"
@@ -615,10 +642,18 @@ function phoneCard(prop, post, plan){
         <source src="${esc(videoUrl)}" type="video/mp4">
       </video>
       <div class="reel-overlay" id="ro_${uid}" onclick="playReel('${uid}')">
-        <div class="reel-play-btn">
-          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-        </div>
+        <div class="reel-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
       </div>`;
+  } else if(isVideo && post.media_url){
+    // Thumbnail only — video_url not yet fetched; play button opens Instagram
+    const permalink=post.permalink||"";
+    mediaHtml=`
+      <img src="${esc(post.media_url)}" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy">
+      <a href="${esc(permalink)}" target="_blank" style="text-decoration:none">
+        <div class="reel-overlay">
+          <div class="reel-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        </div>
+      </a>`;
   } else if(post.media_url){
     mediaHtml=`<img src="${esc(post.media_url)}" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy">`;
   } else {
