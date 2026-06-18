@@ -3,672 +3,570 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rhythm Hotels — Content Preview</title>
+<title>Rhythm Hotels — Content Dashboard</title>
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f4f4f4; color: #111; min-height: 100vh; }
 
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    background: #f5f5f5;
-    color: #111;
-    min-height: 100vh;
-  }
+/* ── Header ── */
+header { background: #fff; border-bottom: 1px solid #e0e0e0; padding: 14px 28px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 200; }
+.logo { font-size: 14px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+.logo span { color: #b5924c; }
+.header-right { display: flex; align-items: center; gap: 12px; }
+.refresh-btn { font-size: 12px; padding: 6px 14px; border-radius: 8px; border: 1px solid #ddd; background: #fff; cursor: pointer; color: #444; }
+.refresh-btn:hover { background: #f5f5f5; }
 
-  header {
-    background: #fff;
-    border-bottom: 1px solid #e0e0e0;
-    padding: 16px 32px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-  }
+/* ── Week Nav ── */
+.week-nav { background: #fff; border-bottom: 1px solid #e8e8e8; padding: 14px 28px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.week-nav-arrows { display: flex; gap: 6px; }
+.arrow-btn { width: 32px; height: 32px; border: 1px solid #ddd; background: #fff; border-radius: 8px; cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center; }
+.arrow-btn:hover { background: #f5f5f5; }
+.week-label { font-size: 14px; font-weight: 600; color: #111; min-width: 200px; text-align: center; }
+.week-badge { font-size: 11px; padding: 3px 10px; border-radius: 20px; font-weight: 600; letter-spacing: 0.04em; }
+.badge-ongoing { background: #e8f5e9; color: #2e7d32; }
+.badge-past { background: #fce4ec; color: #c62828; }
+.badge-upcoming { background: #e3f2fd; color: #1565c0; }
+.week-picker-wrap { margin-left: auto; }
+.week-picker-wrap input { font-size: 12px; padding: 6px 10px; border: 1px solid #ddd; border-radius: 8px; }
+.jump-today { font-size: 12px; padding: 6px 12px; border: 1px solid #ddd; background: #fff; border-radius: 8px; cursor: pointer; }
+.jump-today:hover { background: #f5f5f5; }
 
-  header .logo {
-    font-size: 15px;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    color: #111;
-    text-transform: uppercase;
-  }
+/* ── Summary Cards ── */
+.summary-row { display: flex; gap: 12px; padding: 16px 28px; overflow-x: auto; }
+.summary-card { background: #fff; border-radius: 12px; border: 1px solid #e8e8e8; padding: 14px 18px; min-width: 200px; flex: 1; }
+.summary-card .sc-prop { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 10px; }
+.prop-lnl { color: #2e7d32; }
+.prop-gur { color: #1565c0; }
+.prop-kum { color: #7b1fa2; }
+.sc-metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.sc-metric { }
+.sc-metric .val { font-size: 18px; font-weight: 700; color: #111; }
+.sc-metric .lbl { font-size: 10px; color: #888; margin-top: 1px; }
+.sc-metric .trend { font-size: 11px; margin-left: 4px; }
+.trend-up { color: #2e7d32; }
+.trend-down { color: #c62828; }
 
-  header .logo span { color: #b5924c; }
+/* ── Grid ── */
+.posts-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0; padding: 0 28px 40px; }
+.col-header { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; padding: 12px 0 8px; border-bottom: 2px solid; margin-bottom: 14px; }
+.col-lnl { color: #2e7d32; border-color: #2e7d32; }
+.col-gur { color: #1565c0; border-color: #1565c0; }
+.col-kum { color: #7b1fa2; border-color: #7b1fa2; }
+.col { padding: 16px 10px; }
 
-  .date-bar {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 28px 32px 0;
-    flex-wrap: wrap;
-  }
+/* ── Post Card ── */
+.post-card { background: #fff; border-radius: 14px; border: 1px solid #e8e8e8; margin-bottom: 16px; overflow: hidden; transition: box-shadow 0.15s; }
+.post-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+.card-img { width: 100%; aspect-ratio: 1/1; object-fit: cover; background: #f0f0f0; display: block; }
+.card-img-placeholder { width: 100%; aspect-ratio: 1/1; background: linear-gradient(135deg, #f5f5f5, #e8e8e8); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; }
+.card-img-placeholder .pi-type { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: #999; }
+.card-img-placeholder .pi-date { font-size: 13px; font-weight: 700; color: #555; }
+.card-body { padding: 12px 14px; }
+.card-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; flex-wrap: wrap; }
+.card-date { font-size: 11px; color: #888; }
+.card-type { font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 5px; text-transform: uppercase; letter-spacing: 0.05em; }
+.type-image { background: #e3f2fd; color: #1565c0; }
+.type-video { background: #fce4ec; color: #c62828; }
+.type-carousel_album { background: #f3e5f5; color: #7b1fa2; }
+.type-reel { background: #fff8e1; color: #f57f17; }
+.type-upcoming { background: #f5f5f5; color: #666; }
+.card-caption { font-size: 12px; color: #444; line-height: 1.5; margin-bottom: 10px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.card-stats { display: flex; gap: 12px; margin-bottom: 10px; }
+.card-stat { font-size: 12px; color: #666; }
+.card-stat strong { color: #111; font-weight: 600; }
+.card-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.btn-insights { font-size: 11px; padding: 5px 11px; border-radius: 7px; border: 1px solid #ddd; background: #fff; cursor: pointer; font-weight: 500; }
+.btn-insights:hover { background: #f5f5f5; }
+.btn-view { font-size: 11px; padding: 5px 11px; border-radius: 7px; border: none; background: #111; color: #fff; cursor: pointer; text-decoration: none; display: inline-block; }
+.btn-view:hover { background: #333; }
+.collab-tag { font-size: 11px; color: #b5924c; font-weight: 600; cursor: pointer; }
+.collab-tag:hover { text-decoration: underline; }
+.post-status-upcoming { border-left: 3px solid #1565c0; }
+.post-status-posted { border-left: 3px solid #2e7d32; }
+.no-posts { text-align: center; padding: 40px 20px; color: #aaa; font-size: 13px; }
 
-  .date-bar label {
-    font-size: 13px;
-    font-weight: 500;
-    color: #666;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-  }
+/* ── Insights Modal ── */
+.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 1000; display: none; align-items: center; justify-content: center; padding: 20px; }
+.modal-overlay.open { display: flex; }
+.modal { background: #fff; border-radius: 16px; width: 100%; max-width: 480px; max-height: 85vh; overflow-y: auto; }
+.modal-header { padding: 20px 24px 16px; border-bottom: 1px solid #f0f0f0; display: flex; align-items: center; justify-content: space-between; }
+.modal-title { font-size: 15px; font-weight: 700; }
+.modal-close { font-size: 20px; cursor: pointer; color: #888; background: none; border: none; line-height: 1; }
+.modal-body { padding: 20px 24px; }
+.modal-img { width: 100%; border-radius: 10px; margin-bottom: 16px; aspect-ratio: 1/1; object-fit: cover; background: #f0f0f0; }
+.insights-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+.insight-box { background: #f8f8f8; border-radius: 10px; padding: 12px 14px; }
+.insight-box .ib-val { font-size: 22px; font-weight: 700; color: #111; }
+.insight-box .ib-lbl { font-size: 11px; color: #888; margin-top: 2px; }
+.modal-section { margin-bottom: 14px; }
+.modal-section-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #888; margin-bottom: 8px; }
+.modal-caption { font-size: 13px; color: #444; line-height: 1.6; }
+.collab-info { background: #fff8e1; border-radius: 10px; padding: 12px 14px; font-size: 13px; color: #7a5c00; }
+.collab-info strong { display: block; margin-bottom: 2px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; color: #b5924c; }
 
-  .date-bar select, .date-bar input[type=date] {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 8px 14px;
-    font-size: 14px;
-    background: #fff;
-    color: #111;
-    cursor: pointer;
-    outline: none;
-  }
+/* ── Influencer Modal ── */
+.inf-modal { max-width: 600px; }
+.inf-header-info { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+.inf-avatar { width: 52px; height: 52px; border-radius: 50%; background: #f0f0f0; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 700; color: #888; }
+.inf-name { font-size: 18px; font-weight: 700; }
+.inf-handle { font-size: 13px; color: #888; }
+.inf-posts-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-top: 12px; }
+.inf-post-thumb { border-radius: 8px; overflow: hidden; aspect-ratio: 1/1; background: #f0f0f0; position: relative; cursor: pointer; }
+.inf-post-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.inf-post-thumb .ipt-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0); transition: background 0.15s; display: flex; align-items: center; justify-content: center; }
+.inf-post-thumb:hover .ipt-overlay { background: rgba(0,0,0,0.4); }
+.inf-post-stats { color: #fff; font-size: 12px; font-weight: 600; display: none; }
+.inf-post-thumb:hover .inf-post-stats { display: flex; gap: 10px; }
 
-  .date-bar select:focus, .date-bar input[type=date]:focus {
-    border-color: #b5924c;
-  }
+/* ── Loading ── */
+.loading { text-align: center; padding: 60px; color: #888; font-size: 14px; }
+.spinner { width: 32px; height: 32px; border: 3px solid #e0e0e0; border-top-color: #b5924c; border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 16px; }
+@keyframes spin { to { transform: rotate(360deg); } }
 
-  .status-badge {
-    font-size: 12px;
-    padding: 4px 12px;
-    border-radius: 20px;
-    font-weight: 500;
-  }
-
-  .badge-static { background: #e8f4fd; color: #1565c0; }
-  .badge-reel   { background: #f3e5f5; color: #7b1fa2; }
-  .badge-carousel { background: #e8f5e9; color: #2e7d32; }
-  .badge-none   { background: #f5f5f5; color: #999; }
-
-  .phones-row {
-    display: flex;
-    gap: 32px;
-    padding: 32px 32px 48px;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-  .phone-wrap {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 16px;
-  }
-
-  .phone-label {
-    font-size: 12px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: #888;
-  }
-
-  .phone {
-    width: 320px;
-    height: 660px;
-    background: #fff;
-    border-radius: 44px;
-    border: 10px solid #1a1a1a;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 0 0 2px #333, 0 20px 60px rgba(0,0,0,0.18);
-  }
-
-  /* Notch */
-  .phone::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 110px;
-    height: 28px;
-    background: #1a1a1a;
-    border-radius: 0 0 18px 18px;
-    z-index: 10;
-  }
-
-  /* Side buttons */
-  .phone::after {
-    content: '';
-    position: absolute;
-    right: -13px;
-    top: 100px;
-    width: 4px;
-    height: 60px;
-    background: #333;
-    border-radius: 2px;
-  }
-
-  .phone-screen {
-    width: 100%;
-    height: 100%;
-    overflow-y: auto;
-    overflow-x: hidden;
-    background: #fff;
-    scrollbar-width: none;
-  }
-
-  .phone-screen::-webkit-scrollbar { display: none; }
-
-  /* Instagram-style inside the phone */
-  .ig-status-bar {
-    height: 36px;
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    padding: 0 18px 6px;
-    font-size: 11px;
-    font-weight: 600;
-    color: #111;
-    background: #fff;
-    position: sticky;
-    top: 0;
-    z-index: 5;
-  }
-
-  .ig-nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 8px 14px;
-    border-bottom: 0.5px solid #efefef;
-  }
-
-  .ig-nav .ig-username {
-    font-size: 14px;
-    font-weight: 700;
-    color: #111;
-  }
-
-  .ig-nav-icons {
-    display: flex;
-    gap: 14px;
-  }
-
-  .ig-nav-icons svg { width: 22px; height: 22px; fill: #111; }
-
-  .ig-post-header {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 9px 14px;
-  }
-
-  .ig-avatar {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    font-size: 11px;
-    font-weight: 700;
-    flex-shrink: 0;
-    border: 2px solid transparent;
-    outline: 2px solid #e0e0e0;
-    outline-offset: 1px;
-  }
-
-  .ig-post-user { font-size: 13px; font-weight: 600; color: #111; }
-  .ig-post-loc  { font-size: 11px; color: #555; }
-
-  .ig-more { margin-left: auto; font-size: 18px; color: #111; line-height: 1; }
-
-  .ig-media {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 1;
-    background: #f0f0f0;
-    overflow: hidden;
-  }
-
-  .ig-media img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-
-  .ig-media-placeholder {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    color: #bbb;
-    font-size: 12px;
-  }
-
-  .ig-media-placeholder svg { width: 40px; height: 40px; opacity: 0.4; }
-
-  /* Carousel dots + arrows */
-  .carousel-dots {
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 5px;
-  }
-
-  .carousel-dots span {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.6);
-    transition: background 0.2s;
-  }
-
-  .carousel-dots span.active { background: #fff; }
-
-  .carousel-arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(255,255,255,0.85);
-    border: none;
-    border-radius: 50%;
-    width: 28px;
-    height: 28px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    font-size: 14px;
-    color: #111;
-  }
-
-  .carousel-arrow.left  { left: 8px; }
-  .carousel-arrow.right { right: 8px; }
-
-  /* Reel overlay */
-  .reel-overlay {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(0,0,0,0.18);
-  }
-
-  .reel-play {
-    width: 52px;
-    height: 52px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.88);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .reel-play svg { width: 22px; height: 22px; fill: #111; margin-left: 3px; }
-
-  .ig-actions {
-    display: flex;
-    align-items: center;
-    padding: 8px 14px 4px;
-    gap: 14px;
-  }
-
-  .ig-actions svg { width: 24px; height: 24px; fill: none; stroke: #111; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-  .ig-actions .save-icon { margin-left: auto; }
-
-  .ig-likes {
-    padding: 0 14px 4px;
-    font-size: 13px;
-    font-weight: 600;
-    color: #111;
-  }
-
-  .ig-caption {
-    padding: 0 14px 12px;
-    font-size: 12px;
-    line-height: 1.5;
-    color: #111;
-  }
-
-  .ig-caption .ig-handle { font-weight: 700; margin-right: 5px; }
-
-  .ig-caption .ig-hashtags { color: #00376b; }
-
-  .ig-caption-more {
-    color: #999;
-    font-size: 12px;
-    cursor: pointer;
-    display: none;
-  }
-
-  .ig-time {
-    padding: 0 14px 16px;
-    font-size: 10px;
-    color: #999;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-  }
-
-  /* Bottom nav bar */
-  .ig-bottom-nav {
-    position: sticky;
-    bottom: 0;
-    background: #fff;
-    border-top: 0.5px solid #efefef;
-    display: flex;
-    justify-content: space-around;
-    padding: 10px 0 6px;
-  }
-
-  .ig-bottom-nav svg { width: 24px; height: 24px; fill: none; stroke: #111; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-
-  .no-post-msg {
-    padding: 60px 20px;
-    text-align: center;
-    color: #bbb;
-    font-size: 13px;
-    line-height: 1.8;
-  }
-
-  .no-post-msg svg { width: 36px; height: 36px; opacity: 0.3; margin-bottom: 12px; }
-
-  /* Date dots legend */
-  .date-dots {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    padding: 0 32px 0;
-    margin-top: 16px;
-  }
-
-  .date-dot {
-    font-size: 12px;
-    padding: 5px 12px;
-    border-radius: 20px;
-    border: 1px solid #ddd;
-    background: #fff;
-    cursor: pointer;
-    color: #666;
-    transition: all 0.15s;
-  }
-
-  .date-dot:hover { border-color: #b5924c; color: #b5924c; }
-  .date-dot.active { background: #b5924c; color: #fff; border-color: #b5924c; }
-  .date-dot.has-media { border-color: #b5924c; }
-
-  @media (max-width: 700px) {
-    .phones-row { padding: 20px 12px 32px; gap: 20px; }
-    .phone { width: 280px; height: 580px; }
-    header { padding: 14px 16px; }
-    .date-bar, .date-dots { padding-left: 16px; padding-right: 16px; }
-  }
+@media (max-width: 768px) {
+  .posts-grid { grid-template-columns: 1fr; }
+  .summary-row { flex-direction: column; }
+  .week-nav { gap: 8px; }
+}
 </style>
 </head>
 <body>
 
 <header>
-  <div class="logo">Rhythm <span>Hotels</span> &mdash; Content Preview</div>
-  <div style="font-size:12px;color:#999;">Internal use only</div>
+  <div class="logo">Rhythm <span>Hotels</span> — Content Dashboard</div>
+  <div class="header-right">
+    <button class="refresh-btn" onclick="refreshData()">⟳ Refresh Insights</button>
+  </div>
 </header>
 
-<div class="date-bar">
-  <label>Date</label>
-  <input type="date" id="datePicker" />
-  <span id="postTypeBadge" class="status-badge badge-none">No post</span>
+<!-- Week Navigation -->
+<div class="week-nav">
+  <div class="week-nav-arrows">
+    <button class="arrow-btn" onclick="changeWeek(-1)" title="Previous week">←</button>
+    <button class="arrow-btn" onclick="changeWeek(1)" title="Next week">→</button>
+  </div>
+  <div class="week-label" id="weekLabel">Loading...</div>
+  <span class="week-badge" id="weekBadge"></span>
+  <button class="jump-today" onclick="jumpToToday()">This Week</button>
+  <div class="week-picker-wrap">
+    <input type="week" id="weekPicker" onchange="onWeekPickerChange()" title="Jump to any week">
+  </div>
 </div>
 
-<div class="date-dots" id="dateDots"></div>
+<!-- Summary Row -->
+<div class="summary-row" id="summaryRow">
+  <div class="loading"><div class="spinner"></div>Loading data...</div>
+</div>
 
-<div class="phones-row" id="phonesRow">
-  <div class="phone-wrap">
-    <div class="phone-label">Lonavala</div>
-    <div class="phone" id="phone-LNL">
-      <div class="phone-screen" id="screen-LNL"></div>
-    </div>
+<!-- Posts Grid -->
+<div class="posts-grid" id="postsGrid">
+  <div class="col" id="colLNL">
+    <div class="col-header col-lnl">Rhythm Lonavala</div>
+    <div class="loading">Loading...</div>
   </div>
-  <div class="phone-wrap">
-    <div class="phone-label">Gurugram</div>
-    <div class="phone" id="phone-GUR">
-      <div class="phone-screen" id="screen-GUR"></div>
-    </div>
+  <div class="col" id="colGUR">
+    <div class="col-header col-gur">Rhythm Gurugram</div>
+    <div class="loading">Loading...</div>
   </div>
-  <div class="phone-wrap">
-    <div class="phone-label">Kumarakom</div>
-    <div class="phone" id="phone-KUM">
-      <div class="phone-screen" id="screen-KUM"></div>
+  <div class="col" id="colKUM">
+    <div class="col-header col-kum">Rhythm Kumarakom</div>
+    <div class="loading">Loading...</div>
+  </div>
+</div>
+
+<!-- Insights Modal -->
+<div class="modal-overlay" id="insightsModal" onclick="closeModal('insightsModal')">
+  <div class="modal" onclick="event.stopPropagation()">
+    <div class="modal-header">
+      <div class="modal-title" id="insightsModalTitle">Post Insights</div>
+      <button class="modal-close" onclick="closeModal('insightsModal')">×</button>
     </div>
+    <div class="modal-body" id="insightsModalBody"></div>
+  </div>
+</div>
+
+<!-- Influencer Modal -->
+<div class="modal-overlay" id="influencerModal" onclick="closeModal('influencerModal')">
+  <div class="modal inf-modal" onclick="event.stopPropagation()">
+    <div class="modal-header">
+      <div class="modal-title" id="infModalTitle">Influencer Profile</div>
+      <button class="modal-close" onclick="closeModal('influencerModal')">×</button>
+    </div>
+    <div class="modal-body" id="infModalBody"></div>
   </div>
 </div>
 
 <script>
-const PROPS = ['LNL','GUR','KUM'];
-const HANDLES = { LNL:'rhythmlonavala', GUR:'rhythmgurugram', KUM:'rhythmkumarakom' };
-const LOCATIONS = { LNL:'Lonavala, Maharashtra', GUR:'Gurugram, Haryana', KUM:'Kumarakom, Kerala' };
-const INITIALS = { LNL:'RL', GUR:'RG', KUM:'RK' };
-const TYPE_LABELS = { ST:'Static', RL:'Reel', CR:'Carousel' };
-const TYPE_BADGES = { ST:'badge-static', RL:'badge-reel', CR:'badge-carousel' };
+// ── State ──
+let postsData = {};       // instagram_data.json  { LNL, GUR, KUM }
+let contentData = {};     // posts.json           { "2026-06-16": { LNL, GUR, KUM } }
+let currentWeekStart = null;
+const TODAY = new Date(); TODAY.setHours(0,0,0,0);
 
-let postsData = {};
-let carouselIndex = { LNL:0, GUR:0, KUM:0 };
+const PROP_META = {
+  LNL: { label: "Rhythm Lonavala",   cls: "prop-lnl", colCls: "col-lnl" },
+  GUR: { label: "Rhythm Gurugram",   cls: "prop-gur", colCls: "col-gur" },
+  KUM: { label: "Rhythm Kumarakom",  cls: "prop-kum", colCls: "col-kum" },
+};
 
+// ── Date helpers ──
+function getMondayOf(d) {
+  const day = new Date(d); day.setHours(0,0,0,0);
+  const dow = day.getDay(); // 0=Sun
+  const diff = dow === 0 ? -6 : 1 - dow;
+  day.setDate(day.getDate() + diff);
+  return day;
+}
+function addDays(d, n) { const r = new Date(d); r.setDate(r.getDate() + n); return r; }
+function fmtDate(d) { return d.toISOString().split('T')[0]; }
+function fmtDisplay(d) { return d.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }); }
+function fmtNum(n) { if (!n && n !== 0) return '—'; return n >= 1000 ? (n/1000).toFixed(1)+'k' : String(n); }
+
+// ── Load data ──
 async function loadData() {
   try {
-    const r = await fetch('posts.json?_=' + Date.now());
-    postsData = await r.json();
-    buildDateDots();
-    const firstDate = Object.keys(postsData).sort().find(d => {
-      const p = postsData[d];
-      return PROPS.some(prop => p[prop] && p[prop].images && p[prop].images.length > 0);
-    }) || Object.keys(postsData).sort()[0];
-    if (firstDate) {
-      document.getElementById('datePicker').value = firstDate;
-      renderDate(firstDate);
-    }
+    const [ig, content] = await Promise.all([
+      fetch('instagram_data.json').then(r => r.ok ? r.json() : {}),
+      fetch('posts.json').then(r => r.ok ? r.json() : {}),
+    ]);
+    postsData = ig;
+    contentData = content;
   } catch(e) {
-    console.error(e);
+    postsData = {};
+    contentData = {};
+  }
+  currentWeekStart = getMondayOf(TODAY);
+  renderWeek();
+}
+
+// ── Week render ──
+function renderWeek() {
+  const mon = currentWeekStart;
+  const sun = addDays(mon, 6);
+  const monStr = fmtDate(mon), sunStr = fmtDate(sun);
+  const todayStr = fmtDate(TODAY);
+  const todayInWeek = todayStr >= monStr && todayStr <= sunStr;
+  const isPast = sunStr < todayStr;
+
+  // Label & badge
+  document.getElementById('weekLabel').textContent =
+    `${fmtDisplay(mon)} — ${fmtDisplay(sun)}`;
+  const badge = document.getElementById('weekBadge');
+  if (todayInWeek) { badge.textContent = 'This Week'; badge.className = 'week-badge badge-ongoing'; }
+  else if (isPast)  { badge.textContent = 'Past';      badge.className = 'week-badge badge-past'; }
+  else              { badge.textContent = 'Upcoming';  badge.className = 'week-badge badge-upcoming'; }
+
+  // Week picker sync
+  const wp = document.getElementById('weekPicker');
+  const yr = mon.getFullYear();
+  const wn = getWeekNumber(mon);
+  wp.value = `${yr}-W${String(wn).padStart(2,'0')}`;
+
+  // Summary
+  renderSummary(mon, sun, isPast, todayInWeek);
+
+  // Columns
+  for (const prop of ['LNL','GUR','KUM']) {
+    renderColumn(prop, mon, sun, isPast, todayInWeek);
   }
 }
 
-function buildDateDots() {
-  const container = document.getElementById('dateDots');
-  const dates = Object.keys(postsData).sort();
-  container.innerHTML = '';
-  dates.forEach(d => {
-    const p = postsData[d];
-    const hasMedia = PROPS.some(prop => p[prop] && p[prop].images && p[prop].images.length > 0);
-    const label = new Date(d + 'T00:00:00').toLocaleDateString('en-IN', {day:'numeric', month:'short'});
-    const dot = document.createElement('div');
-    dot.className = 'date-dot' + (hasMedia ? ' has-media' : '');
-    dot.textContent = label;
-    dot.dataset.date = d;
-    dot.onclick = () => {
-      document.getElementById('datePicker').value = d;
-      renderDate(d);
-    };
-    container.appendChild(dot);
-  });
-}
+// ── Summary cards ──
+function renderSummary(mon, sun, isPast, ongoing) {
+  const row = document.getElementById('summaryRow');
+  const monStr = fmtDate(mon), sunStr = fmtDate(sun);
+  let html = '';
 
-function updateActiveDot(date) {
-  document.querySelectorAll('.date-dot').forEach(d => {
-    d.classList.toggle('active', d.dataset.date === date);
-  });
-}
+  for (const [prop, meta] of Object.entries(PROP_META)) {
+    const ig = postsData[prop];
+    if (!ig) { html += `<div class="summary-card"><div class="sc-prop ${meta.cls}">${meta.label}</div><div style="color:#aaa;font-size:12px">No data</div></div>`; continue; }
 
-function renderDate(date) {
-  updateActiveDot(date);
-  const dayPosts = postsData[date] || {};
-  PROPS.forEach(prop => { carouselIndex[prop] = 0; });
+    // Posts this week from Instagram data
+    const weekPosts = (ig.posts || []).filter(p => p.date >= monStr && p.date <= sunStr);
+    const totalReach = weekPosts.reduce((s,p) => s + (p.insights?.reach || 0), 0);
+    const totalLikes = weekPosts.reduce((s,p) => s + (p.like_count || 0), 0);
+    const totalSaved = weekPosts.reduce((s,p) => s + (p.insights?.saved || 0), 0);
+    const totalShares = weekPosts.reduce((s,p) => s + (p.insights?.shares || 0), 0);
 
-  const types = PROPS.map(prop => dayPosts[prop]?.type).filter(Boolean);
-  const mainType = types[0] || null;
-  const badge = document.getElementById('postTypeBadge');
-  if (mainType) {
-    badge.textContent = TYPE_LABELS[mainType] || mainType;
-    badge.className = 'status-badge ' + (TYPE_BADGES[mainType] || 'badge-none');
-  } else {
-    badge.textContent = 'No post';
-    badge.className = 'status-badge badge-none';
-  }
+    // Follower gain this week
+    const history = ig.follower_history || [];
+    const weekHistory = history.filter(h => h.date >= monStr && h.date <= sunStr);
+    let followerGain = '—';
+    if (weekHistory.length >= 2) {
+      const gain = weekHistory[weekHistory.length-1].followers - weekHistory[0].followers;
+      followerGain = (gain >= 0 ? '+' : '') + gain;
+    }
 
-  PROPS.forEach(prop => {
-    const post = dayPosts[prop];
-    const screen = document.getElementById('screen-' + prop);
-    screen.innerHTML = post ? buildPhone(prop, post) : buildEmpty(prop);
-  });
-}
-
-function buildPhone(prop, post) {
-  const handle = HANDLES[prop];
-  const loc = LOCATIONS[prop];
-  const ini = INITIALS[prop];
-  const images = post.images || [];
-  const type = post.type;
-
-  const mediaHtml = buildMedia(prop, images, type);
-  const captionHtml = buildCaption(handle, post.caption);
-
-  return `
-    <div class="ig-status-bar">
-      <span>9:41</span>
-      <span style="display:flex;gap:5px;align-items:center;">
-        <svg width="15" height="11" viewBox="0 0 15 11" fill="#111"><rect x="0" y="4" width="3" height="7" rx="1"/><rect x="4" y="2.5" width="3" height="8.5" rx="1"/><rect x="8" y="1" width="3" height="10" rx="1"/><rect x="12" y="0" width="3" height="11" rx="1"/></svg>
-        <svg width="16" height="12" viewBox="0 0 16 12" fill="none" stroke="#111" stroke-width="1.5"><path d="M1 3.5C4 0.5 12 0.5 15 3.5"/><path d="M3 6C5.5 3.5 10.5 3.5 13 6"/><path d="M5.5 8.5C7 7 9 7 10.5 8.5"/><circle cx="8" cy="11" r="1" fill="#111" stroke="none"/></svg>
-        <svg width="25" height="12" viewBox="0 0 25 12" fill="none"><rect x="0.5" y="0.5" width="21" height="11" rx="3.5" stroke="#111" stroke-opacity="0.35"/><rect x="2" y="2" width="17" height="8" rx="2" fill="#111"/><path d="M23 4.5V7.5C23.8 7.2 24.5 6.4 24.5 6C24.5 5.6 23.8 4.8 23 4.5Z" fill="#111" fill-opacity="0.4"/></svg>
-      </span>
-    </div>
-    <div class="ig-nav">
-      <svg width="104" height="29" viewBox="0 0 104 29" fill="#111" xmlns="http://www.w3.org/2000/svg">
-        <text y="22" font-family="-apple-system,sans-serif" font-size="18" font-weight="700">${handle}</text>
-      </svg>
-      <div class="ig-nav-icons">
-        <svg viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z" fill="none" stroke="#111" stroke-width="2"/></svg>
-        <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13" stroke="#111" stroke-width="2"/><polygon points="22 2 15 22 11 13 2 9 22 2" fill="none" stroke="#111" stroke-width="2"/></svg>
+    html += `<div class="summary-card">
+      <div class="sc-prop ${meta.cls}">${meta.label}</div>
+      <div class="sc-metrics">
+        <div class="sc-metric"><div class="val">${fmtNum(totalReach)}</div><div class="lbl">Reach</div></div>
+        <div class="sc-metric"><div class="val">${fmtNum(totalLikes)}</div><div class="lbl">Likes</div></div>
+        <div class="sc-metric"><div class="val">${fmtNum(totalSaved)}</div><div class="lbl">Saved</div></div>
+        <div class="sc-metric"><div class="val">${fmtNum(weekPosts.length)}</div><div class="lbl">Posts</div></div>
+        <div class="sc-metric"><div class="val">${followerGain}</div><div class="lbl">Followers ±</div></div>
+        <div class="sc-metric"><div class="val">${ig.followers_count ? fmtNum(ig.followers_count) : '—'}</div><div class="lbl">Total Followers</div></div>
       </div>
-    </div>
-    <div class="ig-post-header">
-      <div class="ig-avatar">${ini}</div>
-      <div>
-        <div class="ig-post-user">${handle}</div>
-        <div class="ig-post-loc">${loc}</div>
-      </div>
-      <div class="ig-more">···</div>
-    </div>
-    <div class="ig-media" id="media-${prop}">
-      ${mediaHtml}
-    </div>
-    <div class="ig-actions">
-      <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-      <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-      <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-      <svg class="save-icon" viewBox="0 0 24 24"><polygon points="19 21 12 16 5 21 5 3 19 3"/></svg>
-    </div>
-    <div class="ig-likes">1,204 likes</div>
-    ${captionHtml}
-    <div class="ig-time">2 hours ago</div>
-    <div class="ig-bottom-nav">
-      <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-      <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z" stroke="none" fill="#111"/></svg>
-      <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-      <div style="width:30px;height:30px;border-radius:50%;background:#ddd;border:2px solid #111;overflow:hidden;"><div style="width:100%;height:100%;background:linear-gradient(135deg,#667eea,#764ba2);"></div></div>
-    </div>
-  `;
-}
-
-function buildMedia(prop, images, type) {
-  if (!images || images.length === 0) {
-    return `<div class="ig-media-placeholder">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-      <span>Upload image to<br>${prop} Drive folder</span>
     </div>`;
   }
+  row.innerHTML = html;
+}
 
-  if (type === 'CR' && images.length > 1) {
-    const dots = images.map((_, i) => `<span class="${i===0?'active':''}"></span>`).join('');
-    return `
-      <img src="${images[0].url}" id="carousel-img-${prop}" alt="Post image" onerror="this.style.opacity=0.3">
-      <button class="carousel-arrow left" onclick="prevSlide('${prop}')">&#8249;</button>
-      <button class="carousel-arrow right" onclick="nextSlide('${prop}')">&#8250;</button>
-      <div class="carousel-dots" id="dots-${prop}">${dots}</div>
-    `;
+// ── Column render ──
+function renderColumn(prop, mon, sun, isPast, ongoing) {
+  const col = document.getElementById('col' + prop);
+  const meta = PROP_META[prop];
+  const monStr = fmtDate(mon), sunStr = fmtDate(sun);
+
+  let html = `<div class="col-header ${meta.colCls}">${meta.label}</div>`;
+
+  // Collect all posts for this week
+  const cards = [];
+
+  // Posted content from Instagram
+  const ig = postsData[prop];
+  if (ig && ig.posts) {
+    const weekPosts = ig.posts.filter(p => p.date >= monStr && p.date <= sunStr);
+    for (const p of weekPosts) {
+      cards.push({ source: 'instagram', date: p.date, data: p });
+    }
   }
 
-  if (type === 'RL') {
-    return `
-      <img src="${images[0].url}" alt="Reel cover" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.opacity=0.3">
-      <div class="reel-overlay">
-        <div class="reel-play">
-          <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-        </div>
+  // Upcoming content from posts.json (only if not already posted)
+  const postedDates = new Set(cards.map(c => c.date));
+  for (const [dateKey, props] of Object.entries(contentData)) {
+    if (dateKey >= monStr && dateKey <= sunStr && props[prop]) {
+      // Show upcoming card only if no Instagram post on that date
+      if (!postedDates.has(dateKey)) {
+        cards.push({ source: 'deck', date: dateKey, data: props[prop] });
+      }
+    }
+  }
+
+  // Sort by date
+  cards.sort((a,b) => a.date.localeCompare(b.date));
+
+  if (cards.length === 0) {
+    html += `<div class="no-posts">No posts this week</div>`;
+  } else {
+    for (const card of cards) {
+      html += renderCard(prop, card);
+    }
+  }
+
+  col.innerHTML = html;
+}
+
+// ── Card render ──
+function renderCard(prop, card) {
+  if (card.source === 'instagram') {
+    return renderPostedCard(prop, card.data);
+  } else {
+    return renderUpcomingCard(prop, card.date, card.data);
+  }
+}
+
+function renderPostedCard(prop, post) {
+  const typeLabel = post.media_type === 'CAROUSEL_ALBUM' ? 'Carousel'
+    : post.media_type === 'VIDEO' ? 'Reel/Video'
+    : post.media_type === 'IMAGE' ? 'Photo' : post.media_type;
+  const typeCls = 'type-' + (post.media_type || 'image').toLowerCase();
+  const dateStr = new Date(post.timestamp).toLocaleDateString('en-IN', { day: 'numeric', month: 'short' });
+  const img = post.media_url ? `<img class="card-img" src="${post.media_url}" loading="lazy" onerror="this.style.display='none'">` : '';
+  const collabHtml = post.is_collab && post.collab_influencer
+    ? `<span class="collab-tag" onclick="openInfluencerModal('${prop}','${esc(post.collab_influencer)}')">🤝 ${esc(post.collab_influencer)}</span>`
+    : '';
+  const captionPreview = post.caption ? esc(post.caption.substring(0,120)) + (post.caption.length > 120 ? '...' : '') : '';
+  const postDataAttr = `data-post='${JSON.stringify(post).replace(/'/g,"&#39;")}'`;
+
+  return `<div class="post-card post-status-posted">
+    ${img}
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-date">${dateStr}</span>
+        <span class="card-type ${typeCls}">${typeLabel}</span>
+        ${collabHtml}
       </div>
-    `;
-  }
-
-  return `<img src="${images[0].url}" alt="Post image" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.opacity=0.3">`;
-}
-
-function buildCaption(handle, caption) {
-  if (!caption) return '';
-  const lines = caption.split('\n');
-  const mainLine = lines[0] || '';
-  const hashLine = lines.find(l => l.startsWith('#')) || '';
-  const keywords = lines.find(l => l.startsWith('[')) || '';
-
-  const MAX = 120;
-  const preview = mainLine.length > MAX ? mainLine.slice(0, MAX) + '...' : mainLine;
-  const hashHtml = hashLine ? `<span class="ig-hashtags">${hashLine}</span>` : '';
-
-  return `<div class="ig-caption">
-    <span class="ig-handle">${handle}</span>${preview}
-    <br><small class="ig-hashtags" style="font-size:11px;">${hashLine}</small>
+      ${captionPreview ? `<div class="card-caption">${captionPreview}</div>` : ''}
+      <div class="card-stats">
+        <div class="card-stat">❤️ <strong>${fmtNum(post.like_count)}</strong></div>
+        <div class="card-stat">💬 <strong>${fmtNum(post.comments_count)}</strong></div>
+        ${post.insights?.reach ? `<div class="card-stat">👁️ <strong>${fmtNum(post.insights.reach)}</strong></div>` : ''}
+      </div>
+      <div class="card-actions">
+        <button class="btn-insights" onclick='openInsightsModal(${JSON.stringify(post).replace(/'/g,"&#39;")})'>📊 Insights</button>
+        <a class="btn-view" href="${post.permalink}" target="_blank">View Post ↗</a>
+      </div>
+    </div>
   </div>`;
 }
 
-function buildEmpty(prop) {
-  return `<div class="ig-status-bar"><span>9:41</span></div>
-  <div class="no-post-msg">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-    <br>No post scheduled<br>for this date
+function renderUpcomingCard(prop, dateKey, data) {
+  const dateObj = new Date(dateKey);
+  const dateStr = dateObj.toLocaleDateString('en-IN', { day: 'numeric', month: 'short' });
+  const typeMap = { ST: 'Static', RL: 'Reel', CR: 'Carousel' };
+  const typeLabel = typeMap[data.type] || data.type || 'Post';
+  const captionPreview = data.caption ? esc(data.caption.substring(0,120)) + (data.caption.length > 120 ? '...' : '') : '';
+  const imgHtml = data.images && data.images[0]
+    ? `<img class="card-img" src="${data.images[0].url}" loading="lazy">`
+    : `<div class="card-img-placeholder"><div class="pi-type">${typeLabel}</div><div class="pi-date">${dateStr}</div></div>`;
+
+  return `<div class="post-card post-status-upcoming">
+    ${imgHtml}
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-date">${dateStr}</span>
+        <span class="card-type type-upcoming">📅 ${typeLabel}</span>
+      </div>
+      ${captionPreview ? `<div class="card-caption">${captionPreview}</div>` : ''}
+      <div class="card-actions">
+        <button class="btn-insights" onclick="openUpcomingModal('${esc(data.post_id)}','${esc(captionPreview)}')">📋 Caption</button>
+      </div>
+    </div>
   </div>`;
 }
 
-// carousel navigation
-const carouselImages = {};
+// ── Insights Modal ──
+function openInsightsModal(post) {
+  const m = document.getElementById('insightsModal');
+  const body = document.getElementById('insightsModalBody');
+  const title = document.getElementById('insightsModalTitle');
 
-function nextSlide(prop) {
-  const date = document.getElementById('datePicker').value;
-  const post = (postsData[date] || {})[prop];
-  if (!post || !post.images) return;
-  const imgs = post.images;
-  carouselIndex[prop] = (carouselIndex[prop] + 1) % imgs.length;
-  updateCarousel(prop, imgs);
+  const typeLabel = post.media_type === 'CAROUSEL_ALBUM' ? 'Carousel'
+    : post.media_type === 'VIDEO' ? 'Reel/Video' : 'Photo';
+  const dateStr = new Date(post.timestamp).toLocaleDateString('en-IN', { weekday:'short', day:'numeric', month:'short', year:'numeric' });
+
+  title.textContent = `${typeLabel} · ${dateStr}`;
+
+  const ins = post.insights || {};
+  const collabSection = post.is_collab && post.collab_influencer
+    ? `<div class="modal-section">
+        <div class="modal-section-title">Content Type</div>
+        <div class="collab-info">
+          <strong>Influencer Collab</strong>
+          Posted in collaboration with <span class="collab-tag" onclick="openInfluencerModal('',${JSON.stringify(post.collab_influencer)})">${esc(post.collab_influencer)}</span>
+        </div>
+      </div>`
+    : `<div class="modal-section">
+        <div class="collab-info" style="background:#f5f5f5;color:#555;">
+          <strong style="color:#888;">Content Type</strong>
+          Brand post (no influencer collab detected)
+        </div>
+      </div>`;
+
+  body.innerHTML = `
+    ${post.media_url ? `<img class="modal-img" src="${post.media_url}">` : ''}
+    <div class="insights-grid">
+      <div class="insight-box"><div class="ib-val">${fmtNum(ins.reach || 0)}</div><div class="ib-lbl">Reach</div></div>
+      <div class="insight-box"><div class="ib-val">${fmtNum(post.like_count || 0)}</div><div class="ib-lbl">Likes</div></div>
+      <div class="insight-box"><div class="ib-val">${fmtNum(post.comments_count || 0)}</div><div class="ib-lbl">Comments</div></div>
+      <div class="insight-box"><div class="ib-val">${fmtNum(ins.saved || 0)}</div><div class="ib-lbl">Saved</div></div>
+      <div class="insight-box"><div class="ib-val">${fmtNum(ins.shares || 0)}</div><div class="ib-lbl">Shares</div></div>
+      ${ins.plays ? `<div class="insight-box"><div class="ib-val">${fmtNum(ins.plays)}</div><div class="ib-lbl">Plays</div></div>` : ''}
+    </div>
+    ${collabSection}
+    ${post.caption ? `<div class="modal-section"><div class="modal-section-title">Caption</div><div class="modal-caption">${esc(post.caption)}</div></div>` : ''}
+    <div style="margin-top:12px"><a class="btn-view" href="${post.permalink}" target="_blank" style="display:inline-block">Open on Instagram ↗</a></div>
+  `;
+  m.classList.add('open');
 }
 
-function prevSlide(prop) {
-  const date = document.getElementById('datePicker').value;
-  const post = (postsData[date] || {})[prop];
-  if (!post || !post.images) return;
-  const imgs = post.images;
-  carouselIndex[prop] = (carouselIndex[prop] - 1 + imgs.length) % imgs.length;
-  updateCarousel(prop, imgs);
+function openUpcomingModal(postId, caption) {
+  const m = document.getElementById('insightsModal');
+  document.getElementById('insightsModalTitle').textContent = postId || 'Upcoming Post';
+  document.getElementById('insightsModalBody').innerHTML = `
+    <div class="collab-info" style="background:#e3f2fd;color:#1565c0;margin-bottom:14px;">
+      <strong style="color:#1565c0;">Status: Scheduled / Not Yet Posted</strong>
+      This post is planned but hasn't been published to Instagram yet.
+    </div>
+    ${caption ? `<div class="modal-section"><div class="modal-section-title">Caption</div><div class="modal-caption">${caption}</div></div>` : ''}
+  `;
+  m.classList.add('open');
 }
 
-function updateCarousel(prop, imgs) {
-  const i = carouselIndex[prop];
-  const img = document.getElementById('carousel-img-' + prop);
-  const dots = document.getElementById('dots-' + prop);
-  if (img) img.src = imgs[i].url;
-  if (dots) {
-    dots.querySelectorAll('span').forEach((s, idx) => {
-      s.classList.toggle('active', idx === i);
-    });
+// ── Influencer Modal ──
+function openInfluencerModal(prop, name) {
+  const m = document.getElementById('influencerModal');
+  document.getElementById('infModalTitle').textContent = name;
+
+  // Find all collab posts across all properties
+  const allPosts = [];
+  for (const [p, ig] of Object.entries(postsData)) {
+    if (ig.posts) {
+      const matched = ig.posts.filter(post => post.collab_influencer === name);
+      matched.forEach(post => allPosts.push({ ...post, prop: p }));
+    }
   }
+  allPosts.sort((a,b) => b.date.localeCompare(a.date));
+
+  const thumbs = allPosts.map(p => `
+    <div class="inf-post-thumb" onclick='openInsightsModal(${JSON.stringify(p).replace(/'/g,"&#39;")})'>
+      ${p.media_url ? `<img src="${p.media_url}" loading="lazy">` : '<div style="width:100%;height:100%;background:#eee;"></div>'}
+      <div class="ipt-overlay"><div class="inf-post-stats">❤️${fmtNum(p.like_count)} 👁️${fmtNum(p.insights?.reach||0)}</div></div>
+    </div>`).join('');
+
+  const propLabels = [...new Set(allPosts.map(p => PROP_META[p.prop]?.label || p.prop))].join(', ');
+
+  document.getElementById('infModalBody').innerHTML = `
+    <div class="inf-header-info">
+      <div class="inf-avatar">${name.charAt(0).toUpperCase()}</div>
+      <div><div class="inf-name">${esc(name)}</div><div class="inf-handle">${propLabels || 'Influencer'}</div></div>
+    </div>
+    <div class="modal-section-title">${allPosts.length} Collab Post${allPosts.length !== 1 ? 's' : ''} Detected</div>
+    <div class="inf-posts-grid">${thumbs || '<div style="color:#aaa;font-size:13px;grid-column:1/-1;padding:20px 0;">No matched posts found. Posts may not be tagged in captions.</div>'}</div>
+  `;
+  m.classList.add('open');
 }
 
-document.getElementById('datePicker').addEventListener('change', e => renderDate(e.target.value));
+function closeModal(id) { document.getElementById(id).classList.remove('open'); }
 
+// ── Week nav ──
+function changeWeek(dir) {
+  currentWeekStart = addDays(currentWeekStart, dir * 7);
+  renderWeek();
+}
+function jumpToToday() {
+  currentWeekStart = getMondayOf(TODAY);
+  renderWeek();
+}
+function onWeekPickerChange() {
+  const val = document.getElementById('weekPicker').value; // "2026-W24"
+  if (!val) return;
+  const [yr, wStr] = val.split('-W');
+  const week = parseInt(wStr);
+  const d = weekNumberToDate(parseInt(yr), week);
+  currentWeekStart = getMondayOf(d);
+  renderWeek();
+}
+
+// ── Utils ──
+function esc(str) {
+  if (!str) return '';
+  return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function getWeekNumber(d) {
+  const date = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+  const dayNum = date.getUTCDay() || 7;
+  date.setUTCDate(date.getUTCDate() + 4 - dayNum);
+  const yearStart = new Date(Date.UTC(date.getUTCFullYear(), 0, 1));
+  return Math.ceil((((date - yearStart) / 86400000) + 1) / 7);
+}
+
+function weekNumberToDate(year, week) {
+  const simple = new Date(year, 0, 1 + (week - 1) * 7);
+  const dow = simple.getDay();
+  const isoWeekStart = new Date(simple);
+  if (dow <= 4) isoWeekStart.setDate(simple.getDate() - simple.getDay() + 1);
+  else isoWeekStart.setDate(simple.getDate() + 8 - simple.getDay());
+  return isoWeekStart;
+}
+
+function refreshData() {
+  alert('Run "python fetch_insights.py" in the terminal to refresh Instagram data, then reload this page.');
+}
+
+// ── Init ──
 loadData();
 </script>
 </body>
