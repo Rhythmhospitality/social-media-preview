@@ -163,6 +163,13 @@ header{background:#111;border-bottom:1px solid #222;padding:0 24px;height:52px;d
 /* Media */
 .ig-media{position:relative;width:100%;aspect-ratio:1/1;background:#000;overflow:hidden}
 .ig-media.reel-media{aspect-ratio:9/16}
+.carousel-nav{position:absolute;inset:0;display:flex;align-items:center;justify-content:space-between;padding:0 6px;pointer-events:none;z-index:5}
+.carousel-btn{width:26px;height:26px;border-radius:50%;background:rgba(0,0,0,.5);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;pointer-events:all;color:#fff;font-size:13px;line-height:1;flex-shrink:0;backdrop-filter:blur(4px)}
+.carousel-btn:hover{background:rgba(0,0,0,.75)}
+.carousel-btn:disabled{opacity:.2;pointer-events:none}
+.carousel-dots{position:absolute;bottom:6px;left:50%;transform:translateX(-50%);display:flex;gap:3px;z-index:5}
+.carousel-dot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.5);transition:.15s}
+.carousel-dot.active{background:#fff;width:14px;border-radius:3px}
 .ig-media img{width:100%;height:100%;object-fit:cover;display:block}
 .ig-media video{width:100%;height:100%;object-fit:cover;display:block;background:#000}
 .media-badge{position:absolute;top:10px;right:10px;background:rgba(0,0,0,.55);color:#fff;font-size:9px;font-weight:700;padding:3px 8px;border-radius:12px;letter-spacing:.05em;z-index:2;backdrop-filter:blur(4px)}
@@ -707,6 +714,17 @@ function phoneCard(prop, post, plan){
       <div class="reel-overlay" onclick='openInsightsModal(${postJson})' style="cursor:pointer">
         <div class="reel-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
       </div>`;
+  } else if(isCarousel && post.carousel_images && post.carousel_images.length > 1){
+    const cid="c"+Math.random().toString(36).slice(2,8);
+    const imgs=post.carousel_images;
+    const dots=imgs.map((_,i)=>`<div class="carousel-dot${i===0?" active":""}" id="${cid}d${i}"></div>`).join("");
+    mediaHtml=`
+      <img id="${cid}img" src="${esc(imgs[0].url)}" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy">
+      <div class="carousel-nav">
+        <button class="carousel-btn" id="${cid}prev" onclick="carouselNav('${cid}',${JSON.stringify(imgs).replace(/'/g,"&#39;")},-1)" disabled>‹</button>
+        <button class="carousel-btn" id="${cid}next" onclick="carouselNav('${cid}',${JSON.stringify(imgs).replace(/'/g,"&#39;")},1)">›</button>
+      </div>
+      <div class="carousel-dots">${dots}</div>`;
   } else if(post.media_url){
     mediaHtml=`<img src="${esc(post.media_url)}" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy">`;
   } else {
@@ -822,13 +840,40 @@ function playReel(uid){
   video.play().catch(e=>console.warn("Play failed:",e));
 }
 
+const _carouselIdx={};
+function carouselNav(cid,imgs,dir){
+  const n=imgs.length;
+  const cur=(_carouselIdx[cid]||0)+dir;
+  const next=Math.max(0,Math.min(n-1,cur));
+  _carouselIdx[cid]=next;
+  const img=document.getElementById(cid+"img");
+  if(img)img.src=imgs[next].url;
+  // dots
+  for(let i=0;i<n;i++){const d=document.getElementById(cid+"d"+i);if(d)d.className="carousel-dot"+(i===next?" active":"");}
+  // buttons
+  const prev=document.getElementById(cid+"prev"),nxt=document.getElementById(cid+"next");
+  if(prev)prev.disabled=next===0;
+  if(nxt)nxt.disabled=next===n-1;
+}
+
 // ── Collab detection ──────────────────────────────────────────────────────────
+function extractIgUser(urlOrHandle){
+  let s=(urlOrHandle||"").trim().toLowerCase();
+  s=s.replace(/[?&].*/,"").replace(/\/+$/,"");
+  return s.split("/").pop().replace("@","").trim();
+}
+
 function getCollabName(prop,post){
   if(post?.collab_influencer)return post.collab_influencer;
   const cap=(post?.caption||"").toLowerCase();
+  const apiCollabs=(post?.api_collaborators||[]).map(u=>u.toLowerCase());
   for(const inf of(influencers[prop]||[])){
-    const ig=(inf.instagram||"").replace(/.*instagram\.com\//,"").replace(/\?.*/,"").replace(/\//g,"").toLowerCase();
-    if(ig&&ig.length>3&&cap.includes(ig))return inf.name;
+    const handles=(inf.instagram||"").replace(/\n/g,",").split(",")
+      .map(s=>extractIgUser(s)).filter(u=>u.length>2);
+    // API collaborators (strongest)
+    if(handles.some(u=>apiCollabs.includes(u)))return inf.name;
+    // caption @mention
+    if(handles.some(u=>u.length>3&&cap.includes(u)))return inf.name;
     const nm=(inf.name||"").toLowerCase();
     if(nm.length>4&&cap.includes(nm))return inf.name;
   }
