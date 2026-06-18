@@ -3,172 +3,328 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rhythm Hotels & Resorts — Digital Marketing Deck</title>
+<title>Rhythm Hotels & Resorts — Digital Marketing Hub</title>
 <style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f0f0f0; color: #111; }
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f0f2f5;color:#111;min-height:100vh}
 
 /* ── Header ── */
-header { background: #fff; border-bottom: 1px solid #e0e0e0; padding: 12px 28px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 200; gap: 12px; }
-.logo { font-size: 13px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; white-space: nowrap; }
-.logo span { color: #b5924c; }
-.header-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
-.live-dot { width: 8px; height: 8px; border-radius: 50%; background: #ccc; }
-.live-dot.live { background: #4caf50; animation: pulse 2s infinite; }
-@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
-.live-label { font-size: 11px; color: #888; }
-.hbtn { font-size: 12px; padding: 5px 12px; border-radius: 7px; border: 1px solid #ddd; background: #fff; cursor: pointer; color: #444; }
-.hbtn:hover { background: #f5f5f5; }
+header{background:#fff;border-bottom:1px solid #e4e4e4;padding:0 24px;height:54px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:300}
+.brand{display:flex;align-items:center;gap:10px}
+.brand-mark{width:32px;height:32px;background:linear-gradient(135deg,#b5924c,#d4a956);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;font-weight:800}
+.brand-name{font-size:13px;font-weight:700;letter-spacing:0.02em}
+.brand-name span{color:#b5924c}
+.brand-sub{font-size:10px;color:#aaa;letter-spacing:0.06em;text-transform:uppercase}
+.hdr-right{display:flex;align-items:center;gap:8px}
+.live-dot{width:7px;height:7px;border-radius:50%;background:#ccc;flex-shrink:0}
+.live-dot.live{background:#4caf50;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.live-txt{font-size:11px;color:#999}
+.hbtn{font-size:11px;padding:5px 12px;border-radius:7px;border:1px solid #ddd;background:#fff;cursor:pointer;color:#555;font-weight:500}
+.hbtn:hover{background:#f5f5f5}
+.hbtn.primary{background:#111;color:#fff;border-color:#111}
+.hbtn.primary:hover{background:#333}
 
-/* ── Week Nav ── */
-.week-nav { background: #fff; border-bottom: 1px solid #e8e8e8; padding: 11px 28px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
-.arr { width: 30px; height: 30px; border: 1px solid #ddd; background: #fff; border-radius: 7px; cursor: pointer; font-size: 15px; display: flex; align-items: center; justify-content: center; }
-.arr:hover { background: #f5f5f5; }
-.week-lbl { font-size: 13px; font-weight: 700; min-width: 180px; text-align: center; }
-.wbadge { font-size: 10px; padding: 3px 9px; border-radius: 20px; font-weight: 700; letter-spacing: 0.04em; }
-.wb-now  { background: #e8f5e9; color: #2e7d32; }
-.wb-past { background: #fce4ec; color: #c62828; }
-.wb-soon { background: #e3f2fd; color: #1565c0; }
-.week-nav input[type=week] { font-size: 11px; padding: 5px 8px; border: 1px solid #ddd; border-radius: 7px; margin-left: auto; }
-.jump-btn { font-size: 11px; padding: 5px 11px; border: 1px solid #ddd; background: #fff; border-radius: 7px; cursor: pointer; }
+/* ── Module nav ── */
+.module-nav{background:#fff;border-bottom:1px solid #e4e4e4;padding:0 20px;display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+.module-nav::-webkit-scrollbar{display:none}
+.mod-tab{display:flex;align-items:center;gap:6px;padding:13px 14px;font-size:12px;font-weight:600;color:#999;cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap;transition:.15s}
+.mod-tab:hover{color:#555}
+.mod-tab.active{color:#111;border-bottom-color:#111}
+.mod-tab.soon{opacity:.6}
+.mod-tab .mod-badge{font-size:9px;background:#f0f0f0;color:#aaa;padding:2px 6px;border-radius:10px;font-weight:600;letter-spacing:.04em}
+.mod-tab.active .mod-badge{display:none}
 
-/* ── Summary ── */
-.summary-row { display: flex; gap: 10px; padding: 14px 28px 0; overflow-x: auto; }
-.sc { background: #fff; border-radius: 12px; border: 1px solid #e8e8e8; padding: 14px 16px; min-width: 190px; flex: 1; }
-.sc-name { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 10px; }
-.c-lnl { color: #2e7d32; } .c-gur { color: #1565c0; } .c-kum { color: #7b1fa2; }
-.sc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-.sc-m .v { font-size: 17px; font-weight: 700; } .sc-m .l { font-size: 10px; color: #999; margin-top: 1px; }
+/* ── Instagram sub-nav ── */
+.sub-nav{background:#fafafa;border-bottom:1px solid #e8e8e8;padding:0 24px;display:flex;gap:16px}
+.sub-tab{font-size:12px;font-weight:600;color:#aaa;padding:10px 4px;border-bottom:2px solid transparent;cursor:pointer;transition:.1s}
+.sub-tab:hover{color:#555}
+.sub-tab.active{color:#111;border-bottom-color:#b5924c}
+
+/* ── Week nav ── */
+.week-bar{background:#fff;border-bottom:1px solid #e8e8e8;padding:9px 24px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.arr{width:28px;height:28px;border:1px solid #ddd;background:#fff;border-radius:7px;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;color:#555}
+.arr:hover{background:#f5f5f5}
+.wk-lbl{font-size:13px;font-weight:700;min-width:200px}
+.wbadge{font-size:10px;padding:3px 9px;border-radius:20px;font-weight:700;letter-spacing:.04em}
+.wb-now{background:#e8f5e9;color:#2e7d32}.wb-past{background:#fce4ec;color:#c62828}.wb-soon{background:#e3f2fd;color:#1565c0}
+.week-bar input[type=week]{font-size:11px;padding:5px 8px;border:1px solid #ddd;border-radius:7px;margin-left:auto}
+.jump-btn{font-size:11px;padding:5px 11px;border:1px solid #ddd;background:#fff;border-radius:7px;cursor:pointer;color:#555}
+.jump-btn:hover{background:#f5f5f5}
+
+/* ── Summary row ── */
+.summary-row{display:flex;gap:10px;padding:14px 20px 0;overflow-x:auto}
+.sc{background:#fff;border-radius:12px;border:1px solid #e8e8e8;padding:13px 16px;min-width:185px;flex:1}
+.sc-name{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-bottom:9px}
+.c-lnl{color:#2e7d32}.c-gur{color:#1565c0}.c-kum{color:#7b1fa2}
+.sc-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.sc-m .v{font-size:16px;font-weight:700}.sc-m .l{font-size:10px;color:#aaa;margin-top:1px}
 
 /* ── 3-col grid ── */
-.grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0; padding: 14px 20px 40px; }
-.col { padding: 0 8px; }
-.col-hdr { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; padding: 10px 0 8px; border-bottom: 2px solid; margin-bottom: 12px; }
-.hdr-lnl { color: #2e7d32; border-color: #2e7d32; }
-.hdr-gur { color: #1565c0; border-color: #1565c0; }
-.hdr-kum { color: #7b1fa2; border-color: #7b1fa2; }
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;padding:14px 16px 40px}
+.col{padding:0 8px}
+.col-hdr{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;padding:10px 0 8px;border-bottom:2px solid;margin-bottom:12px}
+.hdr-lnl{color:#2e7d32;border-color:#2e7d32}.hdr-gur{color:#1565c0;border-color:#1565c0}.hdr-kum{color:#7b1fa2;border-color:#7b1fa2}
 
-/* ── Phone / Instagram mockup card ── */
-.ig-card { background: #fff; border-radius: 12px; border: 1px solid #dbdbdb; margin-bottom: 16px; overflow: hidden; }
-.ig-card.upcoming { border-left: 3px solid #1565c0; }
-.ig-card.posted   { border-left: 3px solid #2e7d32; }
+/* ── Instagram phone card ── */
+.ig-card{background:#fff;border-radius:12px;border:1px solid #dbdbdb;margin-bottom:16px;overflow:hidden}
+.ig-card.upcoming{border-left:3px solid #1565c0}
+.ig-card.posted{border-left:3px solid #2e7d32}
+.ig-header{display:flex;align-items:center;padding:9px 11px;gap:8px}
+.ig-avatar{width:30px;height:30px;border-radius:50%;object-fit:cover;background:#f0f0f0;border:1.5px solid #e1306c;flex-shrink:0}
+.ig-avatar-ph{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045);flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:700}
+.ig-userinfo{flex:1}.ig-username{font-size:12px;font-weight:600;line-height:1.2}.ig-sublabel{font-size:10px;color:#aaa}
+.ig-image-wrap{position:relative;width:100%;aspect-ratio:1/1;background:#fafafa;overflow:hidden}
+.ig-image{width:100%;height:100%;object-fit:cover;display:block}
+.ig-ph{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;background:linear-gradient(145deg,#f5f5f5,#e8e8e8)}
+.ig-ph .ph-type{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#bbb}
+.ig-ph .ph-date{font-size:14px;font-weight:700;color:#666}
+.ig-ph .ph-label{font-size:10px;color:#1565c0;font-weight:600;background:#e3f2fd;padding:3px 9px;border-radius:5px}
+.reel-icon{position:absolute;top:8px;right:8px;width:22px;height:22px;background:rgba(0,0,0,.55);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:11px}
+.carousel-badge{position:absolute;top:8px;right:8px;background:rgba(0,0,0,.55);color:#fff;font-size:9px;font-weight:600;padding:2px 7px;border-radius:5px}
+.type-badge{position:absolute;top:8px;left:8px;background:rgba(0,0,0,.5);color:#fff;font-size:9px;font-weight:700;padding:2px 6px;border-radius:5px;text-transform:uppercase;letter-spacing:.05em}
+.play-btn{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.play-btn div{width:42px;height:42px;background:rgba(255,255,255,.85);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:17px}
+.ig-actions-row{display:flex;align-items:center;padding:7px 11px 3px;gap:12px}
+.ig-act{font-size:19px;cursor:pointer;line-height:1}
+.ig-bkmk{margin-left:auto;font-size:19px;cursor:pointer}
+.ig-likes{padding:0 11px;font-size:12px;font-weight:700}
+.ig-cap{padding:3px 11px 4px;font-size:12px;line-height:1.5;color:#111}
+.ig-cap .cu{font-weight:700;margin-right:4px}
+.ig-cap .ct{color:#444}
+.ig-more{padding:2px 11px 5px;font-size:11px;color:#aaa;cursor:pointer}
+.ig-stats{padding:4px 11px 7px;display:flex;gap:11px}
+.igs{font-size:11px;color:#999}
+.igs strong{color:#666}
+.ig-btns{padding:3px 11px 10px;display:flex;gap:6px;flex-wrap:wrap}
+.btn-sm{font-size:10px;padding:4px 9px;border-radius:6px;border:1px solid #dbdbdb;background:#fff;cursor:pointer;color:#555;font-weight:500}
+.btn-sm:hover{background:#f5f5f5}
+.btn-open{background:#111;color:#fff;border-color:#111}
+.btn-open:hover{background:#333}
+.collab-chip{font-size:10px;color:#b5924c;font-weight:700;cursor:pointer;background:#fff8e1;border:1px solid #f0d080;padding:3px 8px;border-radius:6px}
+.collab-chip:hover{background:#fff3cd}
+.no-posts{text-align:center;padding:36px 10px;color:#ccc;font-size:12px}
+.spinner{width:26px;height:26px;border:2px solid #eee;border-top-color:#b5924c;border-radius:50%;animation:spin .7s linear infinite;margin:0 auto 10px}
+@keyframes spin{to{transform:rotate(360deg)}}
 
-.ig-header { display: flex; align-items: center; padding: 9px 12px; gap: 9px; }
-.ig-avatar { width: 30px; height: 30px; border-radius: 50%; object-fit: cover; background: #f0f0f0; border: 1.5px solid #e1306c; flex-shrink: 0; }
-.ig-avatar-placeholder { width: 30px; height: 30px; border-radius: 50%; background: linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045); flex-shrink: 0; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 12px; font-weight: 700; }
-.ig-userinfo { flex: 1; }
-.ig-username { font-size: 12px; font-weight: 600; line-height: 1.2; }
-.ig-sublabel { font-size: 10px; color: #999; }
-.ig-dots { color: #aaa; font-size: 16px; letter-spacing: 2px; cursor: pointer; }
+/* ── Influencer tab ── */
+.inf-toolbar{padding:12px 24px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:#fff;border-bottom:1px solid #e8e8e8}
+.prop-pills{display:flex;gap:6px}
+.ppill{font-size:11px;padding:5px 12px;border-radius:20px;border:1px solid #ddd;background:#fff;cursor:pointer;font-weight:600;color:#888}
+.ppill:hover{background:#f5f5f5}
+.ppill.active{background:#111;color:#fff;border-color:#111}
+.ppill.lnl.active{background:#2e7d32;border-color:#2e7d32}
+.ppill.gur.active{background:#1565c0;border-color:#1565c0}
+.ppill.kum.active{background:#7b1fa2;border-color:#7b1fa2}
+.view-toggle{display:flex;border:1px solid #ddd;border-radius:8px;overflow:hidden;margin-left:auto}
+.vt-btn{font-size:11px;padding:6px 14px;background:#fff;border:none;cursor:pointer;font-weight:600;color:#888}
+.vt-btn:hover{background:#f5f5f5}
+.vt-btn.active{background:#111;color:#fff}
+.inf-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;padding:16px 24px 40px}
+.inf-card{background:#fff;border-radius:12px;border:1px solid #e8e8e8;overflow:hidden}
+.inf-card-top{padding:14px 16px;display:flex;gap:12px;align-items:flex-start}
+.inf-ava{width:44px;height:44px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px;font-weight:700}
+.inf-ava.lnl{background:linear-gradient(135deg,#2e7d32,#66bb6a)}
+.inf-ava.gur{background:linear-gradient(135deg,#1565c0,#42a5f5)}
+.inf-ava.kum{background:linear-gradient(135deg,#7b1fa2,#ce93d8)}
+.inf-info{flex:1}
+.inf-nm{font-size:14px;font-weight:700;line-height:1.2}
+.inf-meta{font-size:11px;color:#aaa;margin-top:2px}
+.inf-prop-badge{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:2px 7px;border-radius:10px;display:inline-block;margin-top:4px}
+.badge-lnl{background:#e8f5e9;color:#2e7d32}
+.badge-gur{background:#e3f2fd;color:#1565c0}
+.badge-kum{background:#f3e5f5;color:#7b1fa2}
+.inf-card-body{padding:0 16px 14px;border-top:1px solid #f5f5f5}
+.inf-links{display:flex;gap:7px;flex-wrap:wrap;padding-top:12px;margin-bottom:10px}
+.lnk-btn{font-size:11px;padding:5px 11px;border-radius:7px;border:1px solid #ddd;background:#fff;cursor:pointer;color:#555;font-weight:500;text-decoration:none;display:flex;align-items:center;gap:4px}
+.lnk-btn:hover{background:#f5f5f5}
+.lnk-wa{background:#e8f5e9;border-color:#a5d6a7;color:#2e7d32}
+.lnk-wa:hover{background:#c8e6c9}
+.lnk-ig{background:#fce4ec;border-color:#f48fb1;color:#c62828}
+.lnk-ig:hover{background:#f8bbd0}
+.inf-status{font-size:11px;color:#888;background:#f5f5f5;padding:4px 10px;border-radius:6px;display:inline-block;margin-bottom:9px}
+.inf-brief-prev{font-size:12px;color:#555;line-height:1.5;margin-bottom:9px;border-left:3px solid #f0d080;padding-left:9px}
+.inf-collabs{font-size:11px;color:#b5924c;font-weight:600;margin-bottom:8px}
+.inf-card-footer{display:flex;gap:7px;padding-top:9px;border-top:1px solid #f5f5f5;margin:0 16px 14px}
 
-.ig-image-wrap { position: relative; width: 100%; aspect-ratio: 1/1; background: #fafafa; overflow: hidden; }
-.ig-image { width: 100%; height: 100%; object-fit: cover; display: block; }
-.ig-image-placeholder { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; background: linear-gradient(145deg,#f5f5f5,#e8e8e8); }
-.ig-image-placeholder .ph-type { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: #aaa; }
-.ig-image-placeholder .ph-date { font-size: 14px; font-weight: 700; color: #666; }
-.ig-image-placeholder .ph-label { font-size: 10px; color: #1565c0; font-weight: 600; background: #e3f2fd; padding: 3px 8px; border-radius: 5px; }
-.ig-reel-overlay { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
-.ig-reel-overlay .play { width: 44px; height: 44px; background: rgba(255,255,255,0.85); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; }
-.ig-carousel-badge { position: absolute; top: 8px; right: 8px; background: rgba(0,0,0,0.55); color: #fff; font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 5px; }
-.ig-type-badge { position: absolute; top: 8px; left: 8px; background: rgba(0,0,0,0.5); color: #fff; font-size: 9px; font-weight: 700; padding: 2px 6px; border-radius: 5px; text-transform: uppercase; letter-spacing: 0.05em; }
-
-.ig-actions { display: flex; align-items: center; padding: 8px 12px 4px; gap: 14px; }
-.ig-action { font-size: 20px; cursor: pointer; line-height: 1; }
-.ig-bookmark { margin-left: auto; font-size: 20px; cursor: pointer; }
-
-.ig-likes { padding: 0 12px; font-size: 12px; font-weight: 700; }
-.ig-caption { padding: 3px 12px 4px; font-size: 12px; line-height: 1.5; color: #111; }
-.ig-caption .cap-user { font-weight: 700; margin-right: 5px; }
-.ig-caption .cap-text { color: #444; }
-.ig-more { padding: 2px 12px 6px; font-size: 11px; color: #999; cursor: pointer; }
-.ig-stats-bar { padding: 4px 12px 8px; display: flex; gap: 12px; }
-.ig-stat { font-size: 11px; color: #888; }
-.ig-stat strong { color: #555; }
-
-.ig-actions-bar { padding: 4px 12px 10px; display: flex; gap: 8px; flex-wrap: wrap; }
-.btn-sm { font-size: 10px; padding: 4px 10px; border-radius: 6px; border: 1px solid #dbdbdb; background: #fff; cursor: pointer; color: #444; font-weight: 500; }
-.btn-sm:hover { background: #f5f5f5; }
-.btn-view { background: #111; color: #fff; border-color: #111; }
-.btn-view:hover { background: #333; }
-.collab-chip { font-size: 10px; color: #b5924c; font-weight: 700; cursor: pointer; background: #fff8e1; border: 1px solid #f0d080; padding: 3px 8px; border-radius: 6px; }
-.collab-chip:hover { background: #fff3cd; }
+/* ── Coming Soon module panel ── */
+.coming-soon{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:80px 20px;text-align:center}
+.cs-icon{font-size:48px;margin-bottom:16px;opacity:.5}
+.cs-title{font-size:18px;font-weight:700;margin-bottom:8px;color:#333}
+.cs-desc{font-size:13px;color:#aaa;max-width:400px;line-height:1.6}
+.cs-chip{margin-top:16px;font-size:11px;font-weight:700;background:#f0f0f0;color:#aaa;padding:6px 14px;border-radius:20px;letter-spacing:.06em;text-transform:uppercase}
 
 /* ── Modals ── */
-.overlay { position: fixed; inset: 0; background: rgba(0,0,0,.55); z-index: 1000; display: none; align-items: center; justify-content: center; padding: 20px; }
-.overlay.open { display: flex; }
-.modal { background: #fff; border-radius: 16px; width: 100%; max-width: 480px; max-height: 88vh; overflow-y: auto; }
-.modal.wide { max-width: 620px; }
-.mhdr { padding: 18px 22px 14px; border-bottom: 1px solid #f0f0f0; display: flex; align-items: center; justify-content: space-between; }
-.mtitle { font-size: 14px; font-weight: 700; }
-.mclose { font-size: 22px; cursor: pointer; color: #aaa; background: none; border: none; line-height: 1; }
-.mbody { padding: 18px 22px; }
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:1000;display:none;align-items:center;justify-content:center;padding:20px}
+.overlay.open{display:flex}
+.modal{background:#fff;border-radius:16px;width:100%;max-width:460px;max-height:88vh;overflow-y:auto}
+.modal.wide{max-width:600px}
+.mhdr{padding:16px 20px 12px;border-bottom:1px solid #f0f0f0;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:#fff;z-index:1}
+.mtitle{font-size:14px;font-weight:700}
+.mclose{font-size:22px;cursor:pointer;color:#aaa;background:none;border:none;line-height:1}
+.mbody{padding:16px 20px}
+.ins-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:13px}
+.ins-box{background:#f8f8f8;border-radius:10px;padding:11px 13px}
+.ins-box .bv{font-size:20px;font-weight:700}
+.ins-box .bl{font-size:10px;color:#aaa;margin-top:2px}
+.msect{margin-bottom:13px}
+.mslbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#bbb;margin-bottom:6px}
+.info-pill{border-radius:9px;padding:9px 13px;font-size:12px}
+.pill-gold{background:#fff8e1;color:#7a5c00}
+.pill-green{background:#e8f5e9;color:#2e7d32}
+.pill-blue{background:#e3f2fd;color:#1565c0}
+.pill-gray{background:#f5f5f5;color:#666}
+.mcap{font-size:13px;color:#444;line-height:1.65;white-space:pre-wrap}
 
-.ins-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
-.ins-box { background: #f8f8f8; border-radius: 10px; padding: 12px 14px; }
-.ins-box .bv { font-size: 22px; font-weight: 700; }
-.ins-box .bl { font-size: 10px; color: #999; margin-top: 2px; }
-.msection { margin-bottom: 14px; }
-.msect-title { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #aaa; margin-bottom: 7px; }
-.info-pill { border-radius: 9px; padding: 10px 14px; font-size: 12px; }
-.pill-gold { background: #fff8e1; color: #7a5c00; }
-.pill-green { background: #e8f5e9; color: #2e7d32; }
-.pill-blue  { background: #e3f2fd; color: #1565c0; }
-.pill-gray  { background: #f5f5f5; color: #555; }
-.modal-caption-text { font-size: 13px; color: #444; line-height: 1.65; white-space: pre-wrap; }
+/* influencer detail modal */
+.inf-top{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.inf-top-ava{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:20px;font-weight:700;flex-shrink:0}
+.inf-top-name{font-size:16px;font-weight:700}
+.inf-top-sub{font-size:12px;color:#aaa}
+.inf-chips{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:13px}
+.ich{font-size:11px;background:#f5f5f5;padding:4px 10px;border-radius:6px;color:#666}
+.inf-brief-box{background:#fff8e1;border-radius:10px;padding:11px 13px;font-size:12px;color:#7a5c00;line-height:1.6;margin-bottom:13px;white-space:pre-wrap}
+.inf-posts-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px}
+.inf-thumb{border-radius:7px;overflow:hidden;aspect-ratio:1/1;background:#f0f0f0;position:relative;cursor:pointer}
+.inf-thumb img{width:100%;height:100%;object-fit:cover}
+.inf-thumb .iovl{position:absolute;inset:0;background:rgba(0,0,0,0);transition:.15s;display:flex;align-items:center;justify-content:center}
+.inf-thumb:hover .iovl{background:rgba(0,0,0,.4)}
+.inf-thumb .iovl span{color:#fff;font-size:10px;font-weight:600;display:none;gap:6px}
+.inf-thumb:hover .iovl span{display:flex}
 
-/* influencer modal */
-.inf-top { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
-.inf-ava { width: 54px; height: 54px; border-radius: 50%; background: linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 22px; font-weight: 700; flex-shrink: 0; }
-.inf-name { font-size: 17px; font-weight: 700; }
-.inf-sub  { font-size: 12px; color: #999; }
-.inf-detail-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
-.inf-chip { font-size: 11px; background: #f5f5f5; padding: 4px 10px; border-radius: 6px; color: #555; }
-.inf-brief { background: #fff8e1; border-radius: 10px; padding: 12px 14px; font-size: 12px; color: #7a5c00; line-height: 1.6; margin-bottom: 14px; white-space: pre-wrap; }
-.inf-posts-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; }
-.inf-thumb { border-radius: 8px; overflow: hidden; aspect-ratio: 1/1; background: #f0f0f0; position: relative; cursor: pointer; }
-.inf-thumb img { width: 100%; height: 100%; object-fit: cover; }
-.inf-thumb .iovl { position: absolute; inset: 0; background: rgba(0,0,0,0); transition: .15s; display: flex; align-items: center; justify-content: center; }
-.inf-thumb:hover .iovl { background: rgba(0,0,0,.4); }
-.inf-thumb .iovl span { color: #fff; font-size: 11px; font-weight: 600; display: none; gap: 8px; }
-.inf-thumb:hover .iovl span { display: flex; }
-
-/* ── No posts / loading ── */
-.no-posts { text-align: center; padding: 40px 10px; color: #ccc; font-size: 12px; }
-.spinner { width: 28px; height: 28px; border: 2px solid #eee; border-top-color: #b5924c; border-radius: 50%; animation: spin .7s linear infinite; margin: 0 auto 10px; }
-@keyframes spin { to { transform: rotate(360deg); } }
-
-@media (max-width: 900px) { .grid3 { grid-template-columns: 1fr; } }
-@media (max-width: 600px) { .summary-row { flex-direction: column; } .week-nav { gap: 8px; } }
+@media(max-width:900px){.grid3{grid-template-columns:1fr}}
+@media(max-width:600px){.summary-row{flex-direction:column}.inf-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 
+<!-- Header -->
 <header>
-  <div class="logo">Rhythm <span>Hotels & Resorts</span> — Digital Marketing Deck</div>
-  <div class="header-right">
+  <div class="brand">
+    <div class="brand-mark">R</div>
+    <div>
+      <div class="brand-name">Rhythm <span>Hotels & Resorts</span></div>
+      <div class="brand-sub">Digital Marketing Hub</div>
+    </div>
+  </div>
+  <div class="hdr-right">
     <div class="live-dot" id="liveDot"></div>
-    <span class="live-label" id="liveLabel">Offline</span>
+    <span class="live-txt" id="liveTxt">—</span>
     <button class="hbtn" onclick="manualRefresh()">↻ Refresh</button>
+    <button class="hbtn primary" onclick="fetchAndCacheThreeWeeks()" title="Fetch last / this / next week now">⚡ Fetch Weeks</button>
   </div>
 </header>
 
-<div class="week-nav">
-  <button class="arr" onclick="changeWeek(-1)">←</button>
-  <button class="arr" onclick="changeWeek(1)">→</button>
-  <div class="week-lbl" id="weekLbl">—</div>
-  <span class="wbadge" id="weekBadge"></span>
-  <button class="jump-btn" onclick="jumpToday()">This Week</button>
-  <input type="week" id="weekPicker" onchange="onPickerChange()">
+<!-- Module nav -->
+<nav class="module-nav">
+  <div class="mod-tab active" onclick="switchModule('instagram')" id="modtab-instagram">📸 Instagram</div>
+  <div class="mod-tab" onclick="switchModule('influencers')" id="modtab-influencers">🤝 Influencers</div>
+  <div class="mod-tab soon" onclick="switchModule('meta-ads')" id="modtab-meta-ads">📊 Meta Ads <span class="mod-badge">Soon</span></div>
+  <div class="mod-tab soon" onclick="switchModule('google-ads')" id="modtab-google-ads">🔍 Google Ads <span class="mod-badge">Soon</span></div>
+  <div class="mod-tab soon" onclick="switchModule('linkedin')" id="modtab-linkedin">💼 LinkedIn <span class="mod-badge">Soon</span></div>
+  <div class="mod-tab soon" onclick="switchModule('ga4')" id="modtab-ga4">📈 GA4 <span class="mod-badge">Soon</span></div>
+  <div class="mod-tab soon" onclick="switchModule('email')" id="modtab-email">📧 Email <span class="mod-badge">Soon</span></div>
+  <div class="mod-tab soon" onclick="switchModule('whatsapp-blast')" id="modtab-whatsapp-blast">💬 WhatsApp Blast <span class="mod-badge">Soon</span></div>
+</nav>
+
+<!-- ── INSTAGRAM MODULE ── -->
+<div id="module-instagram">
+  <div class="sub-nav">
+    <div class="sub-tab active" onclick="switchSub('calendar')" id="subtab-calendar">Content Calendar</div>
+    <div class="sub-tab" onclick="switchSub('inf-weekly')" id="subtab-inf-weekly">Influencers (Week)</div>
+  </div>
+
+  <!-- Content Calendar sub-view -->
+  <div id="sub-calendar">
+    <div class="week-bar">
+      <button class="arr" onclick="changeWeek(-1)">←</button>
+      <button class="arr" onclick="changeWeek(1)">→</button>
+      <div class="wk-lbl" id="weekLbl">—</div>
+      <span class="wbadge" id="weekBadge"></span>
+      <button class="jump-btn" onclick="jumpToday()">This Week</button>
+      <input type="week" id="weekPicker" onchange="onPickerChange()">
+    </div>
+    <div class="summary-row" id="summaryRow">
+      <div style="padding:20px;color:#bbb;font-size:12px">Loading…</div>
+    </div>
+    <div class="grid3" id="grid">
+      <div class="col" id="colLNL"><div class="col-hdr hdr-lnl">Rhythm Lonavala</div><div class="no-posts"><div class="spinner"></div></div></div>
+      <div class="col" id="colGUR"><div class="col-hdr hdr-gur">Rhythm Gurugram</div><div class="no-posts"><div class="spinner"></div></div></div>
+      <div class="col" id="colKUM"><div class="col-hdr hdr-kum">Rhythm Kumarakom</div><div class="no-posts"><div class="spinner"></div></div></div>
+    </div>
+  </div>
+
+  <!-- Influencers (Week) sub-view -->
+  <div id="sub-inf-weekly" style="display:none">
+    <div class="week-bar" id="infWeekBar">
+      <button class="arr" onclick="changeWeek(-1)">←</button>
+      <button class="arr" onclick="changeWeek(1)">→</button>
+      <div class="wk-lbl" id="infWeekLbl">—</div>
+      <span class="wbadge" id="infWeekBadge"></span>
+      <button class="jump-btn" onclick="jumpToday()">This Week</button>
+    </div>
+    <div class="inf-grid" id="infWeeklyGrid">
+      <div style="color:#bbb;font-size:12px;padding:40px">Loading…</div>
+    </div>
+  </div>
 </div>
 
-<div class="summary-row" id="summaryRow">
-  <div style="padding:20px;color:#aaa;font-size:13px;">Loading...</div>
+<!-- ── INFLUENCERS MODULE ── -->
+<div id="module-influencers" style="display:none">
+  <div class="inf-toolbar">
+    <div class="prop-pills">
+      <div class="ppill active" onclick="setInfProp('all')" id="pp-all">All</div>
+      <div class="ppill lnl" onclick="setInfProp('LNL')" id="pp-LNL">Lonavala</div>
+      <div class="ppill gur" onclick="setInfProp('GUR')" id="pp-GUR">Gurugram</div>
+      <div class="ppill kum" onclick="setInfProp('KUM')" id="pp-KUM">Kumarakom</div>
+    </div>
+    <input style="font-size:12px;padding:6px 12px;border:1px solid #ddd;border-radius:8px;width:200px" placeholder="Search influencers…" oninput="renderInfluencerList()" id="infSearch">
+    <div class="view-toggle" style="margin-left:auto">
+      <button class="vt-btn active" onclick="setInfSort('recent')" id="vs-recent">Most Recent</button>
+      <button class="vt-btn" onclick="setInfSort('name')" id="vs-name">A–Z</button>
+    </div>
+  </div>
+  <div class="inf-grid" id="infListGrid">
+    <div style="color:#bbb;font-size:12px;padding:40px">Loading…</div>
+  </div>
 </div>
 
-<div class="grid3" id="grid">
-  <div class="col" id="colLNL"><div class="col-hdr hdr-lnl">Rhythm Lonavala</div><div class="no-posts"><div class="spinner"></div></div></div>
-  <div class="col" id="colGUR"><div class="col-hdr hdr-gur">Rhythm Gurugram</div><div class="no-posts"><div class="spinner"></div></div></div>
-  <div class="col" id="colKUM"><div class="col-hdr hdr-kum">Rhythm Kumarakom</div><div class="no-posts"><div class="spinner"></div></div></div>
+<!-- ── COMING SOON MODULES ── -->
+<div id="module-meta-ads" style="display:none" class="coming-soon">
+  <div class="cs-icon">📊</div>
+  <div class="cs-title">Meta Ads</div>
+  <div class="cs-desc">Campaign performance, reach, CPM, CPC, conversion tracking across Facebook and Instagram ads for all properties.</div>
+  <div class="cs-chip">Coming Soon</div>
+</div>
+<div id="module-google-ads" style="display:none" class="coming-soon">
+  <div class="cs-icon">🔍</div>
+  <div class="cs-title">Google Ads</div>
+  <div class="cs-desc">Search and display campaign insights, keyword performance, and AI-driven budget suggestions.</div>
+  <div class="cs-chip">Coming Soon</div>
+</div>
+<div id="module-linkedin" style="display:none" class="coming-soon">
+  <div class="cs-icon">💼</div>
+  <div class="cs-title">LinkedIn</div>
+  <div class="cs-desc">Organic post insights, upcoming content calendar, and AI suggestions for corporate and MICE audiences.</div>
+  <div class="cs-chip">Coming Soon</div>
+</div>
+<div id="module-ga4" style="display:none" class="coming-soon">
+  <div class="cs-icon">📈</div>
+  <div class="cs-title">GA4 Analytics</div>
+  <div class="cs-desc">Website traffic, source attribution, booking funnel performance, and visitor behaviour insights.</div>
+  <div class="cs-chip">Coming Soon</div>
+</div>
+<div id="module-email" style="display:none" class="coming-soon">
+  <div class="cs-icon">📧</div>
+  <div class="cs-title">Email Marketing</div>
+  <div class="cs-desc">Campaign open rates, click-through rates, list health, and AI-driven content suggestions.</div>
+  <div class="cs-chip">Coming Soon</div>
+</div>
+<div id="module-whatsapp-blast" style="display:none" class="coming-soon">
+  <div class="cs-icon">💬</div>
+  <div class="cs-title">WhatsApp Blast</div>
+  <div class="cs-desc">Broadcast campaign insights, delivery rates, response tracking, and template performance.</div>
+  <div class="cs-chip">Coming Soon</div>
 </div>
 
 <!-- Insights / Caption Modal -->
@@ -179,7 +335,7 @@ header { background: #fff; border-bottom: 1px solid #e0e0e0; padding: 12px 28px;
   </div>
 </div>
 
-<!-- Influencer Modal -->
+<!-- Influencer Detail Modal -->
 <div class="overlay" id="mInf" onclick="closeModal('mInf')">
   <div class="modal wide" onclick="event.stopPropagation()">
     <div class="mhdr"><div class="mtitle" id="mInfTitle">Influencer</div><button class="mclose" onclick="closeModal('mInf')">×</button></div>
@@ -193,289 +349,307 @@ const IS_LOCAL = location.hostname === "localhost" || location.hostname === "127
 const TODAY = (() => { const d = new Date(); d.setHours(0,0,0,0); return d; })();
 const PROPS = ["LNL","GUR","KUM"];
 const PROP_META = {
-  LNL: { label: "Rhythm Lonavala",  cls: "c-lnl", hdr: "hdr-lnl", col: "colLNL" },
-  GUR: { label: "Rhythm Gurugram",  cls: "c-gur", hdr: "hdr-gur", col: "colGUR" },
-  KUM: { label: "Rhythm Kumarakom", cls: "c-kum", hdr: "hdr-kum", col: "colKUM" },
+  LNL: { label:"Rhythm Lonavala",  cls:"c-lnl", hdr:"hdr-lnl", col:"colLNL", prop:"lnl" },
+  GUR: { label:"Rhythm Gurugram",  cls:"c-gur", hdr:"hdr-gur", col:"colGUR", prop:"gur" },
+  KUM: { label:"Rhythm Kumarakom", cls:"c-kum", hdr:"hdr-kum", col:"colKUM", prop:"kum" },
 };
+const COMING_SOON = ["meta-ads","google-ads","linkedin","ga4","email","whatsapp-blast"];
 
 // ── State ─────────────────────────────────────────────────────────────────────
-let weekStart = monday(TODAY);
-let postsJson = {};      // posts.json (planned content)
-let igData = {};         // instagram_data.json (weekly cache)
-let influencers = {};    // from /api/influencers or empty
-let profilePics = {};    // prop → url
-let liveWeekData = null; // from /api/week (current live fetch)
-let autoRefreshTimer = null;
+let weekStart    = monday(TODAY);
+let postsJson    = {};    // planned content from deck
+let igData       = {};    // full historical instagram_data.json
+let weekCache    = {};    // week_start → {LNL,GUR,KUM} from week_cache.json
+let influencers  = {};    // prop → [{name,month,visit,instagram,status,contact,brief,post_link}]
+let profilePics  = {};    // prop → url
+let liveWeekData = null;  // from /api/week (localhost only)
+let autoTimer    = null;
+let currentModule = "instagram";
+let currentSub    = "calendar";
+let infPropFilter = "all";
+let infSort       = "recent";
 
 // ── Date helpers ──────────────────────────────────────────────────────────────
-function monday(d) {
-  const r = new Date(d); r.setHours(0,0,0,0);
-  const wd = r.getDay(); r.setDate(r.getDate() - (wd === 0 ? 6 : wd - 1)); return r;
-}
-function addDays(d, n) { const r = new Date(d); r.setDate(r.getDate() + n); return r; }
-function fmt(d) { return d.toISOString().split("T")[0]; }
-function fmtDisp(d) { return d.toLocaleDateString("en-IN", { day:"numeric", month:"short", year:"numeric" }); }
-function fmtShort(d) { return new Date(d).toLocaleDateString("en-IN", { day:"numeric", month:"short" }); }
-function fmtNum(n) { if (!n && n !== 0) return "—"; return n >= 1000 ? (n/1000).toFixed(1)+"k" : ""+n; }
-function fmtGain(n) { if (!n) return "+0"; return (n >= 0 ? "+" : "") + n; }
-function esc(s) { return (s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
-function weekNum(d) {
-  const date = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
-  const dn = date.getUTCDay() || 7; date.setUTCDate(date.getUTCDate() + 4 - dn);
-  const ys = new Date(Date.UTC(date.getUTCFullYear(), 0, 1));
-  return Math.ceil((((date - ys) / 86400000) + 1) / 7);
-}
-function weekNumToDate(yr, wk) {
-  const s = new Date(yr, 0, 1 + (wk - 1) * 7);
-  const wd = s.getDay();
-  if (wd <= 4) s.setDate(s.getDate() - s.getDay() + 1);
-  else s.setDate(s.getDate() + 8 - s.getDay());
-  return s;
-}
+function monday(d){ const r=new Date(d); r.setHours(0,0,0,0); const w=r.getDay(); r.setDate(r.getDate()-(w===0?6:w-1)); return r; }
+function addDays(d,n){ const r=new Date(d); r.setDate(r.getDate()+n); return r; }
+function fmt(d){ return d.toISOString().split("T")[0]; }
+function fmtDisp(d){ return d.toLocaleDateString("en-IN",{day:"numeric",month:"short",year:"numeric"}); }
+function fmtShort(d){ return new Date(d).toLocaleDateString("en-IN",{day:"numeric",month:"short"}); }
+function fmtNum(n){ if(!n&&n!==0)return"—"; return n>=1000?(n/1000).toFixed(1)+"k":""+n; }
+function fmtGain(n){ if(!n)return"+0"; return(n>=0?"+":"")+n; }
+function esc(s){ return(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+function weekNum(d){ const u=new Date(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())); const dn=u.getUTCDay()||7; u.setUTCDate(u.getUTCDate()+4-dn); const ys=new Date(Date.UTC(u.getUTCFullYear(),0,1)); return Math.ceil((((u-ys)/86400000)+1)/7); }
+function weekNumToDate(yr,wk){ const s=new Date(yr,0,1+(wk-1)*7); const wd=s.getDay(); if(wd<=4)s.setDate(s.getDate()-s.getDay()+1); else s.setDate(s.getDate()+8-s.getDay()); return s; }
+function waLink(contact){ if(!contact)return null; const d=contact.replace(/\D/g,""); if(d.length===10)return`https://wa.me/91${d}`; if(d.length>=11)return`https://wa.me/${d}`; return null; }
 
-// ── Load initial data ────────────────────────────────────────────────────────
-async function init() {
-  // Load static caches in parallel
-  const [pc, ig] = await Promise.all([
-    fetch("posts.json").then(r => r.ok ? r.json() : {}).catch(() => ({})),
-    fetch("instagram_data.json").then(r => r.ok ? r.json() : {}).catch(() => ({})),
+// ── Init ──────────────────────────────────────────────────────────────────────
+async function init(){
+  // Load all static caches in parallel
+  const [pc,ig,wc] = await Promise.all([
+    fetch("posts.json").then(r=>r.ok?r.json():{}).catch(()=>({})),
+    fetch("instagram_data.json").then(r=>r.ok?r.json():{}).catch(()=>({})),
+    fetch("week_cache.json").then(r=>r.ok?r.json():{}).catch(()=>({})),
   ]);
   postsJson = pc;
   igData = ig;
 
-  // Cache profile pics from ig data
-  for (const prop of PROPS) {
-    if (igData[prop]?.profile_picture_url) profilePics[prop] = igData[prop].profile_picture_url;
-  }
-
-  // Try loading influencers (local only)
-  if (IS_LOCAL) {
-    influencers = await fetch("/api/influencers").then(r => r.ok ? r.json() : {}).catch(() => ({}));
-  }
-
-  renderWeek();
-  startAutoRefresh();
-}
-
-// ── Auto-refresh ──────────────────────────────────────────────────────────────
-function startAutoRefresh() {
-  clearInterval(autoRefreshTimer);
-  if (IS_LOCAL) {
-    autoRefreshTimer = setInterval(() => fetchLiveWeek(true), 30000);
-    setLiveStatus(true);
-  } else {
-    // GitHub Pages: re-fetch static JSONs every 2 hours
-    autoRefreshTimer = setInterval(async () => {
-      const [pc, ig] = await Promise.all([
-        fetch("posts.json?t="+Date.now()).then(r => r.ok ? r.json() : postsJson).catch(() => postsJson),
-        fetch("instagram_data.json?t="+Date.now()).then(r => r.ok ? r.json() : igData).catch(() => igData),
-      ]);
-      postsJson = pc; igData = ig;
-      renderWeek();
-    }, 7200000); // 2 hours
-    setLiveStatus(false);
-  }
-}
-
-function setLiveStatus(live) {
-  document.getElementById("liveDot").className = "live-dot" + (live ? " live" : "");
-  document.getElementById("liveLabel").textContent = live ? "Live · 30s refresh" : "Cached · 2hr refresh";
-}
-
-async function fetchLiveWeek(silent = false) {
-  const s = fmt(weekStart), e = fmt(addDays(weekStart, 6));
-  try {
-    const data = await fetch(`/api/week?start=${s}&end=${e}`).then(r => r.json());
-    liveWeekData = data;
-    // Update profile pics if fresh
-    for (const prop of PROPS) {
-      if (data[prop]?.profile_picture_url) profilePics[prop] = data[prop].profile_picture_url;
+  // Index week_cache by week_start
+  for(const [,data] of Object.entries(wc)){
+    if(data.week_start) weekCache[data.week_start] = data;
+    for(const prop of PROPS){
+      if(data[prop]?.profile_picture_url && !profilePics[prop])
+        profilePics[prop] = data[prop].profile_picture_url;
     }
-    renderSummary();
-    renderColumns();
-  } catch(e) { console.warn("Live fetch failed:", e); }
+  }
+  // Profile pics from igData fallback
+  for(const prop of PROPS){
+    if(igData[prop]?.profile_picture_url && !profilePics[prop])
+      profilePics[prop] = igData[prop].profile_picture_url;
+  }
+
+  // Load influencers
+  if(IS_LOCAL){
+    influencers = await fetch("/api/influencers").then(r=>r.ok?r.json():{}).catch(()=>({}));
+  } else {
+    // Try to load from influencers.json if we ever push it
+    influencers = await fetch("influencers.json").then(r=>r.ok?r.json():{}).catch(()=>({}));
+  }
+
+  setLiveStatus(IS_LOCAL);
+  renderWeek();
+  renderInfluencerList();
+  if(IS_LOCAL){
+    autoTimer = setInterval(()=>fetchLiveWeek(true), 30000);
+    fetchLiveWeek(true);
+  } else {
+    // Re-check static files every 2 hours
+    autoTimer = setInterval(async()=>{
+      const [p,w]= await Promise.all([
+        fetch("posts.json?t="+Date.now()).then(r=>r.ok?r.json():postsJson).catch(()=>postsJson),
+        fetch("week_cache.json?t="+Date.now()).then(r=>r.ok?r.json():{}).catch(()=>({})),
+      ]);
+      postsJson=p;
+      for(const [,data] of Object.entries(w)) if(data.week_start) weekCache[data.week_start]=data;
+      renderWeek();
+    }, 7200000);
+  }
 }
 
-async function manualRefresh() {
-  if (IS_LOCAL) {
-    await fetch("/api/refresh").catch(() => {});
-    liveWeekData = null;
+function setLiveStatus(live){
+  document.getElementById("liveDot").className="live-dot"+(live?" live":"");
+  document.getElementById("liveTxt").textContent = live ? "Live · 30s" : "Cached · 2hr";
+}
+
+async function fetchLiveWeek(silent=false){
+  const s=fmt(weekStart), e=fmt(addDays(weekStart,6));
+  try{
+    const data = await fetch(`/api/week?start=${s}&end=${e}`).then(r=>r.json());
+    liveWeekData = data;
+    for(const prop of PROPS) if(data[prop]?.profile_picture_url) profilePics[prop]=data[prop].profile_picture_url;
+    renderSummary(); renderColumns();
+  } catch(e){ console.warn("Live fetch failed:",e); }
+}
+
+async function manualRefresh(){
+  liveWeekData = null;
+  if(IS_LOCAL){
+    await fetch("/api/refresh").catch(()=>{});
     await fetchLiveWeek(false);
   } else {
-    // Re-fetch static files
-    const [pc, ig] = await Promise.all([
-      fetch("posts.json?t="+Date.now()).then(r => r.ok ? r.json() : postsJson).catch(() => postsJson),
-      fetch("instagram_data.json?t="+Date.now()).then(r => r.ok ? r.json() : igData).catch(() => igData),
+    const [p,w]= await Promise.all([
+      fetch("posts.json?t="+Date.now()).then(r=>r.ok?r.json():postsJson).catch(()=>postsJson),
+      fetch("week_cache.json?t="+Date.now()).then(r=>r.ok?r.json():{}).catch(()=>({})),
     ]);
-    postsJson = pc; igData = ig;
+    postsJson=p;
+    for(const [,data] of Object.entries(w)) if(data.week_start) weekCache[data.week_start]=data;
     renderWeek();
   }
 }
 
-// ── Get posts for a week/prop ─────────────────────────────────────────────────
-function getPostedPosts(prop, startStr, endStr) {
-  // Prefer live data if available and it's the current week
-  const currentWeekStr = fmt(weekStart);
-  const todayWeekStr = fmt(monday(TODAY));
-  const isCurrentWeek = currentWeekStr === todayWeekStr;
-
-  let source = (isCurrentWeek && liveWeekData) ? liveWeekData : igData;
-  if (!source[prop]) return [];
-  const posts = source[prop].posts || [];
-  return posts.filter(p => p.date >= startStr && p.date <= endStr);
-}
-
-function getPlannedPosts(prop, startStr, endStr) {
-  const planned = [];
-  for (const [dateKey, props] of Object.entries(postsJson)) {
-    if (dateKey >= startStr && dateKey <= endStr && props[prop]) {
-      planned.push({ date: dateKey, ...props[prop] });
+async function fetchAndCacheThreeWeeks(){
+  if(!IS_LOCAL){ alert("Only available on localhost (server.py)"); return; }
+  document.getElementById("liveTxt").textContent = "Fetching…";
+  try{
+    const r = await fetch("/api/fetch_weeks");
+    if(r.ok){
+      const wc = await r.json();
+      for(const [,data] of Object.entries(wc)) if(data.week_start) weekCache[data.week_start]=data;
+      renderWeek();
+      document.getElementById("liveTxt").textContent = "3 weeks cached";
     }
-  }
-  return planned;
+  } catch(e){ console.error(e); }
 }
 
-// Smart match: try to pair planned posts with posted ones by caption similarity
-function matchPlannedToPosted(planned, posted) {
+// ── Module / sub-tab switching ────────────────────────────────────────────────
+function switchModule(id){
+  document.querySelectorAll(".mod-tab").forEach(t=>t.classList.remove("active"));
+  document.getElementById("modtab-"+id)?.classList.add("active");
+  ["instagram","influencers",...COMING_SOON].forEach(m=>{
+    const el=document.getElementById("module-"+m);
+    if(el) el.style.display = m===id ? "" : "none";
+  });
+  currentModule = id;
+  if(id==="influencers") renderInfluencerList();
+}
+
+function switchSub(id){
+  document.querySelectorAll(".sub-tab").forEach(t=>t.classList.remove("active"));
+  document.getElementById("subtab-"+id)?.classList.add("active");
+  document.getElementById("sub-calendar").style.display = id==="calendar" ? "" : "none";
+  document.getElementById("sub-inf-weekly").style.display = id==="inf-weekly" ? "" : "none";
+  currentSub = id;
+  if(id==="inf-weekly") renderWeeklyInfluencers();
+}
+
+// ── Data getters ──────────────────────────────────────────────────────────────
+function getSource(startStr){
+  if(liveWeekData) return liveWeekData;
+  if(weekCache[startStr]) return weekCache[startStr];
+  return igData;
+}
+
+function getPostedPosts(prop, startStr, endStr){
+  const src = getSource(startStr);
+  return (src[prop]?.posts || []).filter(p=>p.date>=startStr && p.date<=endStr);
+}
+
+function getPlannedPosts(prop, startStr, endStr){
+  return Object.entries(postsJson)
+    .filter(([d,ps])=>d>=startStr && d<=endStr && ps[prop])
+    .map(([d,ps])=>({date:d,...ps[prop]}));
+}
+
+// Smart match: pair planned to posted by date or caption keywords
+// Returns only matched/upcoming (no separate posted_only if it matches a plan)
+function matchPosts(planned, posted){
   const matched = new Set();
-  const result = [];
+  const result  = [];
 
-  for (const plan of planned) {
-    // Try exact date match first
-    const byDate = posted.find(p => p.date === plan.date);
-    if (byDate) { matched.add(byDate.id); result.push({ type: "matched", plan, post: byDate }); continue; }
-
-    // Try caption keyword match (look for unique words from plan caption in post)
-    const planWords = (plan.caption || "").toLowerCase().split(/\s+/).filter(w => w.length > 5);
-    const matchByCaption = posted.find(p =>
-      !matched.has(p.id) &&
-      planWords.slice(0, 8).filter(w => (p.caption||"").toLowerCase().includes(w)).length >= 3
-    );
-    if (matchByCaption) { matched.add(matchByCaption.id); result.push({ type: "matched", plan, post: matchByCaption }); continue; }
-
-    // No match — yet to be posted
-    result.push({ type: "upcoming", plan });
+  for(const plan of planned){
+    const byDate = posted.find(p=>p.date===plan.date);
+    if(byDate){ matched.add(byDate.id); result.push({type:"matched",plan,post:byDate}); continue; }
+    const planWords = (plan.caption||"").toLowerCase().split(/\s+/).filter(w=>w.length>5);
+    const byCaption = posted.find(p=>!matched.has(p.id)&&planWords.slice(0,8).filter(w=>(p.caption||"").toLowerCase().includes(w)).length>=3);
+    if(byCaption){ matched.add(byCaption.id); result.push({type:"matched",plan,post:byCaption}); continue; }
+    result.push({type:"upcoming",plan});
   }
-
-  // Add unmatched posted content (posted without a plan)
-  for (const p of posted) {
-    if (!matched.has(p.id)) result.push({ type: "posted_only", post: p });
-  }
-
+  // Unmatched posted posts (extra posts not in plan)
+  for(const p of posted) if(!matched.has(p.id)) result.push({type:"posted_only",post:p});
   return result;
 }
 
 // ── Render week ───────────────────────────────────────────────────────────────
-function renderWeek() {
-  const sun = addDays(weekStart, 6);
-  const s = fmt(weekStart), e = fmt(sun);
-  const todayStr = fmt(TODAY);
-  const isPast = e < todayStr;
-  const isNow  = s <= todayStr && todayStr <= e;
+function renderWeek(){
+  const sun=addDays(weekStart,6), s=fmt(weekStart), e=fmt(sun);
+  const todayStr=fmt(TODAY), isPast=e<todayStr, isNow=s<=todayStr&&todayStr<=e;
+  const lbl = `${fmtDisp(weekStart)} — ${fmtDisp(sun)}`;
 
-  document.getElementById("weekLbl").textContent = `${fmtDisp(weekStart)} — ${fmtDisp(sun)}`;
-  const badge = document.getElementById("weekBadge");
-  if (isNow)  { badge.textContent = "This Week"; badge.className = "wbadge wb-now"; }
-  else if (isPast){ badge.textContent = "Past";   badge.className = "wbadge wb-past"; }
-  else        { badge.textContent = "Upcoming"; badge.className = "wbadge wb-soon"; }
+  // Update both week nav bars
+  ["weekLbl","infWeekLbl"].forEach(id=>{ const el=document.getElementById(id); if(el)el.textContent=lbl; });
+  ["weekBadge","infWeekBadge"].forEach(id=>{
+    const el=document.getElementById(id); if(!el)return;
+    if(isNow){el.textContent="This Week";el.className="wbadge wb-now";}
+    else if(isPast){el.textContent="Past";el.className="wbadge wb-past";}
+    else{el.textContent="Upcoming";el.className="wbadge wb-soon";}
+  });
+  const yr=weekStart.getFullYear(), wk=weekNum(weekStart);
+  const wp=document.getElementById("weekPicker"); if(wp)wp.value=`${yr}-W${String(wk).padStart(2,"0")}`;
 
-  const yr = weekStart.getFullYear(), wk = weekNum(weekStart);
-  document.getElementById("weekPicker").value = `${yr}-W${String(wk).padStart(2,"0")}`;
-
-  // Always render cached data immediately, then silently update with live data
   renderSummary();
   renderColumns();
-  if (IS_LOCAL) fetchLiveWeek(true);
+  if(currentSub==="inf-weekly") renderWeeklyInfluencers();
 }
 
-function renderColumns() {
-  const s = fmt(weekStart), e = fmt(addDays(weekStart, 6));
-  for (const prop of PROPS) renderColumn(prop, s, e);
-}
-
-function renderSummary() {
-  const s = fmt(weekStart), e = fmt(addDays(weekStart, 6));
-  const row = document.getElementById("summaryRow");
-  let html = "";
-  for (const prop of PROPS) {
-    const meta = PROP_META[prop];
-    const ig = (liveWeekData || igData)[prop] || {};
-    const weekPosts = (ig.posts || []).filter(p => p.date >= s && p.date <= e);
-    const reach  = weekPosts.reduce((a,p) => a + (p.insights?.reach || 0), 0);
-    const likes  = weekPosts.reduce((a,p) => a + (p.like_count || 0), 0);
-    const saved  = weekPosts.reduce((a,p) => a + (p.insights?.saved || 0), 0);
-    const shares = weekPosts.reduce((a,p) => a + (p.insights?.shares || 0), 0);
-    const gain   = ig.follower_gain || 0;
-    const total  = ig.followers_count || igData[prop]?.followers_count || 0;
-
-    html += `<div class="sc">
+function renderSummary(){
+  const s=fmt(weekStart), e=fmt(addDays(weekStart,6));
+  const src = getSource(s);
+  let html="";
+  for(const prop of PROPS){
+    const meta=PROP_META[prop];
+    const ig=src[prop]||{};
+    const wps=(ig.posts||[]).filter(p=>p.date>=s&&p.date<=e);
+    const reach=wps.reduce((a,p)=>a+(p.insights?.reach||0),0);
+    const likes=wps.reduce((a,p)=>a+(p.like_count||0),0);
+    const saved=wps.reduce((a,p)=>a+(p.insights?.saved||0),0);
+    const gain=ig.follower_gain||0;
+    const total=ig.followers_count||igData[prop]?.followers_count||0;
+    html+=`<div class="sc">
       <div class="sc-name ${meta.cls}">${meta.label}</div>
       <div class="sc-grid">
         <div class="sc-m"><div class="v">${fmtNum(reach)}</div><div class="l">Reach</div></div>
         <div class="sc-m"><div class="v">${fmtNum(likes)}</div><div class="l">Likes</div></div>
         <div class="sc-m"><div class="v">${fmtNum(saved)}</div><div class="l">Saved</div></div>
-        <div class="sc-m"><div class="v">${fmtNum(weekPosts.length)}</div><div class="l">Posts</div></div>
+        <div class="sc-m"><div class="v">${fmtNum(wps.length)}</div><div class="l">Posts</div></div>
         <div class="sc-m"><div class="v">${fmtGain(gain)}</div><div class="l">Followers ±</div></div>
         <div class="sc-m"><div class="v">${fmtNum(total)}</div><div class="l">Total Followers</div></div>
       </div>
     </div>`;
   }
-  row.innerHTML = html;
+  document.getElementById("summaryRow").innerHTML=html;
 }
 
-function renderColumn(prop, s, e) {
-  const meta = PROP_META[prop];
-  const col = document.getElementById(meta.col);
-  const posted  = getPostedPosts(prop, s, e);
-  const planned = getPlannedPosts(prop, s, e);
-  const cards   = matchPlannedToPosted(planned, posted);
+function renderColumns(){
+  const s=fmt(weekStart), e=fmt(addDays(weekStart,6));
+  for(const prop of PROPS) renderColumn(prop,s,e);
+}
 
-  let html = `<div class="col-hdr ${meta.hdr}">${meta.label}</div>`;
-  if (!cards.length) {
-    html += `<div class="no-posts">No posts this week</div>`;
+function renderColumn(prop,s,e){
+  const meta=PROP_META[prop];
+  const col=document.getElementById(meta.col);
+  const posted=getPostedPosts(prop,s,e);
+  const planned=getPlannedPosts(prop,s,e);
+  const cards=matchPosts(planned,posted);
+
+  let html=`<div class="col-hdr ${meta.hdr}">${meta.label}</div>`;
+  if(!cards.length){
+    html+=`<div class="no-posts">No posts this week</div>`;
   } else {
-    for (const card of cards.sort((a,b) => {
-      const da = card.type === "posted_only" ? a.post.date : a.plan.date;
-      const db = card.type === "posted_only" ? b.post.date : b.plan.date;
+    const sorted=cards.sort((a,b)=>{
+      const da=a.post?.date||a.plan?.date||"";
+      const db=b.post?.date||b.plan?.date||"";
       return da.localeCompare(db);
-    })) {
-      if (card.type === "matched")       html += renderMatchedCard(prop, card.plan, card.post);
-      else if (card.type === "upcoming") html += renderUpcomingCard(prop, card.plan);
-      else                               html += renderPostedCard(prop, card.post);
+    });
+    for(const c of sorted){
+      if(c.type==="matched")      html+=renderPostedCard(prop,c.plan,c.post);
+      else if(c.type==="upcoming")html+=renderUpcomingCard(prop,c.plan);
+      else                        html+=renderPostedCard(prop,{},c.post);
     }
   }
-  col.innerHTML = html;
+  col.innerHTML=html;
 }
 
 // ── Card renderers ────────────────────────────────────────────────────────────
-function avatarHtml(prop, size = 30) {
-  const pic = profilePics[prop];
-  if (pic) return `<img class="ig-avatar" src="${esc(pic)}" width="${size}" height="${size}" onerror="this.outerHTML='<div class=ig-avatar-placeholder style=width:${size}px;height:${size}px>${prop[0]}</div>'">`;
-  return `<div class="ig-avatar-placeholder" style="width:${size}px;height:${size}px;font-size:${size*0.4}px">${prop[0]}</div>`;
+function avatarHtml(prop){
+  const pic=profilePics[prop];
+  if(pic)return`<img class="ig-avatar" src="${esc(pic)}" onerror="this.outerHTML='<div class=ig-avatar-ph>${prop[0]}</div>'">`;
+  return`<div class="ig-avatar-ph">${prop[0]}</div>`;
 }
 
-function renderMatchedCard(prop, plan, post) {
-  const mt = post.media_type;
-  const typeLabel = mt === "CAROUSEL_ALBUM" ? "Carousel" : mt === "VIDEO" ? "Video" : "Photo";
-  const dateStr = fmtShort(post.date);
-  const capPreview = (post.caption || plan.caption || "").substring(0, 140);
-  const ins = post.insights || {};
+function renderPostedCard(prop, plan, post){
+  const mt=post.media_type||"IMAGE";
+  const isVideo=mt==="VIDEO"||mt==="REEL";
+  const isCarousel=mt==="CAROUSEL_ALBUM";
+  const typeLabel=isCarousel?"Carousel":isVideo?"Reel":"Photo";
+  const dateStr=fmtShort(post.date);
+  const ins=post.insights||{};
+  const cap=(post.caption||plan?.caption||"");
+  const capPrev=cap.substring(0,140);
+  const collabInf=getCollabName(prop,post);
 
-  // Detect collab
-  const collabInf = detectCollab(prop, post);
+  const imgHtml=post.media_url
+    ?`<img class="ig-image" src="${esc(post.media_url)}" loading="lazy" onerror="this.style.display='none'">`
+    :`<div class="ig-ph"><div class="ph-type">${typeLabel}</div><div class="ph-date">${dateStr}</div></div>`;
 
-  const imgHtml = post.media_url
-    ? `<img class="ig-image" src="${esc(post.media_url)}" loading="lazy">`
-    : `<div class="ig-image-placeholder"><div class="ph-type">${typeLabel}</div><div class="ph-date">${dateStr}</div></div>`;
+  const overlays=[
+    isVideo?`<div class="play-btn"><div>▶</div></div>`:"",
+    isCarousel?`<div class="carousel-badge">⊞ ${typeLabel}</div>`:"",
+    isVideo?`<div class="type-badge">${typeLabel}</div>`:(!isCarousel?`<div class="type-badge">${typeLabel}</div>`:""),
+  ].join("");
 
-  const reelOverlay = (mt === "VIDEO" || mt === "REEL")
-    ? `<div class="ig-reel-overlay"><div class="play">▶</div></div>` : "";
-  const carouselBadge = mt === "CAROUSEL_ALBUM"
-    ? `<div class="ig-carousel-badge">⊞ Carousel</div>` : "";
+  const collabHtml=collabInf
+    ?`<span class="collab-chip" onclick="openInfModal('${prop}','${esc(collabInf)}')">🤝 ${esc(collabInf)}</span>`:"";
 
-  const collabHtml = collabInf
-    ? `<span class="collab-chip" onclick="openInfluencerModal('${prop}','${esc(collabInf)}')">🤝 ${esc(collabInf)}</span>` : "";
-
+  const postData=JSON.stringify(post).replace(/'/g,"&#39;");
   return `<div class="ig-card posted">
     <div class="ig-header">
       ${avatarHtml(prop)}
@@ -483,53 +657,38 @@ function renderMatchedCard(prop, plan, post) {
         <div class="ig-username">${esc(PROP_META[prop].label)}</div>
         <div class="ig-sublabel">${dateStr}</div>
       </div>
-      <span class="ig-dots">···</span>
+      <span style="color:#aaa;font-size:15px;letter-spacing:2px;cursor:pointer">···</span>
     </div>
-    <div class="ig-image-wrap">
-      ${imgHtml}
-      ${reelOverlay}
-      ${carouselBadge}
-      <div class="ig-type-badge">${typeLabel}</div>
+    <div class="ig-image-wrap">${imgHtml}${overlays}</div>
+    <div class="ig-actions-row">
+      <span class="ig-act">🤍</span><span class="ig-act">💬</span><span class="ig-act">✈️</span>
+      <span class="ig-bkmk">🔖</span>
     </div>
-    <div class="ig-actions">
-      <span class="ig-action">🤍</span>
-      <span class="ig-action">💬</span>
-      <span class="ig-action">✈️</span>
-      <span class="ig-bookmark">🔖</span>
+    <div class="ig-likes">${fmtNum(post.like_count||0)} likes</div>
+    ${capPrev?`<div class="ig-cap"><span class="cu">${esc(PROP_META[prop].label.toLowerCase().replace("rhythm ",""))}</span><span class="ct">${esc(capPrev)}${cap.length>140?"...":""}</span></div>`:""}
+    <div class="ig-stats">
+      <div class="igs">👁 <strong>${fmtNum(ins.reach||0)}</strong></div>
+      <div class="igs">💾 <strong>${fmtNum(ins.saved||0)}</strong></div>
+      <div class="igs">↗ <strong>${fmtNum(ins.shares||0)}</strong></div>
+      ${ins.plays?`<div class="igs">▶ <strong>${fmtNum(ins.plays)}</strong></div>`:""}
     </div>
-    <div class="ig-likes">${fmtNum(post.like_count || 0)} likes</div>
-    ${capPreview ? `<div class="ig-caption"><span class="cap-user">${esc(PROP_META[prop].label.split(" ").pop().toLowerCase())}</span><span class="cap-text">${esc(capPreview)}${(post.caption||"").length > 140 ? "..." : ""}</span></div>
-    <div class="ig-more" onclick='openInsightsModal(${JSON.stringify(post)})'>more</div>` : ""}
-    <div class="ig-stats-bar">
-      <div class="ig-stat">👁️ <strong>${fmtNum(ins.reach||0)}</strong> reach</div>
-      <div class="ig-stat">💾 <strong>${fmtNum(ins.saved||0)}</strong></div>
-      ${ins.plays ? `<div class="ig-stat">▶ <strong>${fmtNum(ins.plays)}</strong></div>` : ""}
-    </div>
-    <div class="ig-actions-bar">
-      <button class="btn-sm" onclick='openInsightsModal(${JSON.stringify(post)})'>📊 Insights</button>
-      <a class="btn-sm btn-view" href="${esc(post.permalink)}" target="_blank">Open ↗</a>
+    <div class="ig-btns">
+      <button class="btn-sm" onclick='openInsightsModal(${postData})'>📊 Insights</button>
+      <a class="btn-sm btn-open" href="${esc(post.permalink)}" target="_blank">Open ↗</a>
       ${collabHtml}
     </div>
   </div>`;
 }
 
-function renderPostedCard(prop, post) {
-  return renderMatchedCard(prop, {}, post);
-}
-
-function renderUpcomingCard(prop, plan) {
-  const dateStr = fmtShort(plan.date);
-  const typeMap = { ST:"Static", RL:"Reel", CR:"Carousel" };
-  const typeLabel = typeMap[plan.type] || plan.type || "Post";
-  const capPreview = (plan.caption || "").substring(0, 140);
-  const imgHtml = plan.images && plan.images[0]
-    ? `<img class="ig-image" src="${esc(plan.images[0].url)}" loading="lazy">`
-    : `<div class="ig-image-placeholder">
-        <div class="ph-type">${typeLabel}</div>
-        <div class="ph-date">${dateStr}</div>
-        <div class="ph-label">📅 Yet to be posted</div>
-      </div>`;
-
+function renderUpcomingCard(prop, plan){
+  const typeMap={ST:"Static",RL:"Reel",CR:"Carousel"};
+  const typeLabel=typeMap[plan.type]||plan.type||"Post";
+  const dateStr=fmtShort(plan.date);
+  const cap=plan.caption||"";
+  const imgHtml=plan.images&&plan.images[0]
+    ?`<img class="ig-image" src="${esc(plan.images[0].url)}" loading="lazy">`
+    :`<div class="ig-ph"><div class="ph-type">${typeLabel}</div><div class="ph-date">${dateStr}</div><div class="ph-label">📅 Yet to be posted</div></div>`;
+  const planData=JSON.stringify(plan).replace(/'/g,"&#39;");
   return `<div class="ig-card upcoming">
     <div class="ig-header">
       ${avatarHtml(prop)}
@@ -537,166 +696,248 @@ function renderUpcomingCard(prop, plan) {
         <div class="ig-username">${esc(PROP_META[prop].label)}</div>
         <div class="ig-sublabel">${dateStr} · Scheduled</div>
       </div>
-      <span class="ig-dots">···</span>
+      <span style="color:#aaa;font-size:15px;letter-spacing:2px">···</span>
     </div>
-    <div class="ig-image-wrap">
-      ${imgHtml}
-      <div class="ig-type-badge">${typeLabel}</div>
+    <div class="ig-image-wrap">${imgHtml}<div class="type-badge">${typeLabel}</div></div>
+    <div class="ig-actions-row">
+      <span class="ig-act">🤍</span><span class="ig-act">💬</span><span class="ig-act">✈️</span>
+      <span class="ig-bkmk">🔖</span>
     </div>
-    <div class="ig-actions">
-      <span class="ig-action">🤍</span>
-      <span class="ig-action">💬</span>
-      <span class="ig-action">✈️</span>
-      <span class="ig-bookmark">🔖</span>
-    </div>
-    <div class="ig-likes">Yet to be posted</div>
-    ${capPreview ? `<div class="ig-caption"><span class="cap-text">${esc(capPreview)}${plan.caption.length>140?"...":""}</span></div>` : ""}
-    <div class="ig-actions-bar">
-      <button class="btn-sm" onclick='openCaptionModal(${JSON.stringify(plan)})'>📋 Full Caption</button>
+    <div class="ig-likes" style="color:#1565c0">Yet to be posted</div>
+    ${cap?`<div class="ig-cap"><span class="ct">${esc(cap.substring(0,140))}${cap.length>140?"...":""}</span></div>`:""}
+    <div class="ig-btns">
+      <button class="btn-sm" onclick='openCaptionModal(${planData})'>📋 Caption & Brief</button>
     </div>
   </div>`;
 }
 
 // ── Collab detection ──────────────────────────────────────────────────────────
-function detectCollab(prop, post) {
-  if (!post.caption) return null;
-  const cap = post.caption.toLowerCase();
-  const infs = influencers[prop] || [];
-  for (const inf of infs) {
-    const ig = (inf.instagram || "").replace(/.*instagram\.com\//,"").replace(/\?.*/,"").replace(/\//g,"").toLowerCase();
-    if (ig && ig.length > 3 && cap.includes(ig)) return inf.name;
-    const name = (inf.name || "").toLowerCase();
-    if (name.length > 4 && cap.includes(name)) return inf.name;
+function getCollabName(prop, post){
+  if(post.collab_influencer) return post.collab_influencer;
+  const cap=(post.caption||"").toLowerCase();
+  for(const inf of (influencers[prop]||[])){
+    const ig=(inf.instagram||"").replace(/.*instagram\.com\//,"").replace(/\?.*/,"").replace(/\//g,"").toLowerCase();
+    if(ig&&ig.length>3&&cap.includes(ig)) return inf.name;
+    const nm=(inf.name||"").toLowerCase();
+    if(nm.length>4&&cap.includes(nm)) return inf.name;
   }
-  // Fallback: use igData collab flag
-  const ig = (liveWeekData || igData)[prop];
-  if (ig) {
-    const p = (ig.posts || []).find(x => x.id === post.id);
-    if (p?.collab_influencer) return p.collab_influencer;
+  // Check igData
+  const src=igData[prop]||{};
+  const p=(src.posts||[]).find(x=>x.id===post.id);
+  return p?.collab_influencer||null;
+}
+
+function findInfluencer(prop, name){
+  const propsToCheck = prop ? [prop] : PROPS;
+  for(const p of propsToCheck){
+    const f=(influencers[p]||[]).find(i=>i.name===name);
+    if(f) return {...f, prop:p};
   }
   return null;
 }
 
-// ── Insights Modal ────────────────────────────────────────────────────────────
-function openInsightsModal(post) {
-  const ins = post.insights || {};
-  const dateStr = new Date(post.timestamp || post.date).toLocaleDateString("en-IN", {weekday:"short",day:"numeric",month:"short",year:"numeric"});
-  const mt = post.media_type;
-  const typeLabel = mt === "CAROUSEL_ALBUM" ? "Carousel" : mt === "VIDEO" ? "Reel/Video" : "Photo";
+function getInfluencerCollabs(name){
+  const out=[];
+  for(const p of PROPS){
+    const src=igData[p]||{};
+    for(const post of (src.posts||[])){
+      if(getCollabName(p,post)===name) out.push({...post,prop:p});
+    }
+  }
+  return out.sort((a,b)=>b.date.localeCompare(a.date));
+}
 
-  // Try to find which prop this is
-  let collabInf = post.collab_influencer;
-  if (!collabInf) {
-    for (const prop of PROPS) {
-      const ig = (liveWeekData || igData)[prop];
-      if (ig) {
-        const p = (ig.posts || []).find(x => x.id === post.id);
-        if (p?.collab_influencer) { collabInf = p.collab_influencer; break; }
+// ── Influencer list ───────────────────────────────────────────────────────────
+function setInfProp(v){
+  infPropFilter=v;
+  document.querySelectorAll(".ppill").forEach(p=>p.classList.remove("active"));
+  document.getElementById("pp-"+(v==="all"?"all":v))?.classList.add("active");
+  renderInfluencerList();
+}
+
+function setInfSort(v){
+  infSort=v;
+  document.querySelectorAll(".vt-btn").forEach(b=>b.classList.remove("active"));
+  document.getElementById("vs-"+v)?.classList.add("active");
+  renderInfluencerList();
+}
+
+function renderInfluencerList(){
+  const container=document.getElementById("infListGrid");
+  if(!container)return;
+  const search=(document.getElementById("infSearch")?.value||"").toLowerCase();
+
+  let list=[];
+  for(const prop of PROPS){
+    if(infPropFilter!=="all"&&prop!==infPropFilter) continue;
+    for(const inf of (influencers[prop]||[])){
+      if(search&&!inf.name.toLowerCase().includes(search)&&!(inf.instagram||"").toLowerCase().includes(search)) continue;
+      const collabs=getInfluencerCollabs(inf.name);
+      list.push({...inf, prop, collabs, lastCollab:collabs[0]?.date||""});
+    }
+  }
+
+  if(infSort==="name") list.sort((a,b)=>a.name.localeCompare(b.name));
+  else list.sort((a,b)=>b.lastCollab.localeCompare(a.lastCollab)||a.name.localeCompare(b.name));
+
+  if(!list.length){
+    container.innerHTML=`<div style="color:#bbb;font-size:13px;padding:40px;grid-column:1/-1">${Object.keys(influencers).length===0?"Influencer data not loaded — run server.py or load influencers.json":"No influencers found"}</div>`;
+    return;
+  }
+
+  container.innerHTML=list.map(inf=>renderInfluencerCard(inf)).join("");
+}
+
+function renderInfluencerCard(inf){
+  const meta=PROP_META[inf.prop];
+  const propCls=inf.prop.toLowerCase();
+  const wa=waLink(inf.contact);
+  const ig=inf.instagram?`<a class="lnk-btn lnk-ig" href="${esc(inf.instagram)}" target="_blank">📸 Instagram</a>`:"";
+  const waBtn=wa?`<a class="lnk-btn lnk-wa" href="${esc(wa)}" target="_blank">💬 WhatsApp</a>`:"";
+  const brief=(inf.brief||"").substring(0,120);
+  const nCollabs=inf.collabs.length;
+  return `<div class="inf-card">
+    <div class="inf-card-top">
+      <div class="inf-ava ${propCls}">${(inf.name||"?")[0].toUpperCase()}</div>
+      <div class="inf-info">
+        <div class="inf-nm">${esc(inf.name)}</div>
+        <div class="inf-meta">${esc(inf.month||"")}${inf.visit?` · ${esc(inf.visit)}`:""}</div>
+        <div class="inf-prop-badge badge-${propCls}">${meta.label.replace("Rhythm ","")}</div>
+      </div>
+    </div>
+    <div class="inf-card-body">
+      <div class="inf-links">${waBtn}${ig}</div>
+      ${inf.status?`<div class="inf-status">${esc(inf.status)}</div>`:""}
+      ${brief?`<div class="inf-brief-prev">${esc(brief)}${inf.brief.length>120?"…":""}</div>`:""}
+      ${nCollabs?`<div class="inf-collabs">🎯 ${nCollabs} collab post${nCollabs>1?"s":""} detected</div>`:""}
+    </div>
+    <div class="inf-card-footer">
+      <button class="btn-sm" style="flex:1" onclick="openInfModal('${inf.prop}','${esc(inf.name)}')">View Details</button>
+      ${inf.post_link?`<a class="btn-sm btn-open" href="${esc(inf.post_link)}" target="_blank">Post ↗</a>`:""}
+    </div>
+  </div>`;
+}
+
+// ── Influencers (week) sub-view ───────────────────────────────────────────────
+function renderWeeklyInfluencers(){
+  const container=document.getElementById("infWeeklyGrid");
+  if(!container)return;
+  const s=fmt(weekStart), e=fmt(addDays(weekStart,6));
+  const weekMonth=new Date(weekStart).toLocaleString("en-IN",{month:"long"}).toLowerCase();
+
+  // Find influencers with collab posts this week, or visit month matching this week
+  const matched=[];
+  for(const prop of PROPS){
+    for(const inf of (influencers[prop]||[])){
+      const collabs=getInfluencerCollabs(inf.name).filter(p=>p.date>=s&&p.date<=e);
+      const monthMatch=(inf.month||"").toLowerCase().includes(weekMonth.substring(0,3));
+      if(collabs.length>0||monthMatch){
+        matched.push({...inf,prop,collabs,monthMatch:monthMatch&&collabs.length===0});
       }
     }
   }
 
-  const collabSection = collabInf
-    ? `<div class="msection"><div class="msect-title">Content Type</div><div class="info-pill pill-gold"><strong>🤝 Influencer Collab — </strong><span style="cursor:pointer;text-decoration:underline" onclick="openInfluencerModal('',${JSON.stringify(collabInf)})">${esc(collabInf)}</span></div></div>`
-    : `<div class="msection"><div class="info-pill pill-gray">Brand post — no influencer collab detected</div></div>`;
+  if(!matched.length){
+    container.innerHTML=`<div style="color:#bbb;font-size:13px;padding:40px;grid-column:1/-1">No influencer activity detected for this week</div>`;
+    return;
+  }
+  container.innerHTML=matched.map(inf=>{
+    const waBtn=waLink(inf.contact)?`<a class="lnk-btn lnk-wa" href="${esc(waLink(inf.contact))}" target="_blank">💬 WhatsApp</a>`:"";
+    return renderInfluencerCard({...inf,collabs:inf.collabs});
+  }).join("");
+}
 
-  document.getElementById("mInsTitle").textContent = `${typeLabel} · ${dateStr}`;
-  document.getElementById("mInsBody").innerHTML = `
-    ${post.media_url ? `<img src="${esc(post.media_url)}" style="width:100%;border-radius:10px;margin-bottom:14px;aspect-ratio:1/1;object-fit:cover">` : ""}
+// ── Modals ────────────────────────────────────────────────────────────────────
+function openInsightsModal(post){
+  const ins=post.insights||{};
+  const mt=post.media_type||"IMAGE";
+  const isVideo=mt==="VIDEO"||mt==="REEL";
+  const typeLabel=mt==="CAROUSEL_ALBUM"?"Carousel":isVideo?"Reel/Video":"Photo";
+  const dateStr=new Date(post.timestamp||post.date+"T00:00:00").toLocaleDateString("en-IN",{weekday:"short",day:"numeric",month:"short",year:"numeric"});
+  const collabInf=post.collab_influencer||getCollabName("",post);
+
+  const collabSection=collabInf
+    ?`<div class="msect"><div class="info-pill pill-gold"><strong>🤝 Influencer Collab — </strong><span style="cursor:pointer;text-decoration:underline" onclick="closeModal('mIns');openInfModal('','${esc(collabInf)}')">${esc(collabInf)}</span></div></div>`
+    :`<div class="msect"><div class="info-pill pill-gray">Brand content — no influencer collab detected</div></div>`;
+
+  document.getElementById("mInsTitle").textContent=`${typeLabel} · ${dateStr}`;
+  document.getElementById("mInsBody").innerHTML=`
+    ${post.media_url?`<img src="${esc(post.media_url)}" style="width:100%;border-radius:10px;margin-bottom:13px;aspect-ratio:1/1;object-fit:cover">`:""}
     <div class="ins-grid">
       <div class="ins-box"><div class="bv">${fmtNum(ins.reach||0)}</div><div class="bl">Reach</div></div>
       <div class="ins-box"><div class="bv">${fmtNum(post.like_count||0)}</div><div class="bl">Likes</div></div>
       <div class="ins-box"><div class="bv">${fmtNum(post.comments_count||0)}</div><div class="bl">Comments</div></div>
       <div class="ins-box"><div class="bv">${fmtNum(ins.saved||0)}</div><div class="bl">Saved</div></div>
       <div class="ins-box"><div class="bv">${fmtNum(ins.shares||0)}</div><div class="bl">Shares</div></div>
-      ${ins.plays ? `<div class="ins-box"><div class="bv">${fmtNum(ins.plays)}</div><div class="bl">Plays</div></div>` : ""}
+      ${ins.plays?`<div class="ins-box"><div class="bv">${fmtNum(ins.plays)}</div><div class="bl">Plays</div></div>`:""}
     </div>
     ${collabSection}
-    ${post.caption ? `<div class="msection"><div class="msect-title">Caption</div><div class="modal-caption-text">${esc(post.caption)}</div></div>` : ""}
-    <div style="margin-top:12px"><a class="btn-sm btn-view" href="${esc(post.permalink)}" target="_blank" style="display:inline-block">Open on Instagram ↗</a></div>
+    ${post.caption?`<div class="msect"><div class="mslbl">Caption</div><div class="mcap">${esc(post.caption)}</div></div>`:""}
+    <div style="margin-top:11px"><a class="btn-sm btn-open" href="${esc(post.permalink)}" target="_blank" style="display:inline-block">Open on Instagram ↗</a></div>
   `;
   openModal("mIns");
 }
 
-function openCaptionModal(plan) {
-  document.getElementById("mInsTitle").textContent = plan.post_id || "Upcoming Post";
-  document.getElementById("mInsBody").innerHTML = `
-    <div class="info-pill pill-blue" style="margin-bottom:14px"><strong>📅 Scheduled — Yet to be posted</strong></div>
-    ${plan.caption ? `<div class="msection"><div class="msect-title">Caption (PC)</div><div class="modal-caption-text">${esc(plan.caption)}</div></div>` : ""}
-    ${plan.brief ? `<div class="msection"><div class="msect-title">Creative Brief (CC)</div><div class="modal-caption-text">${esc(plan.brief)}</div></div>` : ""}
+function openCaptionModal(plan){
+  document.getElementById("mInsTitle").textContent=plan.post_id||"Upcoming Post";
+  document.getElementById("mInsBody").innerHTML=`
+    <div class="info-pill pill-blue" style="margin-bottom:13px"><strong>📅 Scheduled — yet to be posted</strong></div>
+    ${plan.caption?`<div class="msect"><div class="mslbl">Caption (PC)</div><div class="mcap">${esc(plan.caption)}</div></div>`:""}
+    ${plan.brief?`<div class="msect"><div class="mslbl">Creative Brief (CC)</div><div class="mcap">${esc(plan.brief)}</div></div>`:""}
   `;
   openModal("mIns");
 }
 
-// ── Influencer Modal ──────────────────────────────────────────────────────────
-function openInfluencerModal(prop, name) {
-  // Find influencer details
-  let inf = null;
-  const propsToSearch = prop ? [prop] : PROPS;
-  for (const p of propsToSearch) {
-    const match = (influencers[p] || []).find(i => i.name === name);
-    if (match) { inf = { ...match, prop: p }; break; }
-  }
+function openInfModal(prop, name){
+  const inf=findInfluencer(prop,name);
+  const collabs=getInfluencerCollabs(name);
+  const propCls=inf?.prop?.toLowerCase()||"lnl";
+  const wa=waLink(inf?.contact);
 
-  // Find all their collab posts from all properties
-  const collabPosts = [];
-  for (const p of PROPS) {
-    const ig = (liveWeekData || igData)[p] || {};
-    for (const post of ig.posts || []) {
-      if (post.collab_influencer === name || detectCollab(p, post) === name) {
-        collabPosts.push({ ...post, prop: p });
-      }
-    }
-  }
-  collabPosts.sort((a,b) => b.date.localeCompare(a.date));
-
-  const thumbs = collabPosts.map(p => `
+  const thumbs=collabs.map(p=>`
     <div class="inf-thumb" onclick='openInsightsModal(${JSON.stringify(p).replace(/'/g,"&#39;")})'>
-      ${p.media_url ? `<img src="${esc(p.media_url)}" loading="lazy">` : `<div style="width:100%;height:100%;background:#eee"></div>`}
-      <div class="iovl"><span>❤️${fmtNum(p.like_count)} 👁️${fmtNum(p.insights?.reach||0)}</span></div>
+      ${p.media_url?`<img src="${esc(p.media_url)}" loading="lazy">`:`<div style="width:100%;height:100%;background:#eee"></div>`}
+      <div class="iovl"><span>❤️${fmtNum(p.like_count)} 👁${fmtNum(p.insights?.reach||0)}</span></div>
     </div>`).join("");
 
-  const igHandle = inf?.instagram ? `<a href="${esc(inf.instagram)}" target="_blank" style="color:#1565c0;font-size:11px">@${esc(inf.instagram.replace(/.*instagram\.com\//,"").replace(/\/.*/,""))}</a>` : "";
+  const igHandle=inf?.instagram?`<a href="${esc(inf.instagram)}" target="_blank" style="color:#c62828;font-size:12px">@${esc(inf.instagram.replace(/.*instagram\.com\//,"").replace(/\/?(\?.*)$/,""))}</a>`:"";
 
-  document.getElementById("mInfTitle").textContent = name;
-  document.getElementById("mInfBody").innerHTML = `
+  document.getElementById("mInfTitle").textContent=name;
+  document.getElementById("mInfBody").innerHTML=`
     <div class="inf-top">
-      <div class="inf-ava">${(name||"?").charAt(0).toUpperCase()}</div>
+      <div class="inf-top-ava ${propCls}" style="background:linear-gradient(135deg,${propCls==='lnl'?'#2e7d32,#66bb6a':propCls==='gur'?'#1565c0,#42a5f5':'#7b1fa2,#ce93d8'})">${(name||"?")[0].toUpperCase()}</div>
       <div>
-        <div class="inf-name">${esc(name)}</div>
-        <div class="inf-sub">${igHandle} ${inf ? "· " + (PROP_META[inf.prop]?.label||inf.prop) : ""}</div>
+        <div class="inf-top-name">${esc(name)}</div>
+        <div class="inf-top-sub">${igHandle}${inf?` · ${esc(PROP_META[inf.prop]?.label||inf.prop)}`:""}</div>
+        ${wa?`<a href="${esc(wa)}" target="_blank" class="lnk-btn lnk-wa" style="display:inline-flex;margin-top:6px;text-decoration:none">💬 WhatsApp</a>`:""}
       </div>
     </div>
-    <div class="inf-detail-row">
-      ${inf?.visit ? `<div class="inf-chip">📅 ${esc(inf.visit)}</div>` : ""}
-      ${inf?.month ? `<div class="inf-chip">🗓 ${esc(inf.month)}</div>` : ""}
-      ${inf?.status ? `<div class="inf-chip">• ${esc(inf.status)}</div>` : ""}
-      ${inf?.contact ? `<div class="inf-chip">📞 ${esc(inf.contact)}</div>` : ""}
+    <div class="inf-chips">
+      ${inf?.visit?`<div class="ich">📅 ${esc(inf.visit)}</div>`:""}
+      ${inf?.month?`<div class="ich">🗓 ${esc(inf.month)}</div>`:""}
+      ${inf?.status?`<div class="ich">• ${esc(inf.status)}</div>`:""}
+      ${inf?.contact?`<div class="ich">📞 ${esc(inf.contact)}</div>`:""}
     </div>
-    ${inf?.brief ? `<div class="msect-title">Brief Given</div><div class="inf-brief">${esc(inf.brief)}</div>` : ""}
-    <div class="msect-title" style="margin-bottom:8px">${collabPosts.length} Collab Post${collabPosts.length !== 1 ? "s" : ""} Detected</div>
-    <div class="inf-posts-grid">${thumbs || `<div style="color:#ccc;font-size:12px;grid-column:1/-1;padding:16px 0">No matched posts found</div>`}</div>
+    ${inf?.brief?`<div class="mslbl">Brief Given</div><div class="inf-brief-box">${esc(inf.brief)}</div>`:""}
+    <div class="mslbl" style="margin-bottom:8px">${collabs.length} Collab Post${collabs.length!==1?"s":""} Detected</div>
+    <div class="inf-posts-grid">${thumbs||`<div style="color:#ccc;font-size:12px;grid-column:1/-1;padding:14px 0">No matched posts found</div>`}</div>
   `;
   openModal("mInf");
 }
 
 // ── Week nav ──────────────────────────────────────────────────────────────────
-function changeWeek(dir) { weekStart = addDays(weekStart, dir * 7); liveWeekData = null; renderWeek(); }
-function jumpToday()     { weekStart = monday(TODAY); liveWeekData = null; renderWeek(); }
-function onPickerChange() {
-  const val = document.getElementById("weekPicker").value;
-  if (!val) return;
-  const [yr, wStr] = val.split("-W");
-  weekStart = monday(weekNumToDate(+yr, +wStr));
-  liveWeekData = null;
-  renderWeek();
+function changeWeek(dir){ weekStart=addDays(weekStart,dir*7); liveWeekData=null; renderWeek(); }
+function jumpToday(){    weekStart=monday(TODAY);              liveWeekData=null; renderWeek(); }
+function onPickerChange(){
+  const val=document.getElementById("weekPicker")?.value; if(!val)return;
+  const [yr,wStr]=val.split("-W");
+  weekStart=monday(weekNumToDate(+yr,+wStr));
+  liveWeekData=null; renderWeek();
 }
 
-// ── Modal helpers ─────────────────────────────────────────────────────────────
-function openModal(id)  { document.getElementById(id).classList.add("open"); }
-function closeModal(id) { document.getElementById(id).classList.remove("open"); }
+function openModal(id){ document.getElementById(id).classList.add("open"); }
+function closeModal(id){ document.getElementById(id).classList.remove("open"); }
 
-// ── Init ──────────────────────────────────────────────────────────────────────
 init();
 </script>
 </body>
