@@ -14,12 +14,12 @@ header{background:#ffffff;border-bottom:1px solid #e0e3e8;padding:0 24px;height:
 .brand-mark{width:30px;height:30px;background:linear-gradient(135deg,#b5924c,#d4a956);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;font-weight:800}
 .brand-name{font-size:13px;font-weight:700;letter-spacing:.02em;color:#1a1a1a}
 .brand-name span{color:#b5924c}
-.brand-sub{font-size:9px;color:#999;letter-spacing:.1em;text-transform:uppercase;margin-top:1px}
+.brand-sub{font-size:9px;color:#888;letter-spacing:.1em;text-transform:uppercase;margin-top:1px}
 .hdr-right{display:flex;align-items:center;gap:7px}
 .live-dot{width:7px;height:7px;border-radius:50%;background:#e8eaed;flex-shrink:0}
 .live-dot.live{background:#4caf50;animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-.live-txt{font-size:11px;color:#888}
+.live-txt{font-size:11px;color:#777}
 .hbtn{font-size:11px;padding:5px 11px;border-radius:7px;border:1px solid #d0d4da;background:transparent;cursor:pointer;color:#999;font-weight:500}
 .hbtn:hover{background:#ffffff;color:#fff}
 .hbtn.gold{background:#b5924c;border-color:#b5924c;color:#fff}
@@ -46,7 +46,7 @@ header{background:#ffffff;border-bottom:1px solid #e0e3e8;padding:0 24px;height:
 .arr:hover{background:#f5f6f8;color:#fff}
 .wk-lbl{font-size:13px;font-weight:700;color:#333;min-width:210px}
 .wbadge{font-size:10px;padding:3px 9px;border-radius:20px;font-weight:700;letter-spacing:.04em}
-.wb-now{background:#e8f5e9;color:#66bb6a}.wb-past{background:#fce8e8;color:#ef9a9a}.wb-soon{background:#e8eaf6;color:#90caf9}
+.wb-now{background:#e8f5e9;color:#2e7d32}.wb-past{background:#fce8e8;color:#c62828}.wb-soon{background:#e8eaf6;color:#283593}
 .jump-btn{font-size:11px;padding:5px 11px;border:1px solid #e0e3e8;background:transparent;border-radius:7px;cursor:pointer;color:#777}
 .jump-btn:hover{background:#f5f6f8;color:#fff}
 .week-bar input[type=week]{font-size:11px;padding:5px 8px;border:1px solid #e0e3e8;background:#ffffff;color:#999;border-radius:7px;margin-left:auto}
@@ -57,12 +57,12 @@ header{background:#ffffff;border-bottom:1px solid #e0e3e8;padding:0 24px;height:
 .sc-name{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-bottom:9px}
 .c-lnl{color:#66bb6a}.c-gur{color:#64b5f6}.c-kum{color:#ce93d8}
 .sc-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px}
-.sc-m .v{font-size:16px;font-weight:700;color:#1a1a1a}.sc-m .l{font-size:10px;color:#999;margin-top:1px}
+.sc-m .v{font-size:16px;font-weight:700;color:#1a1a1a}.sc-m .l{font-size:10px;color:#888;margin-top:1px}
 
 /* ── 3-col grid ── */
 .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;padding:20px 12px 60px}
 .col{padding:0 10px}
-.col-hdr{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;padding:10px 0 10px;border-bottom:1px solid;margin-bottom:16px}
+.col-hdr{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;padding:10px 0 10px;border-bottom:1px solid;margin-bottom:16px;color:#333}
 .hdr-lnl{color:#66bb6a;border-color:#2a3a2a}.hdr-gur{color:#64b5f6;border-color:#1a2535}.hdr-kum{color:#ce93d8;border-color:#2e1e35}
 
 /* ── PHONE MOCKUP ── */
@@ -523,7 +523,7 @@ header{background:#ffffff;border-bottom:1px solid #e0e3e8;padding:0 24px;height:
     </div>
 
     <!-- Top pages -->
-    <div style="background:#ffffff;border-radius:10px;overflow:hidden;margin-bottom:16px">
+    <div style="background:#ffffff;border-radius:10px;overflow:hidden;margin-bottom:16px;border:1px solid #e8eaed">
       <div style="padding:14px 20px;border-bottom:1px solid #e8eaed;font-size:13px;font-weight:700">Top Pages — Last 7 Days</div>
       <table style="width:100%;border-collapse:collapse;font-size:12px">
         <thead>
@@ -1229,7 +1229,7 @@ function renderGA4(d){
     const h = Math.max(4, Math.round(x.sessions/maxS*80));
     return `<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px">
       <div style="font-size:10px;color:#60a5fa;font-weight:600">${fmtN(x.sessions)}</div>
-      <div style="width:100%;background:#60a5fa33;border-radius:4px 4px 0 0;height:${h}px;position:relative">
+      <div style="width:100%;background:#dbeafe;border-radius:4px 4px 0 0;height:${h}px;position:relative">
         <div style="position:absolute;bottom:0;left:0;right:0;background:#60a5fa;border-radius:4px 4px 0 0;height:${h}px"></div>
       </div></div>`;
   }).join('');
