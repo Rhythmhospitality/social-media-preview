@@ -256,10 +256,11 @@ header{background:#111;border-bottom:1px solid #222;padding:0 24px;height:52px;d
 .lnk-ig{border-color:#3e2030;color:#f48fb1}
 .lnk-ig:hover{background:#2e1525;color:#f8bbd0}
 .inf-status{font-size:11px;font-weight:700;padding:3px 9px;border-radius:20px;display:inline-block;margin-bottom:9px;text-transform:uppercase;letter-spacing:.04em}
-.inf-status.st-posted{background:#1b2e1b;color:#66bb6a;border:1px solid #2e5c2e}
-.inf-status.st-pending{background:#2e2310;color:#ffa726;border:1px solid #5c3d10}
+.inf-status.st-draft{background:#1e1e28;color:#9e9ec8;border:1px solid #3a3a5c}
 .inf-status.st-confirmed{background:#1b1e2e;color:#64b5f6;border:1px solid #2e3a5c}
-.inf-status.st-cancelled{background:#2e1b1b;color:#ef9a9a;border:1px solid #5c2e2e}
+.inf-status.st-onsite{background:#2e1e10;color:#ffb74d;border:1px solid #5c3a10}
+.inf-status.st-posting{background:#1e1228;color:#ce93d8;border:1px solid #4a2060}
+.inf-status.st-done{background:#1b2e1b;color:#66bb6a;border:1px solid #2e5c2e}
 .inf-status.st-default{background:#1e1e1e;color:#666;border:1px solid #2a2a2a}
 .inf-brief-prev{font-size:11px;color:#888;line-height:1.5;margin-bottom:9px;border-left:2px solid #b5924c;padding-left:9px}
 .inf-collabs{font-size:11px;color:#b5924c;font-weight:600;margin-bottom:8px}
@@ -915,10 +916,11 @@ function setInfSort(v){
 
 function statusClass(s){
   const v=(s||"").toLowerCase();
-  if(v.includes("post")||v==="done"||v.includes("live")||v.includes("publish"))return"st-posted";
+  if(v==="done"||v.includes("done"))return"st-done";
+  if(v.includes("post"))return"st-posting";
+  if(v.includes("on-site")||v.includes("onsite")||v.includes("on site"))return"st-onsite";
   if(v.includes("confirm"))return"st-confirmed";
-  if(v.includes("pend")||v.includes("wait")||v.includes("due"))return"st-pending";
-  if(v.includes("cancel")||v.includes("no show")||v.includes("not coming"))return"st-cancelled";
+  if(v.includes("draft"))return"st-draft";
   return"st-default";
 }
 
@@ -942,13 +944,15 @@ function renderInfluencerList(){
     container.innerHTML=`<div style="color:#444;font-size:13px;padding:40px;grid-column:1/-1">${Object.keys(influencers).length===0?"No influencer data — run server.py":"No results"}</div>`;
     return;
   }
-  const counts={posted:0,confirmed:0,pending:0,other:0};
-  list.forEach(i=>{const s=statusClass(i.status);if(s==="st-posted")counts.posted++;else if(s==="st-confirmed")counts.confirmed++;else if(s==="st-pending")counts.pending++;else counts.other++;});
+  const counts={draft:0,confirmed:0,onsite:0,posting:0,done:0};
+  list.forEach(i=>{const s=statusClass(i.status);if(s==="st-done")counts.done++;else if(s==="st-posting")counts.posting++;else if(s==="st-onsite")counts.onsite++;else if(s==="st-confirmed")counts.confirmed++;else if(s==="st-draft")counts.draft++;});
   container.innerHTML=`<div style="grid-column:1/-1;display:flex;gap:10px;flex-wrap:wrap;padding-bottom:4px">
     <span style="font-size:11px;color:#555">${list.length} influencer${list.length!==1?"s":""}</span>
-    ${counts.posted?`<span class="inf-status st-posted" style="margin:0">${counts.posted} Posted</span>`:""}
+    ${counts.draft?`<span class="inf-status st-draft" style="margin:0">${counts.draft} Draft</span>`:""}
     ${counts.confirmed?`<span class="inf-status st-confirmed" style="margin:0">${counts.confirmed} Confirmed</span>`:""}
-    ${counts.pending?`<span class="inf-status st-pending" style="margin:0">${counts.pending} Pending</span>`:""}
+    ${counts.onsite?`<span class="inf-status st-onsite" style="margin:0">${counts.onsite} On-Site</span>`:""}
+    ${counts.posting?`<span class="inf-status st-posting" style="margin:0">${counts.posting} Posting</span>`:""}
+    ${counts.done?`<span class="inf-status st-done" style="margin:0">${counts.done} Done</span>`:""}
   </div>`+list.map(inf=>renderInfCard(inf)).join("");
 }
 
