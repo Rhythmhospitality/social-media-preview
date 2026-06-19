@@ -673,7 +673,7 @@ async function fetchAndCacheThreeWeeks(){
 function switchModule(id){
   document.querySelectorAll(".mod-tab").forEach(t=>t.classList.remove("active"));
   document.getElementById("modtab-"+id)?.classList.add("active");
-  ["instagram","influencers","meta-ads",...COMING].forEach(m=>{
+  ["instagram","influencers","meta-ads","ga4",...COMING].forEach(m=>{
     const el=document.getElementById("module-"+m);if(el)el.style.display=m===id?"":"none";
   });
   if(id==="influencers")renderInfluencerList();
