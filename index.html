@@ -993,7 +993,9 @@ function loadMetaAds(){
   if(_metaData){renderMetaAds(_metaData);return;}
   document.getElementById('meta-loading').style.display='';
   document.getElementById('meta-content').style.display='none';
-  fetch('/api/meta_ads').then(r=>r.json()).then(d=>{
+  const metaUrl = window.location.hostname==='localhost'||window.location.hostname==='127.0.0.1'
+    ? '/api/meta_ads' : 'meta_ads_cache.json';
+  fetch(metaUrl).then(r=>r.json()).then(d=>{
     _metaData=d;
     renderMetaAds(d);
   }).catch(e=>{
