@@ -450,8 +450,8 @@ header{background:#111;border-bottom:1px solid #222;padding:0 24px;height:52px;d
     <!-- Filter -->
     <div style="display:flex;gap:8px;margin-bottom:12px;align-items:center">
       <span style="font-size:12px;color:#666">Show:</span>
-      <button class="meta-filter-btn active" onclick="metaFilter('ALL',this)">All</button>
-      <button class="meta-filter-btn" onclick="metaFilter('ACTIVE',this)">Active</button>
+      <button class="meta-filter-btn" onclick="metaFilter('ALL',this)">All</button>
+      <button class="meta-filter-btn active" onclick="metaFilter('ACTIVE',this)">Active</button>
       <button class="meta-filter-btn" onclick="metaFilter('PAUSED',this)">Paused</button>
     </div>
     <!-- Campaign table -->
@@ -987,7 +987,7 @@ function statusClass(s){
 }
 
 // ── Meta Ads ──────────────────────────────────────────────────────────────────
-let _metaData = null, _metaFilter = 'ALL';
+let _metaData = null, _metaFilter = 'ACTIVE';
 
 function loadMetaAds(){
   if(_metaData){renderMetaAds(_metaData);return;}
@@ -1029,8 +1029,17 @@ function renderMetaAds(d){
   document.getElementById('m7-leads').textContent   = d.total_7d_leads;
   document.getElementById('m7-active').textContent  = d.active_count;
 
-  const campaigns = _metaFilter==='ALL' ? d.campaigns
-    : d.campaigns.filter(c=>c.status===_metaFilter);
+  // AI summary
+  if(d.ai_summary){
+    document.getElementById('meta-ai-text').innerHTML = d.ai_summary;
+    document.getElementById('meta-ai-box').style.display='';
+  }
+
+  const campaigns = d.campaigns.filter(c=>{
+    if(_metaFilter==='ACTIVE') return c.status==='ACTIVE' && c.spend>0;
+    if(_metaFilter==='PAUSED') return c.status==='PAUSED' && c.spend>0;
+    return c.spend>0; // ALL — still only show ones with spend
+  });
 
   const tbody = document.getElementById('meta-tbody');
   tbody.innerHTML = campaigns.map(c=>{
