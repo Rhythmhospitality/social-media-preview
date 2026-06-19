@@ -1,0 +1,188 @@
+{
+  "week": {
+    "sessions": 5629,
+    "users": 4576,
+    "pageviews": 9569,
+    "bounce_rate": 58.6,
+    "avg_duration": 152.0,
+    "new_users": 4423,
+    "conversions": 0
+  },
+  "yesterday": {
+    "sessions": 713,
+    "users": 569,
+    "pageviews": 1241,
+    "bounce_rate": 53.3,
+    "avg_duration": 161.0,
+    "new_users": 525
+  },
+  "top_pages": [
+    {
+      "path": "/resorts/rhythm-lonavala/",
+      "title": "Rhythm Lonavala: The Best Resort in Lonavala for Families",
+      "views": 2075,
+      "sessions": 1574,
+      "duration": 87.0
+    },
+    {
+      "path": "/",
+      "title": "Reservations - Rhythm Hospitality",
+      "views": 1435,
+      "sessions": 1307,
+      "duration": 286.0
+    },
+    {
+      "path": "/hotels/rhythm-gurugram/",
+      "title": "Rhythm Gurugram | All-Suite Business Hotel in Gurugram",
+      "views": 1120,
+      "sessions": 1004,
+      "duration": 21.0
+    },
+    {
+      "path": "/resorts/rhythm-kumarakom/",
+      "title": "Rhythm Kumarakom: Best Backwater Resort in Kumarakom",
+      "views": 1023,
+      "sessions": 765,
+      "duration": 129.0
+    },
+    {
+      "path": "/",
+      "title": "Rhythm Hospitality | Official Website | Hotels & Resorts",
+      "views": 742,
+      "sessions": 653,
+      "duration": 46.0
+    },
+    {
+      "path": "/resorts/rhythm-kumarakom/rooms.html",
+      "title": "5-Star Resorts in Kumarakom | Rhythm Kumarakom",
+      "views": 201,
+      "sessions": 141,
+      "duration": 120.0
+    },
+    {
+      "path": "/resorts/rhythm-lonavala/suites.html",
+      "title": "Luxury Suites in Lonavala | Rhythm Lonavala Resort",
+      "views": 192,
+      "sessions": 130,
+      "duration": 61.0
+    },
+    {
+      "path": "/resorts/rhythm-lonavala/offers.html",
+      "title": "Rhythm Lonavala | Resort Offers in Lonavala | Stay in Lonavala",
+      "views": 153,
+      "sessions": 116,
+      "duration": 44.0
+    }
+  ],
+  "sources": [
+    {
+      "channel": "Organic Search",
+      "sessions": 1825,
+      "users": 1367,
+      "bounce_rate": 39.5
+    },
+    {
+      "channel": "Paid Social",
+      "sessions": 1441,
+      "users": 1354,
+      "bounce_rate": 88.3
+    },
+    {
+      "channel": "Direct",
+      "sessions": 952,
+      "users": 817,
+      "bounce_rate": 78.5
+    },
+    {
+      "channel": "Paid Search",
+      "sessions": 838,
+      "users": 617,
+      "bounce_rate": 38.2
+    },
+    {
+      "channel": "Unassigned",
+      "sessions": 250,
+      "users": 199,
+      "bounce_rate": 46.4
+    },
+    {
+      "channel": "AI Assistant",
+      "sessions": 170,
+      "users": 152,
+      "bounce_rate": 34.7
+    },
+    {
+      "channel": "Referral",
+      "sessions": 97,
+      "users": 77,
+      "bounce_rate": 44.3
+    },
+    {
+      "channel": "Organic Social",
+      "sessions": 39,
+      "users": 38,
+      "bounce_rate": 51.3
+    }
+  ],
+  "daily": [
+    {
+      "date": "20260612",
+      "sessions": 1209,
+      "users": 1058,
+      "pageviews": 1872
+    },
+    {
+      "date": "20260613",
+      "sessions": 601,
+      "users": 509,
+      "pageviews": 1058
+    },
+    {
+      "date": "20260614",
+      "sessions": 650,
+      "users": 553,
+      "pageviews": 1173
+    },
+    {
+      "date": "20260615",
+      "sessions": 804,
+      "users": 670,
+      "pageviews": 1509
+    },
+    {
+      "date": "20260616",
+      "sessions": 841,
+      "users": 690,
+      "pageviews": 1374
+    },
+    {
+      "date": "20260617",
+      "sessions": 814,
+      "users": 667,
+      "pageviews": 1342
+    },
+    {
+      "date": "20260618",
+      "sessions": 713,
+      "users": 569,
+      "pageviews": 1241
+    }
+  ],
+  "devices": [
+    {
+      "device": "mobile",
+      "sessions": 3593,
+      "users": 3091
+    },
+    {
+      "device": "desktop",
+      "sessions": 2013,
+      "users": 1475
+    },
+    {
+      "device": "tablet",
+      "sessions": 18,
+      "users": 12
+    }
+  ]
+}
