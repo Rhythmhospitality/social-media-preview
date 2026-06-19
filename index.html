@@ -998,7 +998,7 @@ function loadMetaAds(){
   document.getElementById('meta-loading').style.display='';
   document.getElementById('meta-content').style.display='none';
   const metaUrl = window.location.hostname==='localhost'||window.location.hostname==='127.0.0.1'
-    ? '/api/meta_ads' : 'meta_ads_cache.json';
+    ? '/api/meta_ads' : 'meta_ads_cache.json?v='+Date.now();
   fetch(metaUrl).then(r=>r.json()).then(d=>{
     _metaData=d;
     renderMetaAds(d);
