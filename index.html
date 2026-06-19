@@ -973,10 +973,14 @@ function renderInfCard(inf){
       ${inf.status?`<div class="inf-status ${statusClass(inf.status)}">${esc(inf.status)}</div>`:""}
       ${brief?`<div class="inf-brief-prev">${esc(brief)}${inf.brief.length>110?"…":""}</div>`:""}
       ${n?`<div class="inf-collabs">🎯 ${n} collab post${n>1?"s":""} detected</div>`:""}
+      <div class="inf-links" style="padding-top:6px;margin-bottom:0">
+        ${inf.link_carousel?`<a class="lnk-btn" href="${esc(inf.link_carousel)}" target="_blank" style="border-color:#3e3e1e;color:#d4a956">⊞ Carousel</a>`:""}
+        ${inf.link_reel?`<a class="lnk-btn" href="${esc(inf.link_reel)}" target="_blank" style="border-color:#3e1e3e;color:#ce93d8">▶ Reel</a>`:""}
+        ${inf.link_photo?`<a class="lnk-btn" href="${esc(inf.link_photo)}" target="_blank" style="border-color:#1e3e3e;color:#80cbc4">📷 Photo</a>`:""}
+      </div>
     </div>
     <div class="inf-card-footer">
       <button class="pbtn" style="flex:1" onclick="openInfModal('${inf.prop}','${esc(inf.name)}')">View Details</button>
-      ${inf.post_link?`<a class="pbtn open" href="${esc(inf.post_link)}" target="_blank">Post ↗</a>`:""}
     </div>
   </div>`;
 }
