@@ -350,7 +350,7 @@ header{background:#111;border-bottom:1px solid #222;padding:0 24px;height:52px;d
   <div class="mod-tab" onclick="switchModule('meta-ads')" id="modtab-meta-ads">📊 Meta Ads</div>
   <div class="mod-tab soon" onclick="switchModule('google-ads')" id="modtab-google-ads">🔍 Google Ads <span class="soon-badge">SOON</span></div>
   <div class="mod-tab soon" onclick="switchModule('linkedin')" id="modtab-linkedin">💼 LinkedIn <span class="soon-badge">SOON</span></div>
-  <div class="mod-tab soon" onclick="switchModule('ga4')" id="modtab-ga4">📈 GA4 <span class="soon-badge">SOON</span></div>
+  <div class="mod-tab" onclick="switchModule('ga4')" id="modtab-ga4">📈 GA4</div>
   <div class="mod-tab soon" onclick="switchModule('email')" id="modtab-email">📧 Email <span class="soon-badge">SOON</span></div>
   <div class="mod-tab soon" onclick="switchModule('whatsapp-blast')" id="modtab-whatsapp-blast">💬 WhatsApp Blast <span class="soon-badge">SOON</span></div>
 </nav>
@@ -481,7 +481,72 @@ header{background:#111;border-bottom:1px solid #222;padding:0 24px;height:52px;d
 </div>
 <div id="module-google-ads" style="display:none" class="coming-soon"><div class="cs-icon">🔍</div><div class="cs-title">Google Ads</div><div class="cs-desc">Search and display campaign insights, keyword performance, and AI-driven budget suggestions.</div><div class="cs-chip">Coming Soon</div></div>
 <div id="module-linkedin" style="display:none" class="coming-soon"><div class="cs-icon">💼</div><div class="cs-title">LinkedIn</div><div class="cs-desc">Post insights, upcoming content, and AI suggestions for corporate and MICE audiences.</div><div class="cs-chip">Coming Soon</div></div>
-<div id="module-ga4" style="display:none" class="coming-soon"><div class="cs-icon">📈</div><div class="cs-title">GA4 Analytics</div><div class="cs-desc">Website traffic, source attribution, booking funnel and visitor behaviour insights.</div><div class="cs-chip">Coming Soon</div></div>
+<div id="module-ga4" style="display:none">
+  <div id="ga4-loading" style="text-align:center;padding:60px;color:#666">Loading GA4 data...</div>
+  <div id="ga4-content" style="display:none">
+
+    <!-- Yesterday row -->
+    <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-bottom:16px">
+      <div class="meta-stat-card"><div class="meta-stat-label">Yesterday Sessions</div><div class="meta-stat-val" id="g-yd-sessions" style="color:#60a5fa"></div></div>
+      <div class="meta-stat-card"><div class="meta-stat-label">Yesterday Users</div><div class="meta-stat-val" id="g-yd-users" style="color:#a78bfa"></div></div>
+      <div class="meta-stat-card"><div class="meta-stat-label">Pageviews</div><div class="meta-stat-val" id="g-yd-pv" style="color:#34d399"></div></div>
+      <div class="meta-stat-card"><div class="meta-stat-label">New Users</div><div class="meta-stat-val" id="g-yd-new" style="color:#f59e0b"></div></div>
+      <div class="meta-stat-card"><div class="meta-stat-label">Bounce Rate</div><div class="meta-stat-val" id="g-yd-bounce" style="color:#f87171"></div></div>
+      <div class="meta-stat-card"><div class="meta-stat-label">Avg Duration</div><div class="meta-stat-val" id="g-yd-dur" style="color:#22c55e"></div></div>
+    </div>
+
+    <!-- 7-day row -->
+    <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:12px;margin-bottom:20px">
+      <div class="meta-stat-card"><div class="meta-stat-label">7D Sessions</div><div class="meta-stat-val" id="g-7-sessions" style="color:#60a5fa"></div></div>
+      <div class="meta-stat-card"><div class="meta-stat-label">7D Users</div><div class="meta-stat-val" id="g-7-users" style="color:#a78bfa"></div></div>
+      <div class="meta-stat-card"><div class="meta-stat-label">7D Pageviews</div><div class="meta-stat-val" id="g-7-pv" style="color:#34d399"></div></div>
+      <div class="meta-stat-card"><div class="meta-stat-label">New Users</div><div class="meta-stat-val" id="g-7-new" style="color:#f59e0b"></div></div>
+      <div class="meta-stat-card"><div class="meta-stat-label">Bounce Rate</div><div class="meta-stat-val" id="g-7-bounce" style="color:#f87171"></div></div>
+      <div class="meta-stat-card"><div class="meta-stat-label">Avg Duration</div><div class="meta-stat-val" id="g-7-dur" style="color:#22c55e"></div></div>
+      <div class="meta-stat-card"><div class="meta-stat-label">Conversions</div><div class="meta-stat-val" id="g-7-conv" style="color:#fbbf24"></div></div>
+    </div>
+
+    <!-- Devices + Sources -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+
+      <!-- Device breakdown -->
+      <div style="background:#1a1a1a;border-radius:10px;padding:16px 20px">
+        <div style="font-size:12px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px">Device Breakdown</div>
+        <div id="g-devices"></div>
+      </div>
+
+      <!-- Traffic sources -->
+      <div style="background:#1a1a1a;border-radius:10px;padding:16px 20px">
+        <div style="font-size:12px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px">Traffic Sources</div>
+        <div id="g-sources"></div>
+      </div>
+    </div>
+
+    <!-- Top pages -->
+    <div style="background:#1a1a1a;border-radius:10px;overflow:hidden;margin-bottom:16px">
+      <div style="padding:14px 20px;border-bottom:1px solid #2a2a2a;font-size:13px;font-weight:700">Top Pages — Last 7 Days</div>
+      <table style="width:100%;border-collapse:collapse;font-size:12px">
+        <thead>
+          <tr style="background:#0f0f0f;color:#666;font-size:11px;text-transform:uppercase">
+            <th style="padding:8px 16px;text-align:left">Page</th>
+            <th style="padding:8px 10px;text-align:right">Views</th>
+            <th style="padding:8px 10px;text-align:right">Sessions</th>
+            <th style="padding:8px 10px;text-align:right">Avg Time</th>
+          </tr>
+        </thead>
+        <tbody id="g-pages-tbody"></tbody>
+      </table>
+    </div>
+
+    <!-- Daily trend -->
+    <div style="background:#1a1a1a;border-radius:10px;padding:16px 20px;margin-bottom:16px">
+      <div style="font-size:12px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:1px;margin-bottom:14px">Daily Trend — Last 7 Days</div>
+      <div id="g-daily-bars" style="display:flex;align-items:flex-end;gap:8px;height:80px"></div>
+      <div id="g-daily-labels" style="display:flex;gap:8px;margin-top:6px"></div>
+    </div>
+
+  </div>
+</div>
 <div id="module-email" style="display:none" class="coming-soon"><div class="cs-icon">📧</div><div class="cs-title">Email Marketing</div><div class="cs-desc">Campaign open rates, click-through rates, list health and AI-driven content suggestions.</div><div class="cs-chip">Coming Soon</div></div>
 <div id="module-whatsapp-blast" style="display:none" class="coming-soon"><div class="cs-icon">💬</div><div class="cs-title">WhatsApp Blast</div><div class="cs-desc">Broadcast campaign insights, delivery rates, response tracking and template performance.</div><div class="cs-chip">Coming Soon</div></div>
 
@@ -510,7 +575,7 @@ const PROP_META = {
   GUR:{label:"Rhythm Gurugram", cls:"c-gur",hdr:"hdr-gur",col:"colGUR",p:"gur"},
   KUM:{label:"Rhythm Kumarakom",cls:"c-kum",hdr:"hdr-kum",col:"colKUM",p:"kum"},
 };
-const COMING = ["google-ads","linkedin","ga4","email","whatsapp-blast"];
+const COMING = ["google-ads","linkedin","email","whatsapp-blast"];
 
 let weekStart=monday(TODAY), postsJson={}, igData={}, weekCache={}, influencers={}, profilePics={}, liveWeekData=null;
 let infPropFilter="all", infSort="recent";
@@ -613,6 +678,7 @@ function switchModule(id){
   });
   if(id==="influencers")renderInfluencerList();
   if(id==="meta-ads")loadMetaAds();
+  if(id==="ga4")loadGA4();
 }
 
 function switchSub(id){
@@ -1069,6 +1135,107 @@ function renderMetaAds(d){
       <td style="padding:10px 8px;text-align:right;font-weight:700;color:#22c55e">${c.leads||'—'}</td>
       <td style="padding:10px 8px;text-align:right;color:#a78bfa">${c.cpl?fmt(c.cpl):'—'}</td>
     </tr>`;
+  }).join('');
+}
+
+// ── GA4 ───────────────────────────────────────────────────────────────────────
+let _ga4Data = null;
+
+function loadGA4(){
+  if(_ga4Data){renderGA4(_ga4Data);return;}
+  document.getElementById('ga4-loading').style.display='';
+  document.getElementById('ga4-content').style.display='none';
+  const url = window.location.hostname==='localhost'||window.location.hostname==='127.0.0.1'
+    ? '/api/ga4' : 'ga4_cache.json?v='+Date.now();
+  fetch(url).then(r=>r.json()).then(d=>{
+    if(d.error){document.getElementById('ga4-loading').textContent='Error: '+d.error;return;}
+    _ga4Data=d; renderGA4(d);
+  }).catch(e=>{document.getElementById('ga4-loading').textContent='Failed: '+e;});
+}
+
+function renderGA4(d){
+  document.getElementById('ga4-loading').style.display='none';
+  document.getElementById('ga4-content').style.display='';
+
+  const fmtN = n => n>=1000000?(n/1000000).toFixed(1)+'M':n>=1000?(n/1000).toFixed(1)+'K':String(n);
+  const fmtT = s => { const m=Math.floor(s/60),sec=Math.round(s%60); return m+'m '+sec+'s'; };
+
+  // Yesterday
+  const y=d.yesterday;
+  document.getElementById('g-yd-sessions').textContent = fmtN(y.sessions);
+  document.getElementById('g-yd-users').textContent    = fmtN(y.users);
+  document.getElementById('g-yd-pv').textContent       = fmtN(y.pageviews);
+  document.getElementById('g-yd-new').textContent      = fmtN(y.new_users);
+  document.getElementById('g-yd-bounce').textContent   = y.bounce_rate+'%';
+  document.getElementById('g-yd-dur').textContent      = fmtT(y.avg_duration);
+
+  // 7-day
+  const w=d.week;
+  document.getElementById('g-7-sessions').textContent  = fmtN(w.sessions);
+  document.getElementById('g-7-users').textContent     = fmtN(w.users);
+  document.getElementById('g-7-pv').textContent        = fmtN(w.pageviews);
+  document.getElementById('g-7-new').textContent       = fmtN(w.new_users);
+  document.getElementById('g-7-bounce').textContent    = w.bounce_rate+'%';
+  document.getElementById('g-7-dur').textContent       = fmtT(w.avg_duration);
+  document.getElementById('g-7-conv').textContent      = w.conversions||'0';
+
+  // Devices
+  const totalDev = d.devices.reduce((a,x)=>a+x.sessions,0);
+  const devColors = {mobile:'#60a5fa',desktop:'#a78bfa',tablet:'#34d399'};
+  document.getElementById('g-devices').innerHTML = d.devices.map(x=>{
+    const pct = totalDev ? Math.round(x.sessions/totalDev*100) : 0;
+    const col = devColors[x.device]||'#888';
+    return `<div style="margin-bottom:10px">
+      <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px">
+        <span style="color:#ccc;text-transform:capitalize">${x.device}</span>
+        <span style="color:${col};font-weight:700">${pct}% <span style="color:#666;font-weight:400">(${fmtN(x.sessions)} sessions)</span></span>
+      </div>
+      <div style="background:#111;border-radius:4px;height:6px">
+        <div style="background:${col};width:${pct}%;height:6px;border-radius:4px"></div>
+      </div></div>`;
+  }).join('');
+
+  // Sources
+  const srcColors={'Organic Search':'#34d399','Paid Social':'#f59e0b','Direct':'#60a5fa','Paid Search':'#a78bfa','Organic Social':'#fb923c','Referral':'#e879f9','AI Assistant':'#22d3ee','Unassigned':'#555'};
+  const totalSrc = d.sources.reduce((a,x)=>a+x.sessions,0);
+  document.getElementById('g-sources').innerHTML = d.sources.map(x=>{
+    const pct = totalSrc ? Math.round(x.sessions/totalSrc*100) : 0;
+    const col = srcColors[x.channel]||'#888';
+    return `<div style="margin-bottom:10px">
+      <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px">
+        <span style="color:#ccc">${x.channel}</span>
+        <span style="color:${col};font-weight:700">${pct}% <span style="color:#666;font-weight:400">(${fmtN(x.sessions)})</span></span>
+      </div>
+      <div style="background:#111;border-radius:4px;height:6px">
+        <div style="background:${col};width:${pct}%;height:6px;border-radius:4px"></div>
+      </div></div>`;
+  }).join('');
+
+  // Top pages
+  document.getElementById('g-pages-tbody').innerHTML = d.top_pages.map((p,i)=>`
+    <tr style="border-bottom:1px solid #1a1a1a">
+      <td style="padding:9px 16px;max-width:320px">
+        <div style="font-size:12px;color:#e0e0e0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${p.path}</div>
+        <div style="font-size:10px;color:#555;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${p.title||''}</div>
+      </td>
+      <td style="padding:9px 10px;text-align:right;font-weight:700;color:#60a5fa">${fmtN(p.views)}</td>
+      <td style="padding:9px 10px;text-align:right;color:#888">${fmtN(p.sessions)}</td>
+      <td style="padding:9px 10px;text-align:right;color:#888">${fmtT(p.duration)}</td>
+    </tr>`).join('');
+
+  // Daily trend bars
+  const maxS = Math.max(...d.daily.map(x=>x.sessions),1);
+  document.getElementById('g-daily-bars').innerHTML = d.daily.map(x=>{
+    const h = Math.max(4, Math.round(x.sessions/maxS*80));
+    return `<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px">
+      <div style="font-size:10px;color:#60a5fa;font-weight:600">${fmtN(x.sessions)}</div>
+      <div style="width:100%;background:#60a5fa33;border-radius:4px 4px 0 0;height:${h}px;position:relative">
+        <div style="position:absolute;bottom:0;left:0;right:0;background:#60a5fa;border-radius:4px 4px 0 0;height:${h}px"></div>
+      </div></div>`;
+  }).join('');
+  document.getElementById('g-daily-labels').innerHTML = d.daily.map(x=>{
+    const dt=x.date; const label=dt.slice(6,8)+'/'+dt.slice(4,6);
+    return `<div style="flex:1;text-align:center;font-size:10px;color:#555">${label}</div>`;
   }).join('');
 }
 
