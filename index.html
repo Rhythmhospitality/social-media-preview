@@ -1049,7 +1049,7 @@ function renderMetaAds(d){
     const dot = `<span class="meta-status-dot ${isActive?'active':'paused'}"></span>`;
     return `<tr class="meta-tr ${isActive?'':'paused'}">
       <td style="padding:10px 12px;max-width:240px">
-        ${dot}<span style="font-size:12px;font-weight:${isActive?600:400}">${esc(c.name)}</span>
+        ${dot}<span style="font-size:12px;font-weight:${isActive?600:400};color:${isActive?'#e0e0e0':'#888'}">${esc(c.name)}</span>
         <div style="font-size:10px;color:#444;margin-top:2px;padding-left:13px">${c.objective.replace('OUTCOME_','')}</div>
       </td>
       <td style="padding:10px 8px;text-align:right;font-weight:700;color:#f59e0b">${fmt(c.spend)}</td>
